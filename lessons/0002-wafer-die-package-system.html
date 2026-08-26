@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="半导体与先进封装第二课：分清晶体管、晶圆、裸片、封装与系统。">
+  <meta name="theme-color" content="#f7f3ea">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://fanfanfanfanfan626.github.io/advanced-semiconductor-packaging-course/lessons/0002-wafer-die-package-system.html">
+  <link rel="canonical" href="https://fanfanfanfanfan626.github.io/advanced-semiconductor-packaging-course/lessons/0002-wafer-die-package-system.html">
+  <meta property="og:title" content="第2课｜从 Wafer 到 Die 再到 Package｜封装解构">
+  <meta property="og:description" content="半导体与先进封装第二课：分清晶体管、晶圆、裸片、封装与系统。">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="第2课｜从 Wafer 到 Die 再到 Package｜封装解构">
+  <meta name="twitter:description" content="半导体与先进封装第二课：分清晶体管、晶圆、裸片、封装与系统。">
+  <title>第2课｜从 Wafer 到 Die 再到 Package｜封装解构</title>
+  <link rel="stylesheet" href="../assets/course.css">
+  <script src="../assets/lesson.js" defer></script>
+  <script src="../assets/site-shell.js" defer></script>
+</head>
+<body>
+  <main class="lesson-shell">
+    <header class="hero">
+      <p class="eyebrow">Semiconductor &amp; Advanced Packaging · Lesson 0002</p>
+      <h1>“芯片”不是一个东西，而是五个层级</h1>
+      <p class="lede">新闻里的“芯片”可能指电路设计、晶圆上的图形、一颗裸片、封装后的器件，甚至整套系统。先找准对象，技术和投资判断才不会错层。</p>
+      <div class="win">
+        <strong>本课胜利条件</strong>
+        <p>看到 wafer、die、package、system 四个词时，能指出它们处在制造链的哪一步，并说明封装除了高速互连还承担什么。</p>
+      </div>
+    </header>
+
+    <section class="section" id="five-levels">
+      <div class="section-head">
+        <p class="eyebrow">01 · Five levels</p>
+        <h2>从会开关的器件，到能工作的系统</h2>
+        <p>把下面五层当成地图。它们不是同义词，而是从微观功能到宏观产品的嵌套关系。</p>
+      </div>
+
+      <div class="flow" aria-label="从晶体管到系统的五个层级">
+        <div class="flow-step"><b>晶体管</b><span>控制电流的器件；构成逻辑与存储</span></div>
+        <div class="flow-step"><b>晶圆 wafer</b><span>制造期间承载大量重复电路的圆片</span></div>
+        <div class="flow-step"><b>裸片 die</b><span>晶圆切割后的一块完整电路</span></div>
+        <div class="flow-step"><b>封装 package</b><span>裸片 + 互连 + 供电/散热/保护结构</span></div>
+        <div class="flow-step"><b>系统 system</b><span>封装器件、板卡、软件共同完成任务</span></div>
+      </div>
+
+      <aside class="callout">
+        <p><strong>先纠正一个省略：</strong>你说“先进封装要做芯片间高速互联”是正确的核心，但还不完整。封装也要把电源送进去、把热导出来、把信号接到外部，并提供机械与环境保护；完成后还要测试。<a href="#source-3">[3]</a><a href="#source-4">[4]</a></p>
+      </aside>
+    </section>
+
+    <section class="section" id="objects">
+      <div class="section-head">
+        <p class="eyebrow">02 · Object test</p>
+        <h2>三个最容易混的对象</h2>
+        <p>判断方法不是看它“像不像芯片”，而是看它是否还连在圆片上、是否已经切开、是否已经获得对外连接。</p>
+      </div>
+
+      <div style="overflow-x:auto;">
+        <table>
+          <thead>
+            <tr><th>对象</th><th>形态</th><th>此时能做什么</th><th>还缺什么</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Wafer<br>晶圆</strong></td><td>圆形硅片，上面重复排列许多电路区域</td><td>统一经历沉积、光刻、刻蚀、掺杂和量测</td><td>测试、切割、封装</td></tr>
+            <tr><td><strong>Die<br>裸片</strong></td><td>从晶圆切下的一块矩形集成电路</td><td>已经包含预定电路功能，可做裸片测试</td><td>可靠的供电、散热、保护和外部连接</td></tr>
+            <tr><td><strong>Package<br>封装器件</strong></td><td>一颗或多颗裸片与基板/互连/散热结构的组合</td><td>可安装到电路板，连接系统电源与信号</td><td>仍需板卡、存储、供电、散热与软件形成产品</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>ASML 将晶圆制造描述为在硅片上反复构建多层图形，最后切成单独芯片并封装；Intel 将切割后的矩形称为 die，并把 assembly and test 视为制造的后半程。<a href="#source-1">[1]</a><a href="#source-2">[2]</a><a href="#source-3">[3]</a></p>
+    </section>
+
+    <section class="section" id="process">
+      <div class="section-head">
+        <p class="eyebrow">03 · Process boundary</p>
+        <h2>制造链上发生了什么变化</h2>
+        <p>记“对象变换”，比背上百道工序更稳。</p>
+      </div>
+
+      <div class="reference-grid">
+        <article class="reference-card">
+          <h3>① 晶圆制造（wafer fabrication）</h3>
+          <p><strong>输入：</strong>裸晶圆 + 掩模/设计数据</p>
+          <p><strong>变化：</strong>通过沉积、光刻、刻蚀、掺杂等循环，在晶圆上形成器件和多层金属互连。</p>
+          <p><strong>输出：</strong>仍然是一整片晶圆，但上面已有许多重复 die 图形。<a href="#source-1">[1]</a></p>
+        </article>
+        <article class="reference-card">
+          <h3>② 晶圆测试与切割（sort &amp; dicing）</h3>
+          <p><strong>输入：</strong>完成电路的晶圆</p>
+          <p><strong>变化：</strong>逐颗测试晶圆上的 die，识别可用裸片，再沿划片道切开。</p>
+          <p><strong>输出：</strong>分离的 good die / known good die 候选。<a href="#source-2">[2]</a></p>
+        </article>
+        <article class="reference-card">
+          <h3>③ 组装与封装（assembly &amp; packaging）</h3>
+          <p><strong>输入：</strong>一颗或多颗 die、基板、互连与结构材料</p>
+          <p><strong>变化：</strong>贴装、键合/连接、底填或塑封、散热结构装配。</p>
+          <p><strong>输出：</strong>具备外部电气和机械接口的封装器件。<a href="#source-3">[3]</a></p>
+        </article>
+        <article class="reference-card">
+          <h3>④ 最终测试与系统验证</h3>
+          <p><strong>输入：</strong>封装器件</p>
+          <p><strong>变化：</strong>电性、功能、温度、老化与平台条件下的验证。</p>
+          <p><strong>输出：</strong>分档后的可交付产品，再进入板卡和整机。<a href="#source-3">[3]</a><a href="#source-4">[4]</a></p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="investment-map">
+      <div class="section-head">
+        <p class="eyebrow">04 · Investment map</p>
+        <h2>物理流程与公司标签不是一回事</h2>
+        <p>这是读产业链时最常见的错层：把一种公司商业模式，当成一道固定工序。</p>
+      </div>
+
+      <div class="lenses">
+        <article class="lens-card">
+          <span class="lens-number">设</span>
+          <h3>Fabless</h3>
+          <p>以芯片设计为主，把晶圆制造委托给 foundry。它是商业模式，不是一种器件。</p>
+        </article>
+        <article class="lens-card">
+          <span class="lens-number">造</span>
+          <h3>Foundry / IDM</h3>
+          <p>Foundry 为客户代工；IDM 通常同时拥有设计和制造。ASML 的入门材料也采用这一区分。<a href="#source-1">[1]</a></p>
+        </article>
+        <article class="lens-card">
+          <span class="lens-number">封</span>
+          <h3>OSAT / ASAT</h3>
+          <p>OSAT 提供外包半导体组装与测试；IDM 或 foundry 也可能自建先进封装与测试能力。<a href="#source-5">[5]</a></p>
+        </article>
+      </div>
+
+      <aside class="callout">
+        <p><strong>投资含义：</strong>“设计—晶圆制造—封装测试”的物理环节相对稳定，但公司边界会变化。先进封装的重要性上升后，晶圆厂、IDM、OSAT、基板厂、设备与材料商会争夺同一个新增价值池；不要只凭公司标签判断谁受益。TSMC 同时提供晶圆制造与 3DFabric 封装平台，就是边界扩张的直接例子。<a href="#source-6">[6]</a></p>
+      </aside>
+    </section>
+
+    <section class="section" id="practice">
+      <div class="section-head">
+        <p class="eyebrow">05 · Retrieval practice</p>
+        <h2>只根据对象与阶段判断</h2>
+        <p>四个选项长度相同。别凭“哪个看起来更完整”猜答案。</p>
+      </div>
+
+      <form class="quiz" data-quiz data-answer="a" data-correct="正确。它仍是一整片圆形晶圆，刚完成在晶圆厂内的多层图形构建，尚未切割，所以对象是晶圆、阶段是制造。" data-incorrect="关键线索是“圆形硅片”和“尚未切割”。只要仍连成一片，它就是 wafer；此时仍属于晶圆制造末端。">
+        <div class="scenario">
+          <strong>情境：</strong>一片圆形硅片上已经形成数百个重复电路图形，刚完成最后几层金属互连，但尚未进行切割。
+        </div>
+        <div class="options">
+          <label class="option"><input type="radio" name="q1" value="a"><code>对象是晶圆，阶段是制造</code></label>
+          <label class="option"><input type="radio" name="q1" value="b"><code>对象是裸片，阶段是制造</code></label>
+          <label class="option"><input type="radio" name="q1" value="c"><code>对象是晶圆，阶段是封装</code></label>
+          <label class="option"><input type="radio" name="q1" value="d"><code>对象是裸片，阶段是封装</code></label>
+        </div>
+        <button class="button" type="submit">提交判断</button>
+        <p class="feedback" data-feedback aria-live="polite"></p>
+
+        <div class="retrieval">
+          <h3>用一句因果链补全封装职责</h3>
+          <p>请先口头完成：“裸片不能直接成为系统产品，因为它还缺少 ______。”</p>
+          <button class="button secondary" type="button" data-reveal="rubric-2" aria-expanded="false">看判断标准</button>
+          <div class="reveal" id="rubric-2" hidden>
+            至少说出四类中的三类：<strong>对外信号互连、稳定供电、散热路径、机械/环境保护</strong>。若还能说出测试与可靠性，说明你已经开始从“结构”转向“工程约束”。
+          </div>
+        </div>
+      </form>
+    </section>
+
+    <section class="section" id="primary-source">
+      <div class="section-head">
+        <p class="eyebrow">06 · Read one primary source</p>
+        <h2>课后只读一页</h2>
+      </div>
+      <article class="source-card">
+        <div class="source-icon">1°</div>
+        <div>
+          <h3><a href="https://newsroom.intel.com/tech101/how-silicon-die-become-chip-packages">Intel Tech 101：How Silicon Die Become Chip Packages</a></h3>
+          <p>阅读时只追踪对象变化：die 如何被贴到 substrate、如何获得散热盖、之后为什么还要 burn-in、electrical test 和 platform validation。不要记机器名字。</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="section footnotes" id="sources">
+      <h2>本课来源</h2>
+      <ol>
+        <li id="source-1"><a href="https://www.asml.com/en/en/technology/all-about-microchips/how-microchips-are-made">ASML, “How microchips are made”</a>：晶圆制造流程、切割、封装及企业类型。</li>
+        <li id="source-2"><a href="https://newsroom.intel.com/tech101/what-are-semiconductors">Intel Tech 101, “What are Semiconductors?”</a>：wafer、die/sort、assembly and test 的对象变化。</li>
+        <li id="source-3"><a href="https://newsroom.intel.com/tech101/how-silicon-die-become-chip-packages">Intel Tech 101, “How Silicon Die Become Chip Packages”</a>：组装、封装、散热与测试流程。</li>
+        <li id="source-4"><a href="https://semiconductor.samsung.com/support/tools-resources/dictionary/semiconductor-glossary-packaging/">Samsung Semiconductor, “Packaging”</a>：互连、供电、散热、保护与封装测试职责。</li>
+        <li id="source-5"><a href="https://www.intel.com/content/www/us/en/foundry/packaging.html">Intel Foundry, “Advanced Packaging”</a>：ASAT 与 OSAT 的组装测试路径。</li>
+        <li id="source-6"><a href="https://3dfabric.tsmc.com/english/dedicatedFoundry/technology/3DFabric.htm">TSMC, “3DFabric”</a>：晶圆厂向系统集成与先进封装延伸的实例。</li>
+      </ol>
+    </section>
+
+    <nav class="next-step" aria-label="下一步">
+      <h2>本课压缩结论</h2>
+      <p>晶圆完成后切割得到 die；封装为 die 提供信号、供电、散热、保护和机械连接，物理流程不能被公司标签替代。</p>
+      <p><a href="0001-system-scaling-map.html">← 第一课</a>　·　<a href="../reference/0002-product-chain.html">速查表</a>　·　<a href="0003-yield-cost-chiplets.html">进入第三课 →</a></p>
+    </nav>
+  </main>
+</body>
+</html>

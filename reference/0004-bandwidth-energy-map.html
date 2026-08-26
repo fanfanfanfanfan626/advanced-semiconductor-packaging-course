@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="先进封装带宽与互连能耗速查表。">
+  <meta name="theme-color" content="#f7f3ea">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://fanfanfanfanfan626.github.io/advanced-semiconductor-packaging-course/reference/0004-bandwidth-energy-map.html">
+  <link rel="canonical" href="https://fanfanfanfanfan626.github.io/advanced-semiconductor-packaging-course/reference/0004-bandwidth-energy-map.html">
+  <meta property="og:title" content="速查表｜带宽与互连能耗">
+  <meta property="og:description" content="先进封装带宽与互连能耗速查表。">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="速查表｜带宽与互连能耗">
+  <meta name="twitter:description" content="先进封装带宽与互连能耗速查表。">
+  <title>速查表｜带宽与互连能耗</title>
+  <link rel="stylesheet" href="../assets/course.css">
+  <script src="../assets/site-shell.js" defer></script>
+</head>
+<body>
+  <main class="lesson-shell">
+    <header class="hero">
+      <p class="eyebrow">Reference 0004 · Print-friendly</p>
+      <h1>带宽与互连能耗</h1>
+      <p class="lede">更密提供更多通道；更短降低通信负载。先分清两条因果链。</p>
+    </header>
+
+    <section class="section">
+      <div class="reference-grid">
+        <article class="reference-card">
+          <h2>带宽</h2>
+          <span class="equation">B ≈ N × R</span>
+          <ul><li>N：通道数</li><li>R：单通道速率</li><li>有效带宽还要乘协议效率</li></ul>
+        </article>
+        <article class="reference-card">
+          <h2>能耗</h2>
+          <span class="equation">E ∝ C × V²</span>
+          <ul><li>C：等效负载电容</li><li>V：信号电压尺度</li><li>相似条件下，距离缩短通常使 C 降低</li></ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="callout"><p><strong>读厂商指标：</strong>“带宽提升”要拆成通道数、单通道速率、协议效率；“能效提升”要检查每比特能耗、距离、封装类型、工作负载和测试条件是否可比。</p></div>
+      <p><a href="../lessons/0004-bandwidth-energy-distance.html">← 返回第四课</a></p>
+    </section>
+  </main>
+</body>
+</html>

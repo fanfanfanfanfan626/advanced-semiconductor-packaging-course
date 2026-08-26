@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="半导体与先进封装第三课：用面积、缺陷、良率与组装损失理解 chiplet 经济性。">
+  <meta name="theme-color" content="#f7f3ea">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://fanfanfanfanfan626.github.io/advanced-semiconductor-packaging-course/lessons/0003-yield-cost-chiplets.html">
+  <link rel="canonical" href="https://fanfanfanfanfan626.github.io/advanced-semiconductor-packaging-course/lessons/0003-yield-cost-chiplets.html">
+  <meta property="og:title" content="第3课｜良率、成本与 Chiplet 权衡｜封装解构">
+  <meta property="og:description" content="半导体与先进封装第三课：用面积、缺陷、良率与组装损失理解 chiplet 经济性。">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="第3课｜良率、成本与 Chiplet 权衡｜封装解构">
+  <meta name="twitter:description" content="半导体与先进封装第三课：用面积、缺陷、良率与组装损失理解 chiplet 经济性。">
+  <title>第3课｜良率、成本与 Chiplet 权衡｜封装解构</title>
+  <link rel="stylesheet" href="../assets/course.css">
+  <script src="../assets/lesson.js" defer></script>
+  <script src="../assets/yield-simulator.js" defer></script>
+  <script src="../assets/site-shell.js" defer></script>
+</head>
+<body>
+  <main class="lesson-shell">
+    <header class="hero">
+      <p class="eyebrow">Semiconductor &amp; Advanced Packaging · Lesson 0003</p>
+      <h1>为什么大芯片不只“大一点”</h1>
+      <p class="lede">面积增大，会提高裸片遇到致命缺陷的机会；拆成 chiplet 能减少硅片浪费，却会把成本搬到互连、封装、测试和系统良率。真正的问题从来不是“拆不拆”，而是“在哪里拆最划算”。</p>
+      <div class="win">
+        <strong>本课胜利条件</strong>
+        <p>读到“chiplet 提高良率、降低成本”时，能说出它省掉了什么、又新增了什么，而不是直接接受结论。</p>
+      </div>
+    </header>
+
+    <section class="section" id="defect-lottery">
+      <div class="section-head">
+        <p class="eyebrow">01 · Defect lottery</p>
+        <h2>面积越大，撞上缺陷的机会越多</h2>
+        <p>晶圆制造中的颗粒、图形或材料缺陷并非每个都会杀死电路，但“关键区域内出现致命缺陷”是理解良率的第一层模型。</p>
+      </div>
+
+      <span class="equation">简化 Poisson 模型：Y = e<sup>−D·A</sup></span>
+      <div class="definition-list">
+        <div class="definition"><dt>Y</dt><dd>die yield：制造出的裸片中可用裸片的比例</dd></div>
+        <div class="definition"><dt>D</dt><dd>有效致命缺陷密度，单位可写作 defects/cm²</dd></div>
+        <div class="definition"><dt>A</dt><dd>裸片面积，单位必须与 D 对应</dd></div>
+      </div>
+
+      <aside class="callout">
+        <p><strong>只记方向：</strong>缺陷密度 D 不变时，面积 A 增大，良率 Y 下降。Poisson 模型是教学近似；真实晶圆存在缺陷聚集、系统性损失、边缘损失和参数分档，需要更复杂模型。相关研究也指出简单 Poisson 模型对大面积裸片可能偏悲观。<a href="#source-1">[1]</a></p>
+      </aside>
+    </section>
+
+    <section class="section" id="simulator">
+      <div class="section-head">
+        <p class="eyebrow">02 · Interactive model</p>
+        <h2>亲手拉动四个变量</h2>
+        <p>先把总硅面积设为 600 mm²、缺陷密度设为 0.15/cm²，再把 chiplet 数量从 1 拉到 4。观察“单颗裸片良率”与“组装存活率”向相反方向移动。</p>
+      </div>
+
+      <div class="simulator" data-yield-simulator>
+        <div class="controls">
+          <div class="control">
+            <label for="area">总功能硅面积 <output data-output="area-label"></output></label>
+            <input id="area" data-input="area" type="range" min="100" max="800" step="25" value="600">
+          </div>
+          <div class="control">
+            <label for="defects">假设缺陷密度 <output data-output="defects-label"></output></label>
+            <input id="defects" data-input="defects" type="range" min="0.05" max="0.80" step="0.05" value="0.15">
+          </div>
+          <div class="control">
+            <label for="count">等面积 chiplet 数 <output data-output="count-label"></output></label>
+            <input id="count" data-input="count" type="range" min="1" max="8" step="1" value="4">
+          </div>
+          <div class="control">
+            <label for="attach">每颗组装步骤良率 <output data-output="attach-label"></output></label>
+            <input id="attach" data-input="attach" type="range" min="95" max="100" step="0.1" value="99.5">
+          </div>
+          <p class="model-note">教学模型假设等面积拆分、独立随机缺陷、已筛出 KGD，并把组装风险简化为每颗一次独立步骤。它不计晶圆边缘、不同节点价格、互连面积、中介层、封装材料、测试时间和热设计，不能用于真实成本预测。</p>
+        </div>
+
+        <div class="metrics" aria-live="polite">
+          <article class="metric orange">
+            <span class="metric-name">单体大 die 良率</span>
+            <strong class="metric-value" data-output="mono-yield">—</strong>
+            <div class="meter"><span data-meter="mono-yield"></span></div>
+          </article>
+          <article class="metric green">
+            <span class="metric-name">单颗 chiplet 良率</span>
+            <strong class="metric-value" data-output="chiplet-yield">—</strong>
+            <div class="meter"><span data-meter="chiplet-yield"></span></div>
+          </article>
+          <article class="metric">
+            <span class="metric-name">每颗 chiplet 面积</span>
+            <strong class="metric-value" data-output="chiplet-area">—</strong>
+            <small>面积缩小使单颗遇到致命缺陷的机会下降</small>
+          </article>
+          <article class="metric orange">
+            <span class="metric-name">简化组装存活率</span>
+            <strong class="metric-value" data-output="assembly-yield">—</strong>
+            <div class="meter"><span data-meter="assembly-yield"></span></div>
+          </article>
+          <article class="metric">
+            <span class="metric-name">单体硅投入压力</span>
+            <strong class="metric-value" data-output="mono-input">—</strong>
+            <small>获得目标面积 good die 的理想化投入倍数</small>
+          </article>
+          <article class="metric">
+            <span class="metric-name">Chiplet 硅投入压力</span>
+            <strong class="metric-value" data-output="chiplet-input">—</strong>
+            <small>KGD 可从不同位置汇集后再选择性组装</small>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="balance">
+      <div class="section-head">
+        <p class="eyebrow">03 · Balance sheet</p>
+        <h2>Chiplet 把损失从硅片搬到了系统</h2>
+        <p>“小裸片良率更高”只是收益表的一列。AMD 的官方白皮书也明确同时列出个体良率优势与整体系统良率、封装成本、互连和热限制。<a href="#source-2">[2]</a></p>
+      </div>
+
+      <div class="balance">
+        <article class="balance-card gain">
+          <h3>可能获得</h3>
+          <ul>
+            <li><strong>更高单 die 良率：</strong>同样缺陷密度下，小面积裸片更少被一次缺陷整颗报废。</li>
+            <li><strong>节点匹配：</strong>逻辑用先进节点，I/O、模拟等可留在更合适的成熟节点。</li>
+            <li><strong>复用与并行开发：</strong>同一 chiplet 可服务多个产品组合，缩短部分开发周期。</li>
+            <li><strong>突破光罩尺寸：</strong>系统总硅面积可超过单次曝光的 reticle 上限。<a href="#source-3">[3]</a></li>
+          </ul>
+        </article>
+        <article class="balance-card cost">
+          <h3>必须支付</h3>
+          <ul>
+            <li><strong>互连税：</strong>跨 die 通信通常比同一 die 内通信带来更多能耗、延迟和面积。</li>
+            <li><strong>封装税：</strong>中介层、基板、键合、组装、散热和更复杂的协同设计。</li>
+            <li><strong>测试税：</strong>组装前要尽量确认 KGD；晚发现一颗坏 die，可能连带报废其他好 die。</li>
+            <li><strong>系统良率风险：</strong>每增加一种 die 与组装步骤，就增加新的缺陷来源。<a href="#source-4">[4]</a></li>
+          </ul>
+        </article>
+      </div>
+
+      <aside class="callout">
+        <p><strong>最重要的反直觉：</strong>把总面积 A 等分成 n 颗后，若每颗都必须成功且不能先筛选，理想 Poisson 概率会相乘回 e<sup>−D·A</sup>，不会凭空创造良率。经济优势来自<strong>先测试、只挑 good die 组装</strong>，再加上更小 die 的制造投入、节点匹配与复用；代价则由封装和系统测试承担。</p>
+      </aside>
+    </section>
+
+    <section class="section" id="three-lenses">
+      <div class="section-head">
+        <p class="eyebrow">04 · Three lenses</p>
+        <h2>以后看到“chiplet 降成本”，追问三层证据</h2>
+      </div>
+      <div class="lenses">
+        <article class="lens-card">
+          <span class="lens-number">投</span>
+          <h3>投资镜头</h3>
+          <ul>
+            <li>节省的是 wafer cost、研发复用还是 SKU 周期？</li>
+            <li>增加的先进封装、测试和基板成本由谁获得？</li>
+            <li>披露的是单 die 良率，还是最终封装良率？</li>
+          </ul>
+        </article>
+        <article class="lens-card">
+          <span class="lens-number">研</span>
+          <h3>科研镜头</h3>
+          <ul>
+            <li>缺陷是随机、聚集还是系统性的？</li>
+            <li>KGD 测试覆盖率与测试成本如何权衡？</li>
+            <li>封装缺陷怎样追溯到 die、键合或互连？</li>
+          </ul>
+        </article>
+        <article class="lens-card">
+          <span class="lens-number">学</span>
+          <h3>专业准备镜头</h3>
+          <ul>
+            <li>概率论：Poisson 与条件概率</li>
+            <li>制造：缺陷密度、良率、统计过程控制</li>
+            <li>编程：参数扫描、敏感性分析、可视化</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="practice">
+      <div class="section-head">
+        <p class="eyebrow">05 · Retrieval practice</p>
+        <h2>识别一个过度结论</h2>
+        <p>四个选项长度相同。选择最符合工程经济性的判断。</p>
+      </div>
+      <form class="quiz" data-quiz data-answer="b" data-correct="正确。小 chiplet 的单 die 良率通常更高，但总成本还取决于 KGD 测试、互连、封装材料与工艺、组装良率、热设计和最终系统良率。" data-incorrect="“小 die 良率更高”不等于“最终系统必然更便宜”。检查是否把封装、测试、互连与系统良率遗漏了。">
+        <div class="scenario">
+          <strong>情境：</strong>某公司把一颗 600 mm² 单体 SoC 拆成四颗 150 mm² chiplet，并宣称“因为每颗更小，所以总成本必然下降”。
+        </div>
+        <div class="options">
+          <label class="option"><input type="radio" name="q1" value="a"><code>正确，小裸片必然降低总成本</code></label>
+          <label class="option"><input type="radio" name="q1" value="b"><code>错误，还要计入封装测试损失</code></label>
+          <label class="option"><input type="radio" name="q1" value="c"><code>正确，拆分不会增加任何代价</code></label>
+          <label class="option"><input type="radio" name="q1" value="d"><code>错误，大裸片总有更高的良率</code></label>
+        </div>
+        <button class="button" type="submit">提交判断</button>
+        <p class="feedback" data-feedback aria-live="polite"></p>
+
+        <div class="retrieval">
+          <h3>补完因果链</h3>
+          <p>不看上文，口头完成：“die 面积增大 → ______ → 良率下降 → ______；拆成 chiplet 后，又新增 ______。”</p>
+          <button class="button secondary" type="button" data-reveal="rubric-3" aria-expanded="false">看判断标准</button>
+          <div class="reveal" id="rubric-3" hidden>
+            合格链条：<strong>撞上致命缺陷的概率上升 → 单位 good die 的硅片浪费/成本压力上升 → 封装、互连、测试和组装良率代价</strong>。
+          </div>
+        </div>
+      </form>
+    </section>
+
+    <section class="section" id="primary-source">
+      <div class="section-head"><p class="eyebrow">06 · Read one primary source</p><h2>课后只读两页</h2></div>
+      <article class="source-card">
+        <div class="source-icon">1°</div>
+        <div>
+          <h3><a href="https://www.amd.com/content/dam/amd/en/documents/solutions/technologies/chiplet-architecture-white-paper.pdf">AMD：What Are Chiplets?</a></h3>
+          <p>只读 PDF 第 3–4 页的 advantages / challenges。把每一条分别放进“硅片收益”或“系统代价”两栏；注意这是厂商白皮书，因此应把列出的优点视为待核验证据，而不是自动成立的结论。</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="section footnotes" id="sources">
+      <h2>本课来源</h2>
+      <ol>
+        <li id="source-1"><a href="https://doi.org/10.1016/0038-1101(81)90069-1">Stapper, “Poisson process and integrated circuit yield prediction,” Solid-State Electronics (1981)</a>：Poisson 近似与真实缺陷分布偏差。</li>
+        <li id="source-2"><a href="https://www.amd.com/content/dam/amd/en/documents/solutions/technologies/chiplet-architecture-white-paper.pdf">AMD, “What Are Chiplets?”</a>：小 die 良率、节点匹配、复用，以及封装、互连和系统良率挑战。</li>
+        <li id="source-3"><a href="https://resourcecenter.eps.ieee.org/education/webinars/epsvid0920">IEEE EPS, “To Chiplet or Not To Chiplet”</a>：面积、节点、reticle、KGD 与经济模型权衡。</li>
+        <li id="source-4"><a href="https://eps.ieee.org/wp-content/uploads/2025/11/ch17_test.pdf">IEEE HIR 2023, Chapter 17: Test Technology</a>：KGD、组装缺陷、晚检损失与系统良率。</li>
+      </ol>
+    </section>
+
+    <nav class="next-step" aria-label="下一步">
+      <h2>本课压缩结论</h2>
+      <p>拆小 die 可改善单 die 良率，却新增封装、测试与互连成本；必须比较“每个合格系统成本”，而非只看晶圆良率。</p>
+      <p><a href="0002-wafer-die-package-system.html">← 第二课</a>　·　<a href="../reference/0003-yield-cost-balance.html">速查表</a>　·　<a href="0004-bandwidth-energy-distance.html">进入第四课 →</a></p>
+    </nav>
+  </main>
+</body>
+</html>

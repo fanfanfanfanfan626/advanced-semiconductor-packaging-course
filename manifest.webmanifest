@@ -1,0 +1,11 @@
+{
+  "name": "封装解构｜半导体与先进封装课程",
+  "short_name": "封装解构",
+  "description": "40节课程，从先进封装物理结构走到工程、投资研究与科研准备。",
+  "lang": "zh-CN",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#07131f",
+  "theme_color": "#07131f",
+  "scope": "./"
+}

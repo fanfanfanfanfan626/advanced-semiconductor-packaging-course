@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="半导体与先进封装第七课：比较整片硅中介层、RDL 中介层和局部硅桥。">
+  <meta name="theme-color" content="#f7f3ea">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://fanfanfanfanfan626.github.io/advanced-semiconductor-packaging-course/lessons/0007-interposer-rdl-bridge.html">
+  <link rel="canonical" href="https://fanfanfanfanfan626.github.io/advanced-semiconductor-packaging-course/lessons/0007-interposer-rdl-bridge.html">
+  <meta property="og:title" content="第7课｜整片硅、RDL 与局部硅桥怎么选｜封装解构">
+  <meta property="og:description" content="半导体与先进封装第七课：比较整片硅中介层、RDL 中介层和局部硅桥。">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="第7课｜整片硅、RDL 与局部硅桥怎么选｜封装解构">
+  <meta name="twitter:description" content="半导体与先进封装第七课：比较整片硅中介层、RDL 中介层和局部硅桥。">
+  <title>第7课｜整片硅、RDL 与局部硅桥怎么选｜封装解构</title>
+  <link rel="stylesheet" href="../assets/course.css">
+  <script src="../assets/lesson.js" defer></script>
+  <script src="../assets/site-shell.js" defer></script>
+</head>
+<body>
+  <main class="lesson-shell">
+    <header class="hero">
+      <p class="eyebrow">Semiconductor &amp; Advanced Packaging · Lesson 0007</p>
+      <h1>整片硅、RDL 与局部硅桥怎么选</h1>
+      <p class="lede">三种路线都能连接并排的 chiplet。核心区别是：高密度线路覆盖整个区域，改用聚合物—铜重布线层，还是只放在 die 相邻边缘。</p>
+      <div class="win">
+        <strong>本课胜利条件</strong>
+        <p>能根据“互连需要覆盖多大范围”，初步区分整片硅中介层、RDL 中介层和局部硅桥。</p>
+      </div>
+    </header>
+
+    <section class="section" id="coverage">
+      <div class="section-head">
+        <p class="eyebrow">01 · Put density where needed</p>
+        <h2>不是三种维度，而是三种铺线方法</h2>
+        <p>它们都可以服务于 2.5D 系统。先看高密度布线材料放在哪里、覆盖多大面积。</p>
+      </div>
+
+      <div class="coverage-grid">
+        <article class="coverage-card">
+          <div class="coverage-sketch full-silicon" aria-label="两颗 die 下方由一整片硅中介层覆盖"><span class="sketch-die">die A</span><span class="sketch-die">die B</span></div>
+          <h3>整片硅中介层</h3>
+          <p>多颗 die 下方是一大片可精细布线的硅。适合广范围、高密度连接，也会面对中介层面积、制造与封装良率问题。TSMC CoWoS-S 属于这一思路。<a href="#source-1">[1]</a></p>
+        </article>
+
+        <article class="coverage-card">
+          <div class="coverage-sketch rdl-sheet" aria-label="两颗 die 下方由聚合物与铜组成的 RDL 中介层覆盖"><span class="sketch-die">die A</span><span class="sketch-die">die B</span></div>
+          <h3>RDL 中介层</h3>
+          <p>主要布线平台由聚合物介质与铜走线组成。它更柔性、可扩展，实际密度与成本取决于具体工艺。TSMC CoWoS-R 是官方实例。<a href="#source-1">[1]</a></p>
+        </article>
+
+        <article class="coverage-card">
+          <div class="coverage-sketch local-bridge" aria-label="两颗 die 只在相邻边缘下方放置一小块硅桥"><span class="sketch-die">die A</span><span class="sketch-die">die B</span></div>
+          <h3>局部硅桥</h3>
+          <p>只在 die 相邻边缘下方放一小块高密度硅互连，其余区域继续使用封装基板。Intel EMIB 是典型例子。<a href="#source-2">[2]</a></p>
+        </article>
+      </div>
+
+      <aside class="callout"><p><strong>记忆句：</strong>整片硅＝精细路网铺满园区；RDL＝换成聚合物—铜路网；局部硅桥＝只在最拥挤的边界修高速桥。</p></aside>
+    </section>
+
+    <section class="section" id="tradeoffs">
+      <div class="section-head"><p class="eyebrow">02 · Four decision variables</p><h2>没有绝对赢家，只有系统取舍</h2></div>
+      <div class="decision-strip">
+        <div><strong>密度</strong><span>需要多细、多宽的 die-to-die 接口？</span></div>
+        <div><strong>覆盖范围</strong><span>高速连接集中在边缘，还是遍布多颗 die？</span></div>
+        <div><strong>尺寸与良率</strong><span>中介层扩大后，制造、翘曲和组装会怎样？</span></div>
+        <div><strong>供电与散热</strong><span>信号之外，电力和热量从哪里通过？</span></div>
+      </div>
+      <p>TSMC 的 CoWoS-L 甚至把 RDL 平台与局部高密度硅互连结合起来，说明工程实践经常采用混合方案，而不是三选一。<a href="#source-1">[1]</a></p>
+    </section>
+
+    <section class="section" id="investment">
+      <div class="section-head"><p class="eyebrow">03 · Investment lens</p><h2>看到厂商名称，先翻译成结构</h2></div>
+      <div class="balance">
+        <article class="balance-card gain">
+          <h3>应该追问</h3>
+          <ul>
+            <li>高密度硅实际用了多大面积？</li>
+            <li>主要瓶颈在中介层、RDL、基板还是组装？</li>
+            <li>互连间距、封装尺寸和 HBM 数量如何变化？</li>
+            <li>新增产能能否达到客户要求的良率？</li>
+          </ul>
+        </article>
+        <article class="balance-card cost">
+          <h3>避免误判</h3>
+          <ul>
+            <li>“不用整片硅”不等于制造一定简单</li>
+            <li>“线路更细”不等于整个系统一定更便宜</li>
+            <li>厂商品牌名不能直接当作物理结构</li>
+            <li>宣称产能必须结合产品组合和良率理解</li>
+          </ul>
+        </article>
+      </div>
+      <aside class="callout"><p><strong>投资镜头：</strong>局部硅桥减少了大片硅中介层的需求，但会把一部分难度转移到高端基板、嵌桥、精密对准和组装；价值链不是消失，而是重新分配。</p></aside>
+    </section>
+
+    <section class="section" id="practice">
+      <div class="section-head"><p class="eyebrow">04 · Retrieval practice</p><h2>根据覆盖范围选择</h2></div>
+      <form class="quiz" data-quiz data-answer="a" data-correct="正确。只有相邻边缘需要极高密度时，可以把小块硅桥嵌在基板中，把精细线路集中在关键位置。" data-incorrect="题目强调两个词：只在‘相邻边缘’需要高密度，并希望避免‘大片’硅。">
+        <div class="scenario"><strong>情境：</strong>两颗大 die 只有相邻边缘需要极高密度互连，希望避免使用覆盖整个区域的大片硅。哪条路线最符合描述？</div>
+        <div class="options">
+          <label class="option"><input type="radio" name="q1" value="a"><code>局部硅桥集中铺设高速线路</code></label>
+          <label class="option"><input type="radio" name="q1" value="b"><code>整片硅中介层覆盖全部区域</code></label>
+          <label class="option"><input type="radio" name="q1" value="c"><code>RDL只负责垂直穿过硅片</code></label>
+          <label class="option"><input type="radio" name="q1" value="d"><code>微凸点完全取代封装基板层</code></label>
+        </div>
+        <button class="button" type="submit">提交判断</button>
+        <p class="feedback" data-feedback aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section class="section footnotes" id="sources">
+      <h2>本课来源</h2>
+      <ol>
+        <li id="source-1"><a href="https://3dfabric.tsmc.com/english/dedicatedFoundry/technology/cowos.htm">TSMC, CoWoS</a>：CoWoS-S 的整片硅中介层、CoWoS-R 的聚合物—铜 RDL 中介层，以及 CoWoS-L 的 RDL 与局部硅互连组合。</li>
+        <li id="source-2"><a href="https://www.intel.com/content/dam/www/central-libraries/us/en/documents/2025-07/emib-product-brief.pdf">Intel Foundry, EMIB Technology Brief</a>：小面积硅桥嵌入基板，只在桥区采用紧密微凸点。</li>
+        <li id="source-3"><a href="https://www.intel.com/content/www/us/en/foundry/packaging.html">Intel Foundry, Advanced Packaging</a>：EMIB、硅中介层与 RDL 中介层的官方产品分类。</li>
+      </ol>
+    </section>
+
+    <nav class="next-step" aria-label="下一步">
+      <h2>本课压缩结论</h2>
+      <p>全尺寸硅中介层提供大范围高密度布线；局部硅桥把最先进互连只放在相邻 die 边缘，换取面积与成本折中。</p>
+      <p><a href="0006-interposer-tsv-microbump.html">← 第六课</a>　·　<a href="../reference/0007-routing-coverage.html">速查表</a>　·　<a href="0008-power-density-thermal-path.html">进入第八课 →</a></p>
+    </nav>
+  </main>
+</body>
+</html>

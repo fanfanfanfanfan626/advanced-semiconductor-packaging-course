@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="半导体与先进封装第九课：理解低电压大电流、IR drop、PDN 与去耦电容。">
+  <meta name="theme-color" content="#f7f3ea">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://fanfanfanfanfan626.github.io/advanced-semiconductor-packaging-course/lessons/0009-power-delivery-voltage-droop.html">
+  <link rel="canonical" href="https://fanfanfanfanfan626.github.io/advanced-semiconductor-packaging-course/lessons/0009-power-delivery-voltage-droop.html">
+  <meta property="og:title" content="第9课｜电压更低，为什么供电反而更难｜封装解构">
+  <meta property="og:description" content="半导体与先进封装第九课：理解低电压大电流、IR drop、PDN 与去耦电容。">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="第9课｜电压更低，为什么供电反而更难｜封装解构">
+  <meta name="twitter:description" content="半导体与先进封装第九课：理解低电压大电流、IR drop、PDN 与去耦电容。">
+  <title>第9课｜电压更低，为什么供电反而更难｜封装解构</title>
+  <link rel="stylesheet" href="../assets/course.css">
+  <script src="../assets/lesson.js" defer></script>
+  <script src="../assets/site-shell.js" defer></script>
+</head>
+<body>
+  <main class="lesson-shell">
+    <header class="hero">
+      <p class="eyebrow">Semiconductor &amp; Advanced Packaging · Lesson 0009</p>
+      <h1>电压更低，为什么供电反而更难</h1>
+      <p class="lede">AI 芯片不仅需要高速传数据，还要把大量电流稳定送到数十亿个晶体管。封装中的基板、凸点、TSV 和电容共同组成供电网络。</p>
+      <div class="win">
+        <strong>本课胜利条件</strong>
+        <p>在功率相同的前提下，能判断电压降低后电流如何变化，并说出去耦电容解决的是哪类问题。</p>
+      </div>
+    </header>
+
+    <section class="section" id="current">
+      <div class="section-head">
+        <p class="eyebrow">01 · Same power, more current</p>
+        <h2>先守住“同样功率”这个条件</h2>
+        <p><strong>功率 = 电压 × 电流</strong>，所以在功率固定时：<strong>电流 = 功率 ÷ 电压</strong>。</p>
+      </div>
+
+      <div class="power-map">
+        <div class="voltage-cases" aria-label="同为 100 瓦，1 伏需要 100 安培，0.5 伏需要 200 安培">
+          <div class="voltage-case">
+            <div class="voltage-badge">1.0 V</div>
+            <div><strong>100 W → 100 A</strong><div class="current-meter half"><i></i></div><small>作为比较基准</small></div>
+          </div>
+          <div class="voltage-case">
+            <div class="voltage-badge">0.5 V</div>
+            <div><strong>100 W → 200 A</strong><div class="current-meter full"><i></i></div><small>电压减半，电流加倍</small></div>
+          </div>
+        </div>
+
+        <div class="pdn-panel">
+          <div class="pdn-chain" aria-label="供电从电压调节器经过主板、封装基板、凸点和芯片内部网络到达晶体管">
+            <div class="pdn-node">VRM<br>电压调节器</div><div class="pdn-arrow">→</div>
+            <div class="pdn-node">主板 + BGA</div><div class="pdn-arrow">→</div>
+            <div class="pdn-node">封装基板</div><div class="pdn-arrow">→</div>
+            <div class="pdn-node">凸点 / TSV</div><div class="pdn-arrow">→</div>
+            <div class="pdn-node">die 内部</div>
+          </div>
+          <div class="droop-note"><strong>每一段都不完美：</strong>导体有电阻，快速变化的电流还会受到电感影响。电流越大，沿途损失与电压波动越难控制。</div>
+        </div>
+      </div>
+
+      <aside class="callout"><p><strong>记忆句：</strong>同功率下，电压越低，电流越大；电流越大，供电路径越不能“细、长、绕”。</p></aside>
+    </section>
+
+    <section class="section" id="droop">
+      <div class="section-head"><p class="eyebrow">02 · IR drop and voltage droop</p><h2>送出 0.5 V，不代表晶体管收到完整 0.5 V</h2></div>
+      <div class="flow">
+        <div class="flow-step"><b>负载突然增加</b><span>大量晶体管切换</span></div>
+        <div class="flow-step"><b>电流快速上升</b><span>PDN 要立即响应</span></div>
+        <div class="flow-step"><b>路径产生压降</b><span>电阻 + 电感效应</span></div>
+        <div class="flow-step"><b>芯片端电压下陷</b><span>voltage droop</span></div>
+        <div class="flow-step"><b>频率或稳定性受限</b><span>供电余量不足</span></div>
+      </div>
+      <p><strong>IR drop</strong> 是电流经过电阻造成的压降；<strong>voltage droop</strong> 常泛指负载突变时芯片端电压短暂下陷。imec 将低电压、更大电流、IR drop、噪声与电迁移并列为先进供电挑战。<a href="#source-1">[1]</a></p>
+    </section>
+
+    <section class="section" id="decoupling">
+      <div class="section-head"><p class="eyebrow">03 · A nearby energy buffer</p><h2>去耦电容像负载旁边的小水箱</h2></div>
+      <div class="decap-demo">
+        <article class="decap-block"><h3>远处电源来不及瞬间响应</h3><p>VRM 能持续供电，但它隔着主板、基板和多级互连。负载在极短时间内突增时，路径电感会限制响应速度。</p></article>
+        <div class="capacitor-icon">local<br>decap</div>
+        <article class="decap-block"><h3>近处电容先临时补电</h3><p>去耦电容靠近 die 储存少量电荷，在瞬态需求出现时快速释放，缓冲 voltage droop；随后再由供电网络充回。</p></article>
+      </div>
+      <p>它不是永久发电机。TSMC 的 CoWoS-L 可在 SoC 下方集成 eDTC；Intel 的 EMIB-M/MIM 与 eDTC 也以降低 PDN 阻抗、改善瞬态供电为目标。<a href="#source-2">[2]</a><a href="#source-3">[3]</a></p>
+    </section>
+
+    <section class="section" id="solutions">
+      <div class="section-head"><p class="eyebrow">04 · Package power toolbox</p><h2>封装工程师有四类基本工具</h2></div>
+      <div class="lenses">
+        <article class="lens-card"><span class="lens-number">短</span><h3>缩短路径</h3><p>让电源更直接地进入 die，减少绕行。垂直供电 TSV 与背面供电都属于这个方向。</p></article>
+        <article class="lens-card"><span class="lens-number">宽</span><h3>降低阻抗</h3><p>使用更多电源/地连接、更宽金属与合理层叠，降低电阻、电感和局部电流拥挤。</p></article>
+        <article class="lens-card"><span class="lens-number">近</span><h3>电容靠近负载</h3><p>将 MIM 或深沟槽电容放得更接近高功耗 die，快速供应瞬态电流。</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="lenses">
+      <div class="section-head"><p class="eyebrow">05 · Research and investment</p><h2>供电不是一个零件，而是整条网络</h2></div>
+      <div class="balance">
+        <article class="balance-card gain"><h3>科研镜头</h3><p>研究 DC IR drop、瞬态 droop、PDN 阻抗、电流密度、电迁移和热耦合，并把 die、封装、主板与电压调节器一起建模。</p></article>
+        <article class="balance-card cost"><h3>投资镜头</h3><p>高功率系统会增加高端基板、电容、供电模块和测试需求，但价值取决于单机含量、认证壁垒、良率、客户自研程度与替代方案。</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="practice">
+      <div class="section-head"><p class="eyebrow">06 · Retrieval practice</p><h2>固定 100 W，只比较电流</h2></div>
+      <form class="quiz" data-quiz data-answer="a" data-correct="正确。同为 100 W，电流等于功率除以电压；0.5 V 时需要 200 A，是四个选项中最大的电流。" data-incorrect="使用 I = P ÷ V。P 固定为 100 W，分母 V 越小，电流 I 越大。">
+        <div class="scenario"><strong>情境：</strong>四种方案都向负载提供 100 W。哪一种电流最大？</div>
+        <div class="options">
+          <label class="option"><input type="radio" name="q1" value="a"><code>零点五伏时需要约二百安培</code></label>
+          <label class="option"><input type="radio" name="q1" value="b"><code>一点零伏时需要约一百安培</code></label>
+          <label class="option"><input type="radio" name="q1" value="c"><code>二点零伏时需要约五十安培</code></label>
+          <label class="option"><input type="radio" name="q1" value="d"><code>四点零伏时需要二十五安培</code></label>
+        </div>
+        <button class="button" type="submit">提交判断</button>
+        <p class="feedback" data-feedback aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section class="section footnotes" id="sources">
+      <h2>本课来源</h2>
+      <ol>
+        <li id="source-1"><a href="https://www.imec-int.com/en/articles/imec-demonstrates-critical-building-blocks-backside-power-delivery-network">imec, Critical building blocks for backside power delivery</a>：低供电电压、更大电流、IR drop、电压噪声与电迁移挑战。</li>
+        <li id="source-2"><a href="https://3dfabric.tsmc.com/english/dedicatedFoundry/technology/cowos.htm">TSMC, CoWoS</a>：CoWoS-L 的信号/电源 RDL 与 SoC 下方 eDTC 集成。</li>
+        <li id="source-3"><a href="https://www.intel.com/content/dam/www/central-libraries/us/en/documents/2025-11/intel-foundry-hpc-ai-brief.pdf">Intel Foundry, Accelerating HPC and AI</a>：瞬态电流、PDN 阻抗、MIM/eDTC 电容和垂直供电。</li>
+        <li id="source-4"><a href="https://www.imec-int.com/en/articles/how-power-chips-backside">imec, Backside power delivery</a>：传统前侧供电路径、压降以及背面供电研究。</li>
+      </ol>
+    </section>
+
+    <nav class="next-step" aria-label="下一步">
+      <h2>本课压缩结论</h2>
+      <p>同功耗下电压越低，电流越大，压降与瞬态供电更难；去耦电容只在短时间补电，不能替代完整供电网络。</p>
+      <p><a href="0008-power-density-thermal-path.html">← 第八课</a>　·　<a href="../reference/0009-power-delivery-map.html">速查表</a>　·　<a href="0010-cte-warpage-underfill.html">进入第十课 →</a></p>
+    </nav>
+  </main>
+</body>
+</html>

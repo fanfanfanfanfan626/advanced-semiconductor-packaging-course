@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="晶圆、裸片、封装与系统的半导体产品链速查表。">
+  <meta name="theme-color" content="#f7f3ea">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://fanfanfanfanfan626.github.io/advanced-semiconductor-packaging-course/reference/0002-product-chain.html">
+  <link rel="canonical" href="https://fanfanfanfanfan626.github.io/advanced-semiconductor-packaging-course/reference/0002-product-chain.html">
+  <meta property="og:title" content="速查表｜从晶圆到系统">
+  <meta property="og:description" content="晶圆、裸片、封装与系统的半导体产品链速查表。">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="速查表｜从晶圆到系统">
+  <meta name="twitter:description" content="晶圆、裸片、封装与系统的半导体产品链速查表。">
+  <title>速查表｜从晶圆到系统</title>
+  <link rel="stylesheet" href="../assets/course.css">
+  <script src="../assets/site-shell.js" defer></script>
+</head>
+<body>
+  <main class="lesson-shell">
+    <header class="hero">
+      <p class="eyebrow">Reference 0002 · Print-friendly</p>
+      <h1>从晶圆到系统</h1>
+      <p class="lede">读到“芯片”时先问：此刻的物理对象是什么？它处在哪一道边界？</p>
+    </header>
+
+    <section class="section">
+      <div class="section-head"><p class="eyebrow">Objects</p><h2>四个对象</h2></div>
+      <div style="overflow-x:auto;">
+        <table>
+          <thead><tr><th>对象</th><th>识别线索</th><th>下一道边界</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Wafer</strong></td><td>圆片；许多重复 die 图形仍连在一起</td><td>晶圆测试与切割</td></tr>
+            <tr><td><strong>Die</strong></td><td>切下的一块集成电路；尚无完整外部接口</td><td>组装与封装</td></tr>
+            <tr><td><strong>Package</strong></td><td>die + 互连/基板 + 供电/散热/保护结构</td><td>最终测试与板级集成</td></tr>
+            <tr><td><strong>System</strong></td><td>封装器件 + 板卡 + 电源/散热 + 软件</td><td>真实工作负载</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><p class="eyebrow">Packaging</p><h2>封装五项职责</h2></div>
+      <div class="reference-grid">
+        <article class="reference-card"><h3>信号</h3><p>把裸片内部 I/O 连接到其他裸片或电路板。</p></article>
+        <article class="reference-card"><h3>供电</h3><p>以可接受的压降和噪声把电能送到电路。</p></article>
+        <article class="reference-card"><h3>散热</h3><p>给热量建立从结区到环境的传导路径。</p></article>
+        <article class="reference-card"><h3>保护</h3><p>承受机械、湿度、污染、温度循环与振动。</p></article>
+        <article class="reference-card"><h3>测试</h3><p>提供可制造、可探测、可验证的产品接口与流程。</p></article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="callout">
+        <p><strong>投资阅读规则：</strong>物理流程是“设计 → 晶圆制造 → 切割 → 封装 → 测试 → 系统”；fabless、foundry、IDM、OSAT 是企业如何占据这些环节的商业模式，边界可以扩张或重叠。</p>
+      </div>
+      <p><a href="../lessons/0002-wafer-die-package-system.html">← 返回第二课</a></p>
+    </section>
+  </main>
+</body>
+</html>

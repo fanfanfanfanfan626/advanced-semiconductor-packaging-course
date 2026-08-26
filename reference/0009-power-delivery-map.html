@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="先进封装供电网络、IR drop 与去耦电容速查表。">
+  <meta name="theme-color" content="#f7f3ea">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://fanfanfanfanfan626.github.io/advanced-semiconductor-packaging-course/reference/0009-power-delivery-map.html">
+  <link rel="canonical" href="https://fanfanfanfanfan626.github.io/advanced-semiconductor-packaging-course/reference/0009-power-delivery-map.html">
+  <meta property="og:title" content="速查表｜先进封装供电网络">
+  <meta property="og:description" content="先进封装供电网络、IR drop 与去耦电容速查表。">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="速查表｜先进封装供电网络">
+  <meta name="twitter:description" content="先进封装供电网络、IR drop 与去耦电容速查表。">
+  <title>速查表｜先进封装供电网络</title>
+  <link rel="stylesheet" href="../assets/course.css">
+  <script src="../assets/site-shell.js" defer></script>
+</head>
+<body>
+  <main class="lesson-shell">
+    <header class="hero">
+      <p class="eyebrow">Reference 0009 · Print-friendly</p>
+      <h1>供电网络三条主线</h1>
+      <p class="lede">同功率低电压意味着大电流；大电流要求短、宽、低阻抗的路径。</p>
+    </header>
+    <section class="section">
+      <div class="reference-grid">
+        <article class="reference-card"><h2>电流</h2><ul><li>功率 = 电压 × 电流</li><li>同功率下，电压越低电流越大</li><li>不要遗漏“同功率”条件</li></ul></article>
+        <article class="reference-card"><h2>压降</h2><ul><li>路径电阻造成 IR drop</li><li>快速电流变化造成瞬态 droop</li><li>影响频率、稳定性与可靠性</li></ul></article>
+        <article class="reference-card"><h2>去耦电容</h2><ul><li>靠近负载的临时能量缓冲</li><li>快速补充瞬态电流</li><li>随后由供电网络重新充电</li></ul></article>
+      </div>
+    </section>
+    <section class="section">
+      <div class="callout"><p><strong>一句话：</strong>供电路径要短、宽、低阻抗，电容要靠近负载。</p></div>
+      <p><a href="../lessons/0009-power-delivery-voltage-droop.html">← 返回第九课</a></p>
+    </section>
+  </main>
+</body>
+</html>

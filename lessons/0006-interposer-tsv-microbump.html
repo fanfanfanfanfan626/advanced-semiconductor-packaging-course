@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="半导体与先进封装第六课：区分中介层、TSV 与微凸点的作用。">
+  <meta name="theme-color" content="#f7f3ea">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://fanfanfanfanfan626.github.io/advanced-semiconductor-packaging-course/lessons/0006-interposer-tsv-microbump.html">
+  <link rel="canonical" href="https://fanfanfanfanfan626.github.io/advanced-semiconductor-packaging-course/lessons/0006-interposer-tsv-microbump.html">
+  <meta property="og:title" content="第6课｜中介层、TSV、微凸点分别做什么｜封装解构">
+  <meta property="og:description" content="半导体与先进封装第六课：区分中介层、TSV 与微凸点的作用。">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="第6课｜中介层、TSV、微凸点分别做什么｜封装解构">
+  <meta name="twitter:description" content="半导体与先进封装第六课：区分中介层、TSV 与微凸点的作用。">
+  <title>第6课｜中介层、TSV、微凸点分别做什么｜封装解构</title>
+  <link rel="stylesheet" href="../assets/course.css">
+  <script src="../assets/lesson.js" defer></script>
+  <script src="../assets/site-shell.js" defer></script>
+</head>
+<body>
+  <main class="lesson-shell">
+    <header class="hero">
+      <p class="eyebrow">Semiconductor &amp; Advanced Packaging · Lesson 0006</p>
+      <h1>中介层、TSV、微凸点分别做什么</h1>
+      <p class="lede">把封装想成一座交通系统：中介层铺横向道路，TSV 建垂直电梯，微凸点负责在两个物体的接触面“把门接上”。</p>
+      <div class="win">
+        <strong>本课胜利条件</strong>
+        <p>看到 2.5D/HBM 剖面图时，能把“横向布线、垂直穿硅、界面接触”分别对应到正确结构。</p>
+      </div>
+    </header>
+
+    <section class="section" id="map">
+      <div class="section-head">
+        <p class="eyebrow">01 · One map, three jobs</p>
+        <h2>先看整条数据路径</h2>
+        <p>GPU 与相邻 HBM 交换数据，需要经过不止一种互连结构。</p>
+      </div>
+
+      <div class="route-map">
+        <div class="package-cross-section" aria-label="GPU 和 HBM 通过微凸点安装在中介层上，中介层提供横向线路并通过 TSV 向下连接封装基板">
+          <div class="route-top">
+            <div class="route-die">GPU / AI accelerator</div>
+            <div class="mini-hbm">
+              <div class="dram-layer">DRAM</div>
+              <div class="dram-layer">DRAM</div>
+              <div class="dram-layer">DRAM</div>
+              <div class="hbm-base">HBM base</div>
+            </div>
+          </div>
+          <div class="bump-row" aria-hidden="true"></div>
+          <div class="routing-interposer"><span>interposer · 横向高密度布线</span></div>
+          <div class="via-row" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="substrate">package substrate · 封装基板</div>
+        </div>
+
+        <div class="route-legend">
+          <article class="route-key"><strong>道路｜Interposer</strong><p>在相邻 die 之间提供密集、短距离的横向线路。TSMC 将 interposer 描述为 SoC 与 HBM 之间的互连平台。<a href="#source-1">[1]</a></p></article>
+          <article class="route-key"><strong>电梯｜TSV</strong><p>Through-Silicon Via：穿过硅的导电通孔，负责上下方向的连接。HBM 各层正是借助大量 TSV 建立垂直通路。<a href="#source-2">[2]</a></p></article>
+          <article class="route-key"><strong>门口｜Microbump</strong><p>位于两个器件接触面的微小凸点，把 die 与中介层、或堆叠 die 的对应电极接起来。<a href="#source-2">[2]</a></p></article>
+        </div>
+      </div>
+
+      <aside class="callout"><p><strong>记忆句：</strong>中介层是“面”，TSV 是“孔”，微凸点是“点”。</p></aside>
+    </section>
+
+    <section class="section" id="route">
+      <div class="section-head"><p class="eyebrow">02 · Follow one bit</p><h2>跟着一个 bit 从 GPU 走到 HBM</h2></div>
+      <div class="flow">
+        <div class="flow-step"><b>GPU 接口</b><span>数据离开 die</span></div>
+        <div class="flow-step"><b>微凸点</b><span>跨过接触面</span></div>
+        <div class="flow-step"><b>中介层线路</b><span>横向走向 HBM</span></div>
+        <div class="flow-step"><b>微凸点</b><span>进入 HBM</span></div>
+        <div class="flow-step"><b>TSV + 微凸点</b><span>在 HBM 内上下传输</span></div>
+      </div>
+      <p>所以三者不是竞争关系，而是同一条互连路径上的不同部件。一个完整封装通常还包含 RDL、C4 bump、基板走线和 BGA 等结构，本课先不展开。</p>
+    </section>
+
+    <section class="section" id="compare">
+      <div class="section-head"><p class="eyebrow">03 · Exact distinctions</p><h2>用形状和方向快速区分</h2></div>
+      <table>
+        <thead><tr><th>结构</th><th>最像什么</th><th>本课核心任务</th><th>常见位置</th></tr></thead>
+        <tbody>
+          <tr><td><strong>中介层</strong></td><td>一张平面路网</td><td>横向高密度布线</td><td>逻辑 die 与 HBM 下方</td></tr>
+          <tr><td><strong>TSV</strong></td><td>穿楼层的电梯井</td><td>穿硅垂直导通</td><td>HBM die、硅中介层等</td></tr>
+          <tr><td><strong>微凸点</strong></td><td>门口的金属触点</td><td>连接两个接触界面</td><td>die—中介层、die—die</td></tr>
+        </tbody>
+      </table>
+      <aside class="callout"><p><strong>重要限定：</strong>“中介层负责横向”是入门主线，不表示中介层内部只有横线；硅中介层也可包含 TSV，向下连接封装基板。<a href="#source-3">[3]</a></p></aside>
+    </section>
+
+    <section class="section" id="lenses">
+      <div class="section-head"><p class="eyebrow">04 · Research and investment</p><h2>三个结构，对应三组问题</h2></div>
+      <div class="lenses">
+        <article class="lens-card"><span class="lens-number">面</span><h3>中介层</h3><p>看布线密度、面积、制造良率、翘曲与产能。面积扩大能容纳更多 die，也可能增加制造和封装难度。</p></article>
+        <article class="lens-card"><span class="lens-number">孔</span><h3>TSV</h3><p>看刻蚀深宽比、绝缘、金属填充、应力与电阻。研究上关心可靠性，产业上关联设备、材料和制造能力。</p></article>
+        <article class="lens-card"><span class="lens-number">点</span><h3>微凸点</h3><p>看间距、对准、键合、底部填充和缺陷检测。凸点越密，互连越多，但装配与检测窗口也更窄。</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="practice">
+      <div class="section-head"><p class="eyebrow">05 · Retrieval practice</p><h2>只判断职责</h2></div>
+      <form class="quiz" data-quiz data-answer="a" data-correct="正确。中介层提供相邻 die 之间的横向密集布线，微凸点把 die 接到中介层；TSV 则负责穿硅的垂直连接。" data-incorrect="想一想：哪一个是平面，哪一个是孔，哪一个是接触点？">
+        <div class="scenario"><strong>情境：</strong>GPU 与 HBM 并排安装在硅中介层上。下面哪种分工最准确？</div>
+        <div class="options">
+          <label class="option"><input type="radio" name="q1" value="a"><code>中介层负责横向，微凸点负责接触</code></label>
+          <label class="option"><input type="radio" name="q1" value="b"><code>微凸点负责横向，中介层负责穿硅</code></label>
+          <label class="option"><input type="radio" name="q1" value="c"><code>TSV负责横向，中介层负责接触界面</code></label>
+          <label class="option"><input type="radio" name="q1" value="d"><code>中介层负责堆高，TSV负责外壳保护</code></label>
+        </div>
+        <button class="button" type="submit">提交判断</button>
+        <p class="feedback" data-feedback aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section class="section footnotes" id="sources">
+      <h2>本课来源</h2>
+      <ol>
+        <li id="source-1"><a href="https://3dfabric.tsmc.com/english/dedicatedFoundry/technology/cowos.htm">TSMC, CoWoS</a>：中介层上的高密度互连及 SoC—HBM 集成。</li>
+        <li id="source-2"><a href="https://www.micron.com/products/memory/hbm">Micron, High-bandwidth memory</a>：HBM 堆叠使用大量 TSV 与 microbump 形成超宽接口。</li>
+        <li id="source-3"><a href="https://3dfabric.tsmc.com/schinese/dedicatedFoundry/technology/del/cowos_publications_ECTC2011.htm">TSMC, Advanced Reliability Study of TSV Interposers</a>：硅中介层、铜 TSV、微凸点与封装基板的组合结构。</li>
+      </ol>
+    </section>
+
+    <nav class="next-step" aria-label="下一步">
+      <h2>本课压缩结论</h2>
+      <p>RDL 负责横向重布线，TSV 负责穿硅垂直连接，微凸点连接相对的接触界面；三者角色不能混用。</p>
+      <p><a href="0005-hbm-stacked-and-close.html">← 第五课</a>　·　<a href="../reference/0006-interconnect-parts.html">速查表</a>　·　<a href="0007-interposer-rdl-bridge.html">进入第七课 →</a></p>
+    </nav>
+  </main>
+</body>
+</html>

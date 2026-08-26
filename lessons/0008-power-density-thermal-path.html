@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="半导体与先进封装第八课：用功率密度和热路径理解 2.5D、3D 封装散热。">
+  <meta name="theme-color" content="#f7f3ea">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://fanfanfanfanfan626.github.io/advanced-semiconductor-packaging-course/lessons/0008-power-density-thermal-path.html">
+  <link rel="canonical" href="https://fanfanfanfanfan626.github.io/advanced-semiconductor-packaging-course/lessons/0008-power-density-thermal-path.html">
+  <meta property="og:title" content="第8课｜芯片靠得更近，热量怎么出去｜封装解构">
+  <meta property="og:description" content="半导体与先进封装第八课：用功率密度和热路径理解 2.5D、3D 封装散热。">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="第8课｜芯片靠得更近，热量怎么出去｜封装解构">
+  <meta name="twitter:description" content="半导体与先进封装第八课：用功率密度和热路径理解 2.5D、3D 封装散热。">
+  <title>第8课｜芯片靠得更近，热量怎么出去｜封装解构</title>
+  <link rel="stylesheet" href="../assets/course.css">
+  <script src="../assets/lesson.js" defer></script>
+  <script src="../assets/site-shell.js" defer></script>
+</head>
+<body>
+  <main class="lesson-shell">
+    <header class="hero">
+      <p class="eyebrow">Semiconductor &amp; Advanced Packaging · Lesson 0008</p>
+      <h1>芯片靠得更近，热量怎么出去</h1>
+      <p class="lede">先进封装能缩短电信号路径，却可能让更多发热源集中在同一封装里。判断散热难度，先看功率密度，再看热量逃出去的路径。</p>
+      <div class="win">
+        <strong>本课胜利条件</strong>
+        <p>能判断“相同功耗、不同面积”和“相同发热、不同热路径”中，哪一种更容易形成高温。</p>
+      </div>
+    </header>
+
+    <section class="section" id="two-variables">
+      <div class="section-head">
+        <p class="eyebrow">01 · Heat in, heat out</p>
+        <h2>两个变量就够用</h2>
+        <p><strong>功率密度 = 功耗 ÷ 面积。</strong>热阻则表示热量从发热处走到冷却结构有多困难：路径越难走，热阻越大。</p>
+      </div>
+
+      <div class="thermal-map">
+        <div class="heat-comparison" aria-label="相同 100 瓦功耗分别集中在小面积和分散到大面积，小面积功率密度更高">
+          <div class="heat-case">
+            <div class="heat-die compact"><span>100 W</span></div>
+            <div>100 mm²<br>1 W/mm²</div>
+          </div>
+          <div class="heat-case">
+            <div class="heat-die spread"><span>100 W</span></div>
+            <div>400 mm²<br>0.25 W/mm²</div>
+          </div>
+        </div>
+
+        <div class="thermal-stack" aria-label="散热器位于堆叠 die 上方，下层 die 的热量需要穿过更多材料和界面">
+          <div class="cooler-block">heat sink / cold plate</div>
+          <div class="thermal-arrow">↑</div>
+          <div class="tim-layer" title="thermal interface material"></div>
+          <div class="stack-tier">上层 die · 路径较短</div>
+          <div class="thermal-arrow">↑</div>
+          <div class="stack-tier lower">下层 die · 路径较长</div>
+          <div class="thermal-base">interposer / substrate</div>
+        </div>
+      </div>
+
+      <aside class="callout"><p><strong>记忆句：</strong>同样的热，塞得越集中越难；同样的热，出去的路越难走也越热。</p></aside>
+    </section>
+
+    <section class="section" id="advanced-packaging">
+      <div class="section-head"><p class="eyebrow">02 · Electrical gain, thermal cost</p><h2>更短的电路径，不等于更短的热路径</h2></div>
+      <div class="tension-row">
+        <article class="tension-side">
+          <h3>电互连得到好处</h3>
+          <ul><li>die 靠得更近</li><li>信号路径缩短</li><li>带宽提高、每比特能耗下降</li></ul>
+        </article>
+        <div class="tension-sign">但</div>
+        <article class="tension-side">
+          <h3>热管理面对压力</h3>
+          <ul><li>更多发热源集中</li><li>相邻 die 互相加热</li><li>3D 下层可能隔着更多材料</li></ul>
+        </article>
+      </div>
+      <p>imec 的研究把先进系统中的高功率密度与热热点联系起来；在研究型 3D HBM-on-GPU 架构中，局部功率密度和垂直热阻被明确列为热瓶颈。<a href="#source-1">[1]</a><a href="#source-2">[2]</a></p>
+    </section>
+
+    <section class="section" id="path">
+      <div class="section-head"><p class="eyebrow">03 · Package heat path</p><h2>封装也在设计“热的互连”</h2></div>
+      <div class="flow">
+        <div class="flow-step"><b>晶体管发热</b><span>活动功耗 + 漏电</span></div>
+        <div class="flow-step"><b>穿过 die</b><span>硅与金属层</span></div>
+        <div class="flow-step"><b>经过 TIM</b><span>降低界面热阻</span></div>
+        <div class="flow-step"><b>热扩散</b><span>盖板 / 均热结构</span></div>
+        <div class="flow-step"><b>排向环境</b><span>风冷或液冷</span></div>
+      </div>
+      <p>TIM 是 Thermal Interface Material，即热界面材料。它填补两个固体表面的微小空隙；TIM、盖板、散热器和冷板共同影响最终温度。</p>
+    </section>
+
+    <section class="section" id="lenses">
+      <div class="section-head"><p class="eyebrow">04 · Research and investment</p><h2>看到高功耗数字，还要再问四件事</h2></div>
+      <div class="decision-strip">
+        <div><strong>面积</strong><span>功耗集中在多大的有效区域？</span></div>
+        <div><strong>布局</strong><span>高功耗 die 是否紧挨，热点是否重叠？</span></div>
+        <div><strong>热路径</strong><span>中间经过哪些界面和材料？</span></div>
+        <div><strong>冷却边界</strong><span>最终使用风冷、冷板还是其他方案？</span></div>
+      </div>
+      <div class="balance">
+        <article class="balance-card gain"><h3>科研镜头</h3><p>研究温度分布、界面热阻、材料导热、热点耦合，以及电—热—机械协同设计。Intel 将 thermal management 列为多 die 封装研究主题。<a href="#source-3">[3]</a></p></article>
+        <article class="balance-card cost"><h3>投资镜头</h3><p>热问题可能增加 TIM、盖板、均热结构和液冷需求，但不能只凭芯片 TDP 推算收入；还要验证单机用量、方案渗透率、认证周期与供应商议价能力。</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="practice">
+      <div class="section-head"><p class="eyebrow">05 · Retrieval practice</p><h2>只判断功率密度</h2></div>
+      <form class="quiz" data-quiz data-answer="a" data-correct="正确。两者总功耗相同，100 mm² 的面积只有四分之一，所以功率密度是 1 W/mm²，热量更集中。" data-incorrect="用功耗除以面积。总功耗一样时，面积越小，功率密度越高。">
+        <div class="scenario"><strong>情境：</strong>忽略其他差异，下面哪一种功率密度最高？</div>
+        <div class="options">
+          <label class="option"><input type="radio" name="q1" value="a"><code>100瓦集中在100平方毫米</code></label>
+          <label class="option"><input type="radio" name="q1" value="b"><code>100瓦分布在400平方毫米</code></label>
+          <label class="option"><input type="radio" name="q1" value="c"><code>仅50瓦集中在100平方毫米</code></label>
+          <label class="option"><input type="radio" name="q1" value="d"><code>仅50瓦分布在400平方毫米</code></label>
+        </div>
+        <button class="button" type="submit">提交判断</button>
+        <p class="feedback" data-feedback aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section class="section footnotes" id="sources">
+      <h2>本课来源</h2>
+      <ol>
+        <li id="source-1"><a href="https://www.imec-int.com/en/articles/navigating-thermal-challenges-advanced-systems-chip">imec, Navigating thermal challenges in advanced systems on chip</a>：功率密度、热点及热感知系统—技术协同优化。</li>
+        <li id="source-2"><a href="https://www.imec-int.com/en/press/imec-mitigates-thermal-bottleneck-3d-hbm-gpu-architectures-using-system-technology-co">imec, Thermal bottleneck in 3D HBM-on-GPU</a>：研究型 3D HBM-on-GPU 架构中的局部功率密度与垂直热阻。</li>
+        <li id="source-3"><a href="https://www.intel.com/content/www/us/en/foundry/research/packaging-and-test.html">Intel Foundry, Packaging &amp; Test Research</a>：多 die 系统研究中的供电、热管理、可制造性与测试。</li>
+        <li id="source-4"><a href="https://eps.ieee.org/images/files/HIR_2023/ch20_thermalfinal.pdf">IEEE Heterogeneous Integration Roadmap, Thermal Management</a>：异质集成与 3D 堆叠的热阻和冷却研究路线。</li>
+      </ol>
+    </section>
+
+    <nav class="next-step" aria-label="下一步">
+      <h2>本课压缩结论</h2>
+      <p>同功耗下面积越小，功率密度越高；热路径中的材料、厚度与界面越不利，等效热阻越高，结温越难控制。</p>
+      <p><a href="0007-interposer-rdl-bridge.html">← 第七课</a>　·　<a href="../reference/0008-thermal-two-variables.html">速查表</a>　·　<a href="0009-power-delivery-voltage-droop.html">进入第九课 →</a></p>
+    </nav>
+  </main>
+</body>
+</html>

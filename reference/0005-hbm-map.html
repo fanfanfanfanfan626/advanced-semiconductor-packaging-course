@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="HBM 3D 堆叠与 GPU-HBM 2.5D 集成速查表。">
+  <meta name="theme-color" content="#f7f3ea">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://fanfanfanfanfan626.github.io/advanced-semiconductor-packaging-course/reference/0005-hbm-map.html">
+  <link rel="canonical" href="https://fanfanfanfanfan626.github.io/advanced-semiconductor-packaging-course/reference/0005-hbm-map.html">
+  <meta property="og:title" content="速查表｜HBM 双层结构">
+  <meta property="og:description" content="HBM 3D 堆叠与 GPU-HBM 2.5D 集成速查表。">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="速查表｜HBM 双层结构">
+  <meta name="twitter:description" content="HBM 3D 堆叠与 GPU-HBM 2.5D 集成速查表。">
+  <title>速查表｜HBM 双层结构</title>
+  <link rel="stylesheet" href="../assets/course.css">
+  <script src="../assets/site-shell.js" defer></script>
+</head>
+<body>
+  <main class="lesson-shell">
+    <header class="hero">
+      <p class="eyebrow">Reference 0005 · Print-friendly</p>
+      <h1>HBM 双层结构</h1>
+      <p class="lede">先看 HBM 内部，再看整个 GPU-HBM 封装。</p>
+    </header>
+    <section class="section">
+      <div class="reference-grid">
+        <article class="reference-card"><h2>内部：3D</h2><ul><li>多层 DRAM dies 垂直堆叠</li><li>TSV 穿过硅片提供垂直连接</li><li>提升容量密度并形成超宽接口</li></ul></article>
+        <article class="reference-card"><h2>整体：2.5D</h2><ul><li>GPU 与 HBM stacks 横向并排</li><li>硅/RDL 中介层提供密集布线</li><li>缩短距离，提高带宽并降低通信能耗</li></ul></article>
+      </div>
+    </section>
+    <section class="section">
+      <div class="callout"><p><strong>一句话：</strong>HBM 自己是 3D 堆叠；GPU 与多组 HBM 在中介层上组成的封装通常是 2.5D。</p></div>
+      <p><a href="../lessons/0005-hbm-stacked-and-close.html">← 返回第五课</a></p>
+    </section>
+  </main>
+</body>
+</html>

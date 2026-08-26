@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="先进封装 2D、2.5D、3D 与 chiplet 一页速查表。">
+  <meta name="theme-color" content="#f7f3ea">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://fanfanfanfanfan626.github.io/advanced-semiconductor-packaging-course/reference/0001-advanced-packaging-map.html">
+  <link rel="canonical" href="https://fanfanfanfanfan626.github.io/advanced-semiconductor-packaging-course/reference/0001-advanced-packaging-map.html">
+  <meta property="og:title" content="速查表｜先进封装系统地图">
+  <meta property="og:description" content="先进封装 2D、2.5D、3D 与 chiplet 一页速查表。">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="速查表｜先进封装系统地图">
+  <meta name="twitter:description" content="先进封装 2D、2.5D、3D 与 chiplet 一页速查表。">
+  <title>速查表｜先进封装系统地图</title>
+  <link rel="stylesheet" href="../assets/course.css">
+  <script src="../assets/site-shell.js" defer></script>
+</head>
+<body>
+  <main class="lesson-shell">
+    <header class="hero">
+      <p class="eyebrow">Reference 0001 · Print-friendly</p>
+      <h1>先进封装系统地图</h1>
+      <p class="lede">先判断“系统怎么拆”，再判断“裸片怎么摆、靠什么连接”。商品名最后再记。</p>
+    </header>
+
+    <section class="section">
+      <div class="section-head">
+        <p class="eyebrow">Taxonomy</p>
+        <h2>四个概念不要混</h2>
+      </div>
+      <div style="overflow-x:auto;">
+        <table>
+          <thead>
+            <tr><th>概念</th><th>它回答的问题</th><th>最小判断</th><th>常见例子</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Chiplet</strong></td><td>系统功能怎么拆？</td><td>多个可组合功能裸片</td><td>计算 chiplet、I/O die</td></tr>
+            <tr><td><strong>2D</strong></td><td>裸片怎么摆、怎么连？</td><td>并排在封装基板上</td><td>普通多芯片模块</td></tr>
+            <tr><td><strong>2.5D</strong></td><td>裸片怎么摆、怎么连？</td><td>并排 + 中介层/局部桥</td><td>CoWoS、EMIB 类路线</td></tr>
+            <tr><td><strong>3D</strong></td><td>裸片怎么摆、怎么连？</td><td>上下堆叠 + 垂直互连</td><td>HBM、SoIC/Foveros 类路线</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <p class="eyebrow">Analysis</p>
+        <h2>任何先进封装新闻都问这六句</h2>
+      </div>
+      <div class="reference-grid">
+        <article class="reference-card"><h3>1 · 功能</h3><p>哪些功能被拆开：逻辑、存储、I/O、模拟、光子还是电源？</p></article>
+        <article class="reference-card"><h3>2 · 连接</h3><p>裸片并排还是堆叠？经过基板、中介层、硅桥、TSV 还是混合键合？</p></article>
+        <article class="reference-card"><h3>3 · 收益</h3><p>改善的是带宽、延迟、能效、面积、良率、复用还是上市时间？</p></article>
+        <article class="reference-card"><h3>4 · 代价</h3><p>热、供电、信号完整性、应力、测试、组装良率和成本谁更难？</p></article>
+        <article class="reference-card"><h3>5 · 证据</h3><p>是标准、论文、量测数据、量产披露，还是只有厂商示意图与宣传词？</p></article>
+        <article class="reference-card"><h3>6 · 价值</h3><p>瓶颈由谁解决？稀缺性是否持久？收益是否被高资本开支和降价抵消？</p></article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="callout">
+        <p><strong>一句话：</strong>Chiplet 是模块化架构；2D、2.5D、3D 是物理集成方式。先进封装的本质，是在可制造、可测试、可散热的约束下，把系统互连做得更短、更密。</p>
+      </div>
+      <p><a href="../lessons/0001-system-scaling-map.html">← 返回第一课</a></p>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="半导体与先进封装第一课：用一张系统地图分清 2D、2.5D、3D 与 chiplet。">
+  <meta name="theme-color" content="#f7f3ea">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://fanfanfanfanfan626.github.io/advanced-semiconductor-packaging-course/lessons/0001-system-scaling-map.html">
+  <link rel="canonical" href="https://fanfanfanfanfan626.github.io/advanced-semiconductor-packaging-course/lessons/0001-system-scaling-map.html">
+  <meta property="og:title" content="第1课｜先进封装在系统缩放中的位置｜封装解构">
+  <meta property="og:description" content="半导体与先进封装第一课：用一张系统地图分清 2D、2.5D、3D 与 chiplet。">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="第1课｜先进封装在系统缩放中的位置｜封装解构">
+  <meta name="twitter:description" content="半导体与先进封装第一课：用一张系统地图分清 2D、2.5D、3D 与 chiplet。">
+  <title>第1课｜先进封装在系统缩放中的位置｜封装解构</title>
+  <link rel="stylesheet" href="../assets/course.css">
+  <script src="../assets/lesson.js" defer></script>
+  <script src="../assets/site-shell.js" defer></script>
+</head>
+<body>
+  <main class="lesson-shell">
+    <header class="hero">
+      <p class="eyebrow">Semiconductor &amp; Advanced Packaging · Lesson 0001</p>
+      <h1>先进封装，是一种系统缩短术</h1>
+      <p class="lede">第一课不背厂商缩写。你只需要掌握一个判断：计算、存储和 I/O 之间的连接，如何被做得更短、更密、更像“同一颗芯片”。</p>
+      <div class="win">
+        <strong>本课胜利条件</strong>
+        <p>看到一个多芯片结构时，能区分它是 2D、2.5D 还是 3D，并说明 <em>chiplet 讲的是架构，维度讲的是实现方式</em>。</p>
+      </div>
+    </header>
+
+    <section class="section" id="map">
+      <div class="section-head">
+        <p class="eyebrow">01 · The map</p>
+        <h2>先把封装放回整条链</h2>
+        <p>晶圆制造在硅片上逐层构建电路，完成后切成裸片（die），再进入封装与系统集成。先进封装改变的不是“芯片有没有外壳”，而是系统功能在多个裸片之间如何被组织与连接。<a href="#source-1">[1]</a></p>
+      </div>
+
+      <div class="flow" aria-label="从需求到产品的系统链">
+        <div class="flow-step"><b>计算需求</b><span>性能、功耗、带宽、成本</span></div>
+        <div class="flow-step"><b>功能划分</b><span>逻辑、存储、I/O、模拟</span></div>
+        <div class="flow-step"><b>制造裸片</b><span>不同节点、不同良率</span></div>
+        <div class="flow-step"><b>封装互连</b><span>供电、信号、散热、保护</span></div>
+        <div class="flow-step"><b>系统产品</b><span>AI 加速器、手机、汽车</span></div>
+      </div>
+
+      <aside class="callout">
+        <p><strong>核心直觉：</strong>先进封装把原本要在电路板上长距离往返的数据，尽量留在一个封装内部，以更密的互连连接。距离缩短通常有利于带宽、延迟和每比特能耗，但会把散热、供电、测试、良率和协同设计推到前台。TSMC 也把现代封装描述为同时影响性能、功能和成本的系统级技术。<a href="#source-2">[2]</a></p>
+      </aside>
+    </section>
+
+    <section class="section" id="dimensions">
+      <div class="section-head">
+        <p class="eyebrow">02 · Dimensionality</p>
+        <h2>用“芯片怎么摆”分清 2D、2.5D、3D</h2>
+        <p>点击三个标签。先看几何关系，再看互连媒介；不要先记 CoWoS、EMIB、Foveros 之类的商品名。</p>
+      </div>
+
+      <div class="tabs">
+        <div class="tab-list" role="tablist" aria-label="封装维度">
+          <button class="tab-button" id="tab-2d" role="tab" aria-selected="true" aria-controls="panel-2d">2D：并排在基板</button>
+          <button class="tab-button" id="tab-25d" role="tab" aria-selected="false" aria-controls="panel-25d" tabindex="-1">2.5D：并排在中介层</button>
+          <button class="tab-button" id="tab-3d" role="tab" aria-selected="false" aria-controls="panel-3d" tabindex="-1">3D：垂直堆叠</button>
+        </div>
+
+        <article class="tab-panel" id="panel-2d" role="tabpanel" aria-labelledby="tab-2d">
+          <div class="package-diagram" aria-label="两个裸片并排安装在封装基板上">
+            <span class="diagram-label">not to scale</span>
+            <div class="diagram-stack">
+              <div class="dies">
+                <div class="die">Compute<br>die</div>
+                <div class="die memory">I/O<br>die</div>
+              </div>
+              <div class="microbumps"></div>
+              <div class="substrate">organic package substrate</div>
+            </div>
+          </div>
+          <div>
+            <h3>2D：在普通封装基板上横向连接</h3>
+            <p>多个裸片并排放置，信号主要经过封装基板布线。它可以是多芯片封装，但互连密度通常低于使用硅中介层、局部硅桥或高密度 RDL 的方案。</p>
+            <dl class="definition-list">
+              <div class="definition"><dt>优势</dt><dd>结构相对直接，成本和制造复杂度通常较低。</dd></div>
+              <div class="definition"><dt>代价</dt><dd>裸片间距与布线密度限制更明显，高带宽连接更难。</dd></div>
+            </dl>
+          </div>
+        </article>
+
+        <article class="tab-panel" id="panel-25d" role="tabpanel" aria-labelledby="tab-25d" hidden>
+          <div class="package-diagram" aria-label="两个裸片并排安装在中介层上，中介层再连接封装基板">
+            <span class="diagram-label">not to scale</span>
+            <div class="diagram-stack">
+              <div class="dies">
+                <div class="die">GPU /<br>logic</div>
+                <div class="die memory">HBM<br>stack</div>
+              </div>
+              <div class="microbumps"></div>
+              <div class="interposer">silicon / RDL interposer or bridge</div>
+              <div class="substrate">package substrate</div>
+            </div>
+          </div>
+          <div>
+            <h3>2.5D：并排，但多了一层高密度“立交桥”</h3>
+            <p>裸片仍然横向排列，却先连接到硅中介层、RDL 中介层或局部硅桥，再下接封装基板。TSMC 将 CoWoS 定义为 2.5D 平台；Intel 的 EMIB 则用嵌入基板的局部硅桥连接相邻裸片。<a href="#source-3">[3]</a><a href="#source-4">[4]</a></p>
+            <dl class="definition-list">
+              <div class="definition"><dt>优势</dt><dd>比普通基板更密的 die-to-die 互连，适合逻辑与 HBM。</dd></div>
+              <div class="definition"><dt>代价</dt><dd>中介层/桥、组装、测试与大封装良率带来额外成本。</dd></div>
+            </dl>
+          </div>
+        </article>
+
+        <article class="tab-panel" id="panel-3d" role="tabpanel" aria-labelledby="tab-3d" hidden>
+          <div class="package-diagram" aria-label="两个裸片垂直堆叠并安装在封装基板上">
+            <span class="diagram-label">not to scale</span>
+            <div class="diagram-stack">
+              <div class="stacked-dies">
+                <div class="die memory">Top die</div>
+                <div class="microbumps" style="width: 46%;"></div>
+                <div class="die">Base die</div>
+              </div>
+              <div class="microbumps"></div>
+              <div class="substrate">package substrate</div>
+            </div>
+          </div>
+          <div>
+            <h3>3D：让裸片在垂直方向直接靠近</h3>
+            <p>裸片上下堆叠，通过 TSV、微凸点或混合键合形成高密度垂直连接。TSMC 的 SoIC 是晶圆级 3D 堆叠平台；UCIe 2.0 也加入面向 3D 封装的支持。<a href="#source-5">[5]</a><a href="#source-6">[6]</a></p>
+            <dl class="definition-list">
+              <div class="definition"><dt>优势</dt><dd>连接更短、I/O 密度更高、占用面积更小。</dd></div>
+              <div class="definition"><dt>代价</dt><dd>热路径、堆叠良率、测试可达性与机械应力更棘手。</dd></div>
+            </dl>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="chiplet">
+      <div class="section-head">
+        <p class="eyebrow">03 · Architecture vs. implementation</p>
+        <h2>Chiplet 不是“第四种封装”</h2>
+        <p>这是本课最值得长期记住的区分。</p>
+      </div>
+
+      <div class="comparison">
+        <article class="architecture">
+          <h3>Chiplet：系统如何拆</h3>
+          <p>把原本可能集成在一颗大 SoC 上的功能，拆成可组合的裸片模块。例如：计算 chiplet、I/O die、加速器、HBM。它描述的是<strong>架构与分工</strong>。</p>
+        </article>
+        <article class="implementation">
+          <h3>2D / 2.5D / 3D：拆完怎么连</h3>
+          <p>这些词描述裸片的<strong>物理排列与互连实现</strong>。同一种 chiplet 架构，可以依据成本、带宽和热约束选择不同封装方式。</p>
+        </article>
+      </div>
+
+      <aside class="callout">
+        <p><strong>标准的作用：</strong>UCIe 试图标准化封装内部的 die-to-die 互连，包括物理层、协议栈、软件模型与合规测试，使多供应商 chiplet 组合更可行。它是“芯粒如何交流”的标准，不是某一种封装外形。<a href="#source-6">[6]</a></p>
+      </aside>
+    </section>
+
+    <section class="section" id="three-lenses">
+      <div class="section-head">
+        <p class="eyebrow">04 · Three lenses</p>
+        <h2>同一技术，用三副镜头看</h2>
+        <p>这三副镜头对应你的投资研究、科研准备和大学专业准备。它们共享工程事实，但提出不同问题。</p>
+      </div>
+
+      <div class="lenses">
+        <article class="lens-card">
+          <span class="lens-number">投</span>
+          <h3>投资镜头</h3>
+          <ul>
+            <li>需求为何必须用更密互连？</li>
+            <li>瓶颈在产能、良率、材料、设备还是测试？</li>
+            <li>谁控制关键接口，谁承担资本开支？</li>
+            <li>价值来自稀缺性，还是可被替代的扩产？</li>
+          </ul>
+        </article>
+        <article class="lens-card">
+          <span class="lens-number">研</span>
+          <h3>科研镜头</h3>
+          <ul>
+            <li>互连密度与每比特能耗如何权衡？</li>
+            <li>热、应力、信号/电源完整性如何耦合？</li>
+            <li>如何测试已堆叠且难以探测的裸片？</li>
+            <li>问题可否被模型、实验和量测证伪？</li>
+          </ul>
+        </article>
+        <article class="lens-card">
+          <span class="lens-number">学</span>
+          <h3>专业准备镜头</h3>
+          <ul>
+            <li>电路与数字系统：功能如何实现</li>
+            <li>材料与制造：结构如何做出来</li>
+            <li>热学与力学：结构能否可靠工作</li>
+            <li>概率与编程：良率、仿真和数据分析</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="practice">
+      <div class="section-head">
+        <p class="eyebrow">05 · Retrieval practice</p>
+        <h2>现在做一次分类</h2>
+        <p>先从记忆判断。困难一点是刻意的：技能要靠提取，而不是靠“看懂了”的流畅感。</p>
+      </div>
+
+      <form class="quiz" data-quiz data-answer="b" data-correct="正确。整个封装是 2.5D：逻辑与 HBM 并排在中介层上；但每个 HBM 本身又由 DRAM 裸片垂直堆叠，内部含 3D。" data-incorrect="再看一眼判断对象：先问整个封装中的主要裸片是并排还是上下堆叠，再单独观察 HBM 内部。">
+        <div class="scenario">
+          <strong>情境：</strong>两颗逻辑裸片和四组 HBM 并排放在硅中介层上；每组 HBM 内部由多层 DRAM 裸片垂直堆叠。
+        </div>
+        <div class="options">
+          <label class="option"><input type="radio" name="q1" value="a"><code>Package: 2.0D; HBM: 2D</code></label>
+          <label class="option"><input type="radio" name="q1" value="b"><code>Package: 2.5D; HBM: 3D</code></label>
+          <label class="option"><input type="radio" name="q1" value="c"><code>Package: 3.0D; HBM: 2D</code></label>
+          <label class="option"><input type="radio" name="q1" value="d"><code>Package: 3.0D; HBM: 3D</code></label>
+        </div>
+        <button class="button" type="submit">提交判断</button>
+        <p class="feedback" data-feedback aria-live="polite"></p>
+
+        <div class="retrieval">
+          <h3>用自己的话说一句</h3>
+          <p>“Chiplet 和 2.5D 的区别是 ______。” 请先口头补完，再看标准。</p>
+          <button class="button secondary" type="button" data-reveal="rubric" aria-expanded="false">看判断标准</button>
+          <div class="reveal" id="rubric" hidden>
+            合格答案应包含：<strong>chiplet 是功能拆分/模块化架构</strong>；<strong>2.5D 是并排裸片通过中介层或桥进行高密度互连的物理实现</strong>。不要求逐字相同。
+          </div>
+        </div>
+      </form>
+    </section>
+
+    <section class="section" id="primary-source">
+      <div class="section-head">
+        <p class="eyebrow">06 · Read one primary source</p>
+        <h2>课后只读一页</h2>
+      </div>
+
+      <article class="source-card">
+        <div class="source-icon">1°</div>
+        <div>
+          <h3><a href="https://3dfabric.tsmc.com/english/dedicatedFoundry/technology/3DFabric.htm">TSMC 3DFabric 官方总览</a></h3>
+          <p>阅读 8 分钟，只回答三个问题：它把哪些功能拆开？分别用哪些方式重新连接？厂商强调了哪些收益、弱化了哪些代价？第三问正是投资研究与科研阅读都需要的“反宣传”习惯。</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="section footnotes" id="sources">
+      <h2>本课来源</h2>
+      <ol>
+        <li id="source-1"><a href="https://www.asml.com/en/en/technology/all-about-microchips/how-microchips-are-made">ASML, “How microchips are made”</a>：晶圆制造、切割与封装流程。</li>
+        <li id="source-2"><a href="https://3dfabric.tsmc.com/english/dedicatedFoundry/technology/3DFabric.htm">TSMC, “3DFabric”</a>：系统级封装的性能、功耗、延迟、成本和异质集成动因。</li>
+        <li id="source-3"><a href="https://3dfabric.tsmc.com/english/dedicatedFoundry/technology/cowos.htm">TSMC, “CoWoS”</a>：2.5D 平台及硅/RDL 中介层路线。</li>
+        <li id="source-4"><a href="https://www.intel.com/content/www/us/en/foundry/packaging.html">Intel Foundry, “Advanced Packaging”</a>：EMIB、Foveros 及组合封装。</li>
+        <li id="source-5"><a href="https://3dfabric.tsmc.com/english/dedicatedFoundry/technology/SoIC.htm">TSMC, “SoIC”</a>：晶圆级 3D 堆叠与细间距键合。</li>
+        <li id="source-6"><a href="https://www.uciexpress.org/specifications">UCIe Consortium, “Specifications”</a>：die-to-die 标准、互操作性与 3D 支持。</li>
+      </ol>
+    </section>
+
+    <nav class="next-step" aria-label="下一步">
+      <h2>本课压缩结论</h2>
+      <p>先进封装是系统缩放工具；chiplet 是功能拆分思想，2.5D 是把多颗 die 通过中介结构高密度连接的实现路线。</p>
+      <p><a href="../index.html">课程总目录</a>　·　<a href="../reference/0001-advanced-packaging-map.html">一页速查表</a>　·　<a href="0002-wafer-die-package-system.html">进入第二课 →</a></p>
+    </nav>
+  </main>
+</body>
+</html>

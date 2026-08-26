@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="半导体与先进封装第五课：理解 HBM 的 3D 堆叠和 GPU-HBM 的 2.5D 集成。">
+  <meta name="theme-color" content="#f7f3ea">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://fanfanfanfanfan626.github.io/advanced-semiconductor-packaging-course/lessons/0005-hbm-stacked-and-close.html">
+  <link rel="canonical" href="https://fanfanfanfanfan626.github.io/advanced-semiconductor-packaging-course/lessons/0005-hbm-stacked-and-close.html">
+  <meta property="og:title" content="第5课｜HBM 为什么既要堆高，也要靠近 GPU｜封装解构">
+  <meta property="og:description" content="半导体与先进封装第五课：理解 HBM 的 3D 堆叠和 GPU-HBM 的 2.5D 集成。">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="第5课｜HBM 为什么既要堆高，也要靠近 GPU｜封装解构">
+  <meta name="twitter:description" content="半导体与先进封装第五课：理解 HBM 的 3D 堆叠和 GPU-HBM 的 2.5D 集成。">
+  <title>第5课｜HBM 为什么既要堆高，也要靠近 GPU｜封装解构</title>
+  <link rel="stylesheet" href="../assets/course.css">
+  <script src="../assets/lesson.js" defer></script>
+  <script src="../assets/site-shell.js" defer></script>
+</head>
+<body>
+  <main class="lesson-shell">
+    <header class="hero">
+      <p class="eyebrow">Semiconductor &amp; Advanced Packaging · Lesson 0005</p>
+      <h1>HBM 为什么既要堆高，也要靠近 GPU</h1>
+      <p class="lede">“堆高”解决容量、面积与内部连接；“靠近”让 GPU 与内存之间拥有大量短通道。HBM 是存储器设计与先进封装共同完成的系统。</p>
+      <div class="win">
+        <strong>本课胜利条件</strong>
+        <p>看到 GPU + HBM 结构时，能说清：HBM 内部为什么是 3D，整个 GPU-HBM 封装为什么通常称为 2.5D。</p>
+      </div>
+    </header>
+
+    <section class="section" id="structure">
+      <div class="section-head">
+        <p class="eyebrow">01 · Two geometries at once</p>
+        <h2>一个产品里同时存在 3D 与 2.5D</h2>
+        <p>先确定观察尺度：你是在看一组 HBM 的内部，还是在看 GPU 与多组 HBM 的整个封装。</p>
+      </div>
+
+      <div class="hbm-map">
+        <div class="hbm-package" aria-label="GPU 与两组 HBM 并排安装在中介层上，每组 HBM 内部垂直堆叠 DRAM">
+          <div class="hbm-top-dies">
+            <div class="hbm-tower">
+              <div class="dram-layer">DRAM</div><div class="dram-layer">DRAM</div><div class="dram-layer">DRAM</div><div class="dram-layer">DRAM</div><div class="hbm-base">base</div>
+            </div>
+            <div class="compute-block">GPU /<br>AI accelerator</div>
+            <div class="hbm-tower">
+              <div class="dram-layer">DRAM</div><div class="dram-layer">DRAM</div><div class="dram-layer">DRAM</div><div class="dram-layer">DRAM</div><div class="hbm-base">base</div>
+            </div>
+          </div>
+          <div class="microbumps"></div>
+          <div class="interposer-wide">silicon / RDL interposer · dense horizontal routing</div>
+          <div class="substrate">package substrate</div>
+        </div>
+
+        <div class="hbm-explainer">
+          <article class="reference-card">
+            <h3>看单组 HBM：3D</h3>
+            <p>多层 DRAM die 垂直堆叠，通过 TSV（穿硅通孔）与 microbump 建立上下连接。Micron 将 HBM 定义为 3D-stacked SDRAM architecture。<a href="#source-1">[1]</a></p>
+          </article>
+          <article class="reference-card">
+            <h3>看整个 GPU + HBM：2.5D</h3>
+            <p>GPU 与若干 HBM stack 横向并排在中介层上，由中介层提供密集布线。TSMC 将 CoWoS 描述为整合 SoC 与 HBM 的 2.5D 平台。<a href="#source-2">[2]</a></p>
+          </article>
+        </div>
+      </div>
+
+      <aside class="callout">
+        <p><strong>记忆句：</strong>HBM 自己是“一栋 3D 公寓”；GPU 与多栋 HBM 公寓并排建在同一个中介层园区，整个园区是 2.5D。</p>
+      </aside>
+    </section>
+
+    <section class="section" id="why-stack">
+      <div class="section-head"><p class="eyebrow">02 · Why stack</p><h2>堆叠不是为了看起来先进</h2></div>
+      <div class="lenses">
+        <article class="lens-card">
+          <span class="lens-number">容</span>
+          <h3>容量密度</h3>
+          <p>多层 DRAM 向上堆叠，在较小封装占地内提供更多存储容量。</p>
+        </article>
+        <article class="lens-card">
+          <span class="lens-number">宽</span>
+          <h3>超宽接口</h3>
+          <p>大量 TSV 与 I/O 数据路径并行工作。Micron 的示例 HBM cube 使用 1024-bit 宽接口，而不是只依赖极高单 pin 速率。<a href="#source-1">[1]</a></p>
+        </article>
+        <article class="lens-card">
+          <span class="lens-number">短</span>
+          <h3>短距离</h3>
+          <p>HBM 与 GPU 通过同一封装中的中介层连接，数据不必经过更长的板级路径，有利于每比特能耗。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="why-near">
+      <div class="section-head">
+        <p class="eyebrow">03 · Reuse lesson 4</p>
+        <h2>HBM 把“更宽、更短”同时实现</h2>
+      </div>
+      <div class="flow">
+        <div class="flow-step"><b>更多数据路径</b><span>接口变宽</span></div>
+        <div class="flow-step"><b>GPU-HBM 距离短</b><span>中介层内连接</span></div>
+        <div class="flow-step"><b>带宽 ↑</b><span>N × R 增大</span></div>
+        <div class="flow-step"><b>每比特能耗 ↓</b><span>相对板级链路</span></div>
+        <div class="flow-step"><b>喂饱计算单元</b><span>减少等待数据</span></div>
+      </div>
+      <p>Micron 明确将 HBM 的高吞吐归因于高度并行的宽接口，并说明与 CPU/GPU 通过硅中介层近距离集成可缩短数据路径。<a href="#source-1">[1]</a></p>
+    </section>
+
+    <section class="section" id="limits">
+      <div class="section-head"><p class="eyebrow">04 · No free lunch</p><h2>投资研究不能只数 HBM 层数</h2></div>
+      <div class="balance">
+        <article class="balance-card gain">
+          <h3>价值来源</h3>
+          <ul>
+            <li>更高内存带宽和容量</li>
+            <li>更低数据移动能耗</li>
+            <li>支撑更多 GPU/加速器计算单元</li>
+            <li>推动 HBM、TSV、中介层和先进封装需求</li>
+          </ul>
+        </article>
+        <article class="balance-card cost">
+          <h3>新增约束</h3>
+          <ul>
+            <li>多层 DRAM 的堆叠、薄化、键合与测试</li>
+            <li>GPU、HBM 与大中介层的组装良率</li>
+            <li>封装热、供电与翘曲控制</li>
+            <li>HBM 产能、先进封装产能与系统验证</li>
+          </ul>
+        </article>
+      </div>
+      <aside class="callout"><p><strong>投资镜头：</strong>“HBM 需求增长”会同时拉动存储制造与先进封装，但利润由谁获得，要看稀缺环节、良率、扩产速度、议价能力和客户替代方案，不能只看出货量。</p></aside>
+    </section>
+
+    <section class="section" id="practice">
+      <div class="section-head"><p class="eyebrow">05 · Retrieval practice</p><h2>再次判断观察尺度</h2></div>
+      <form class="quiz" data-quiz data-answer="a" data-correct="正确。GPU 与 HBM stacks 在中介层上横向并排，所以整体是 2.5D；每组 HBM 内部的 DRAM dies 垂直堆叠，所以内部是 3D。" data-incorrect="先分两次看：整个封装里的 GPU 和 HBM 是并排还是上下？然后再看一组 HBM 内部的 DRAM dies。">
+        <div class="scenario"><strong>情境：</strong>GPU 与四组 HBM 并排放在硅中介层上；每组 HBM 由多层 DRAM dies 垂直堆叠。</div>
+        <div class="options">
+          <label class="option"><input type="radio" name="q1" value="a"><code>整体二点五维，内部三维</code></label>
+          <label class="option"><input type="radio" name="q1" value="b"><code>整体三维，内部二点五维</code></label>
+          <label class="option"><input type="radio" name="q1" value="c"><code>整体二维，内部二维结构</code></label>
+          <label class="option"><input type="radio" name="q1" value="d"><code>整体三维，内部三维结构</code></label>
+        </div>
+        <button class="button" type="submit">提交判断</button>
+        <p class="feedback" data-feedback aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section class="section" id="primary-source">
+      <div class="section-head"><p class="eyebrow">06 · Read one primary source</p><h2>课后只读 FAQ</h2></div>
+      <article class="source-card">
+        <div class="source-icon">1°</div>
+        <div>
+          <h3><a href="https://www.micron.com/products/memory/hbm">Micron：High-bandwidth memory</a></h3>
+          <p>只读“What is HBM?”和“How does HBM differ from DDR5?”两问。找出三个关键词：3D stacked、ultra-wide interface、silicon interposer。</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="section footnotes" id="sources">
+      <h2>本课来源</h2>
+      <ol>
+        <li id="source-1"><a href="https://www.micron.com/products/memory/hbm">Micron, High-bandwidth memory</a>：3D DRAM 堆叠、TSV、1024-bit 宽接口和硅中介层近距离集成。</li>
+        <li id="source-2"><a href="https://3dfabric.tsmc.com/english/dedicatedFoundry/technology/cowos.htm">TSMC, CoWoS</a>：SoC、逻辑 chiplet 与 HBM stacks 的 2.5D 中介层集成。</li>
+        <li id="source-3"><a href="https://news.skhynix.com/sk-hynix-partners-with-tsmc-to-strengthen-hbm-technological-leadership/">SK hynix × TSMC</a>：HBM 内部 3D 与整个逻辑—HBM 模块 2.5D 的术语说明。</li>
+      </ol>
+    </section>
+
+    <nav class="next-step" aria-label="下一步">
+      <h2>本课压缩结论</h2>
+      <p>GPU 与 HBM 并排属于 2.5D 系统，HBM 内部是 3D 堆叠；其高带宽核心是极宽接口与近距离互连。</p>
+      <p><a href="0004-bandwidth-energy-distance.html">← 第四课</a>　·　<a href="../reference/0005-hbm-map.html">速查表</a>　·　<a href="0006-interposer-tsv-microbump.html">进入第六课 →</a></p>
+    </nav>
+  </main>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Chiplet 良率与成本平衡速查表。">
+  <meta name="theme-color" content="#f7f3ea">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://fanfanfanfanfan626.github.io/advanced-semiconductor-packaging-course/reference/0003-yield-cost-balance.html">
+  <link rel="canonical" href="https://fanfanfanfanfan626.github.io/advanced-semiconductor-packaging-course/reference/0003-yield-cost-balance.html">
+  <meta property="og:title" content="速查表｜Chiplet 良率与成本平衡">
+  <meta property="og:description" content="Chiplet 良率与成本平衡速查表。">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="速查表｜Chiplet 良率与成本平衡">
+  <meta name="twitter:description" content="Chiplet 良率与成本平衡速查表。">
+  <title>速查表｜Chiplet 良率与成本平衡</title>
+  <link rel="stylesheet" href="../assets/course.css">
+  <script src="../assets/site-shell.js" defer></script>
+</head>
+<body>
+  <main class="lesson-shell">
+    <header class="hero">
+      <p class="eyebrow">Reference 0003 · Print-friendly</p>
+      <h1>Chiplet 良率与成本平衡</h1>
+      <p class="lede">小 die 减少硅片浪费；多 die 增加系统集成损失。看完整账本，不看单一良率。</p>
+    </header>
+
+    <section class="section">
+      <div class="section-head"><p class="eyebrow">Causal chain</p><h2>必须能复述的因果链</h2></div>
+      <div class="flow">
+        <div class="flow-step"><b>Die 面积 ↑</b><span>覆盖更大晶圆区域</span></div>
+        <div class="flow-step"><b>遇缺陷概率 ↑</b><span>致命缺陷机会增加</span></div>
+        <div class="flow-step"><b>Die yield ↓</b><span>good die 占比下降</span></div>
+        <div class="flow-step"><b>硅片浪费 ↑</b><span>完整大 die 一起报废</span></div>
+        <div class="flow-step"><b>成本压力 ↑</b><span>每颗 good die 分摊更多</span></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><p class="eyebrow">Ledger</p><h2>拆分的两本账</h2></div>
+      <div class="balance">
+        <article class="balance-card gain">
+          <h3>硅片收益</h3>
+          <ul><li>小 die 单颗良率</li><li>不同功能匹配不同节点</li><li>模块复用与 SKU 扩展</li><li>突破单次曝光尺寸</li></ul>
+        </article>
+        <article class="balance-card cost">
+          <h3>系统代价</h3>
+          <ul><li>die-to-die 互连能耗与延迟</li><li>中介层/基板/键合成本</li><li>KGD、封装与系统测试</li><li>组装良率、散热与可靠性</li></ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="callout">
+        <p><strong>投资阅读句式：</strong>“该方案通过 ______ 降低 ______，但同时增加 ______；最终经济性取决于 ______ 的实测良率/成本，而不是单颗 chiplet 良率。”</p>
+      </div>
+      <p><a href="../lessons/0003-yield-cost-chiplets.html">← 返回第三课</a></p>
+    </section>
+  </main>
+</body>
+</html>

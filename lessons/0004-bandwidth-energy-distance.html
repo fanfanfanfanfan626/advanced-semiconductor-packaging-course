@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="半导体与先进封装第四课：用通道数、单通道速率和互连距离理解带宽与能耗。">
+  <meta name="theme-color" content="#f7f3ea">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://fanfanfanfanfan626.github.io/advanced-semiconductor-packaging-course/lessons/0004-bandwidth-energy-distance.html">
+  <link rel="canonical" href="https://fanfanfanfanfan626.github.io/advanced-semiconductor-packaging-course/lessons/0004-bandwidth-energy-distance.html">
+  <meta property="og:title" content="第4课｜带宽、距离与每比特能耗｜封装解构">
+  <meta property="og:description" content="半导体与先进封装第四课：用通道数、单通道速率和互连距离理解带宽与能耗。">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="第4课｜带宽、距离与每比特能耗｜封装解构">
+  <meta name="twitter:description" content="半导体与先进封装第四课：用通道数、单通道速率和互连距离理解带宽与能耗。">
+  <title>第4课｜带宽、距离与每比特能耗｜封装解构</title>
+  <link rel="stylesheet" href="../assets/course.css">
+  <script src="../assets/lesson.js" defer></script>
+  <script src="../assets/interconnect-simulator.js" defer></script>
+  <script src="../assets/site-shell.js" defer></script>
+</head>
+<body>
+  <main class="lesson-shell">
+    <header class="hero">
+      <p class="eyebrow">Semiconductor &amp; Advanced Packaging · Lesson 0004</p>
+      <h1>让数据走更宽、更短的路</h1>
+      <p class="lede">先进封装提升数据移动效率，靠的不是魔法：更密的连接可以放进更多通道，更短的连接通常需要驱动更小的电气负载。</p>
+      <div class="win">
+        <strong>本课胜利条件</strong>
+        <p>能用“通道数 × 单通道速率”比较带宽，并说出为什么缩短互连通常有助于降低每比特能耗。</p>
+      </div>
+    </header>
+
+    <section class="section" id="bandwidth">
+      <div class="section-head">
+        <p class="eyebrow">01 · Width × speed</p>
+        <h2>带宽像高速公路的通行能力</h2>
+        <p>通道（lane）像车道；每条通道的数据速率像每条车道单位时间通过多少车。第一层近似只需一个乘法。</p>
+      </div>
+
+      <span class="equation">原始带宽 ≈ 通道数 N × 单通道速率 R</span>
+
+      <div class="comparison">
+        <article class="architecture">
+          <h3>增加通道数 N</h3>
+          <p>需要更多 I/O 接点和封装布线。更小的 bump pitch、更高的互连密度，使有限 die 边缘或面积能容纳更多并行通道。</p>
+        </article>
+        <article class="implementation">
+          <h3>提高单通道速率 R</h3>
+          <p>每条线跑得更快，但会提高信号完整性、时钟、均衡、噪声和功耗的设计难度。UCIe 3.0 提升数据率，就是这一方向。<a href="#source-3">[3]</a></p>
+        </article>
+      </div>
+
+      <aside class="callout">
+        <p><strong>投资阅读规则：</strong>看到“带宽提升 2×”，先问来自更多通道、更高单通道速率，还是两者同时变化；然后再查协议效率、方向和功耗，避免只看峰值数字。</p>
+      </aside>
+    </section>
+
+    <section class="section" id="distance">
+      <div class="section-head">
+        <p class="eyebrow">02 · Shorter path</p>
+        <h2>为什么距离会影响能耗</h2>
+        <p>电线不是没有代价的。发送一个 0→1，需要给导线和接收端的等效电容充电；下一次翻转又要放电。</p>
+      </div>
+
+      <span class="equation">简化开关能量：E ∝ C × V²</span>
+
+      <div class="flow" aria-label="互连距离到能耗的因果链">
+        <div class="flow-step"><b>连接更长</b><span>导线长度增加</span></div>
+        <div class="flow-step"><b>负载电容 C ↑</b><span>要充放电的电气负载增大</span></div>
+        <div class="flow-step"><b>每次翻转能量 ↑</b><span>发送 0/1 更费能</span></div>
+        <div class="flow-step"><b>每比特能耗 ↑</b><span>搬同样数据用更多能量</span></div>
+        <div class="flow-step"><b>通信功耗 ↑</b><span>高带宽下累积成热</span></div>
+      </div>
+
+      <p>MIT 的 CMOS 能耗推导说明开关能量与负载电容和电压平方相关；伯克利关于互连的研究进一步把导线电容纳入每比特通信能量。<a href="#source-1">[1]</a><a href="#source-2">[2]</a></p>
+
+      <aside class="callout">
+        <p><strong>不要过度简化：</strong>真实能耗还取决于线宽/间距、材料、驱动器、终端、编码、均衡、数据速率和电压。这里仅在其他条件近似不变时，用“更短 → 更小电容 → 更低能量”建立方向感。</p>
+      </aside>
+    </section>
+
+    <section class="section" id="simulator">
+      <div class="section-head">
+        <p class="eyebrow">03 · One-minute simulator</p>
+        <h2>只拉四个滑块</h2>
+        <p>先把通道数减半、速率加倍：原始带宽会怎样？再把长度从 20 mm 降到 5 mm：相对能量指标会怎样？</p>
+      </div>
+
+      <div class="simulator" data-interconnect-simulator>
+        <div class="controls">
+          <div class="control">
+            <label for="lanes">通道数 <output data-output="lanes-label"></output></label>
+            <input id="lanes" data-input="lanes" type="range" min="16" max="512" step="16" value="128">
+          </div>
+          <div class="control">
+            <label for="rate">单通道速率 <output data-output="rate-label"></output></label>
+            <input id="rate" data-input="rate" type="range" min="4" max="64" step="4" value="16">
+          </div>
+          <div class="control">
+            <label for="efficiency">协议效率 <output data-output="efficiency-label"></output></label>
+            <input id="efficiency" data-input="efficiency" type="range" min="50" max="100" step="5" value="90">
+          </div>
+          <div class="control">
+            <label for="length">互连长度 <output data-output="length-label"></output></label>
+            <input id="length" data-input="length" type="range" min="1" max="100" step="1" value="20">
+          </div>
+          <p class="model-note">带宽模型假设每次传输承载 1 bit/通道，未区分单向/双向，也未计编码和拥塞；协议效率只作折扣。能量指标以 20 mm 为 1×，假设线材、几何、驱动和电压不变，仅用于比较方向。</p>
+        </div>
+
+        <div class="metrics" aria-live="polite">
+          <article class="metric">
+            <span class="metric-name">原始单向带宽</span>
+            <strong class="metric-value" data-output="raw-bandwidth">—</strong>
+            <div class="meter"><span data-meter="raw-bandwidth"></span></div>
+          </article>
+          <article class="metric green">
+            <span class="metric-name">协议后有效带宽</span>
+            <strong class="metric-value" data-output="useful-bandwidth">—</strong>
+            <div class="meter"><span data-meter="useful-bandwidth"></span></div>
+          </article>
+          <article class="metric orange">
+            <span class="metric-name">相对互连能量指标</span>
+            <strong class="metric-value" data-output="energy-index">—</strong>
+            <div class="meter"><span data-meter="energy-index"></span></div>
+          </article>
+          <article class="metric">
+            <span class="metric-name">读数方法</span>
+            <strong class="metric-value">N × R</strong>
+            <small>通道数与速率都能换来带宽；距离主要影响能量、延迟与信号难度。</small>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="packaging">
+      <div class="section-head"><p class="eyebrow">04 · Why packaging matters</p><h2>先进封装同时改变“宽”和“短”</h2></div>
+      <div class="balance">
+        <article class="balance-card gain">
+          <h3>更密 → 更多通道</h3>
+          <p>细间距 micro-bump 或 hybrid bonding 可在有限边缘/面积布置更多 I/O，提高 bandwidth density。</p>
+        </article>
+        <article class="balance-card gain">
+          <h3>更近 → 更低通信代价</h3>
+          <p>把 die 放在同一封装、同一中介层或垂直堆叠，可缩短 die-to-die 距离。TSMC 官方资料也将短连接与高带宽、较低功耗联系起来。<a href="#source-4">[4]</a></p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="practice">
+      <div class="section-head"><p class="eyebrow">05 · Retrieval practice</p><h2>只做一道乘法题</h2></div>
+      <form class="quiz" data-quiz data-answer="a" data-correct="正确。A：64×16=1024 Gbit/s；B：128×8=1024 Gbit/s。原始带宽相同，但 B 用了更多较慢通道。" data-incorrect="只比较 N×R：方案 A 是 64×16，方案 B 是 128×8。先不要考虑协议效率。">
+        <div class="scenario">
+          <strong>情境：</strong>方案 A 有 64 条通道、每条 16 Gbit/s；方案 B 有 128 条通道、每条 8 Gbit/s。
+        </div>
+        <div class="options">
+          <label class="option"><input type="radio" name="q1" value="a"><code>两者原始带宽相同</code></label>
+          <label class="option"><input type="radio" name="q1" value="b"><code>方案甲的带宽更高</code></label>
+          <label class="option"><input type="radio" name="q1" value="c"><code>方案乙的带宽更高</code></label>
+          <label class="option"><input type="radio" name="q1" value="d"><code>无法根据参数判断</code></label>
+        </div>
+        <button class="button" type="submit">提交判断</button>
+        <p class="feedback" data-feedback aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section class="section" id="primary-source">
+      <div class="section-head"><p class="eyebrow">06 · Read one primary source</p><h2>课后只读一段</h2></div>
+      <article class="source-card">
+        <div class="source-icon">1°</div>
+        <div>
+          <h3><a href="https://3dfabric.tsmc.com/english/dedicatedFoundry/technology/SoIC.htm">TSMC：SoIC</a></h3>
+          <p>只找 “A short die-to-die connection” 开头的一段。读完区分两个因果：高密度 I/O 为什么提高带宽；短连接为什么有利于功耗。不要记产品代号。</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="section footnotes" id="sources">
+      <h2>本课来源</h2>
+      <ol>
+        <li id="source-1"><a href="https://live.ocw.mit.edu/courses/6-004-computation-structures-spring-2017/pages/c8/c8s1/">MIT OpenCourseWare, Computation Structures 8.1</a>：电容充放电与 CMOS 动态能耗。</li>
+        <li id="source-2"><a href="https://digicoll.lib.berkeley.edu/record/133744/files/EECS-2017-144.pdf">UC Berkeley EECS-2017-144</a>：互连电容、长度与每比特通信能量。</li>
+        <li id="source-3"><a href="https://www.uciexpress.org/specifications">UCIe Consortium, Specifications</a>：数据率、bandwidth density 与 power efficiency 的标准演进。</li>
+        <li id="source-4"><a href="https://3dfabric.tsmc.com/english/dedicatedFoundry/technology/SoIC.htm">TSMC, SoIC</a>：高密度 I/O、短 die-to-die 连接、带宽与功耗。</li>
+      </ol>
+    </section>
+
+    <nav class="next-step" aria-label="下一步">
+      <h2>本课压缩结论</h2>
+      <p>带宽由通道数与单通道速率共同决定；距离缩短、线密度提高，通常能在相同带宽下降低每比特能耗。</p>
+      <p><a href="0003-yield-cost-chiplets.html">← 第三课</a>　·　<a href="../reference/0004-bandwidth-energy-map.html">速查表</a>　·　<a href="0005-hbm-stacked-and-close.html">进入第五课 →</a></p>
+    </nav>
+  </main>
+</body>
+</html>
