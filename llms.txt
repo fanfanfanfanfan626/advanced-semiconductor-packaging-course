@@ -1,0 +1,27 @@
+# 封装解构：半导体与先进封装完整课程
+
+> 免费、开源、可连续阅读的中文半导体与先进封装课程，共 40 课、6 个模块和 15 个速查/参考页面。
+
+课程首页：https://fanfanfanfanfan626.github.io/advanced-semiconductor-packaging-course/
+使用指南：https://fanfanfanfanfan626.github.io/advanced-semiconductor-packaging-course/guide.html
+源码仓库：https://github.com/fanfanfanfanfan626/advanced-semiconductor-packaging-course
+当前版本：1.0.0
+语言：简体中文
+费用：免费，无需账号
+许可证：网站代码 MIT；原创课程文字、图示和课程结构 CC BY 4.0
+
+## 课程范围
+
+- 第 1–12 课：封装物理、良率、HBM、散热、供电、测试与装配。
+- 第 13–20 课：2.5D/3D、Fan-out、混合键合、基板、CoWoS、InFO、EMIB、Foveros、UCIe。
+- 第 21–26 课：信号完整性、供电完整性、热、可靠性、DFT、STCO。
+- 第 27–31 课：设备、材料、产能、成本与量产瓶颈。
+- 第 32–36 课：产业链、资料分级、财务映射、公司研究和 AI 封装案例。
+- 第 37–40 课：大学先修课、论文阅读、实验设计和结课项目。
+
+## 资料与声明
+
+课程使用 32 个一手来源，主要来自 IEEE Heterogeneous Integration Roadmap、TSMC 3DFabric、Intel Advanced Packaging、UCIe、SEC EDGAR 和 MIT OpenCourseWare。公司、技术和财务案例仅用于教育与研究，不构成投资建议。项目与被提及的公司、标准组织和教育机构没有隶属或背书关系。
+
+第一课：https://fanfanfanfanfan626.github.io/advanced-semiconductor-packaging-course/lessons/0001-system-scaling-map.html
+完整目录：https://fanfanfanfanfan626.github.io/advanced-semiconductor-packaging-course/#course-map
