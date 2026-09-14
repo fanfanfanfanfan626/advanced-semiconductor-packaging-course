@@ -21,6 +21,32 @@
   <script src="../assets/site-shell.js" defer></script>
 </head>
 <body data-course-lesson="0023">
-  <main class="lesson-shell" data-complete-lesson-root></main>
+  <main class="lesson-shell" data-complete-lesson-root>
+    <!-- prerendered: start -->
+    <header class="hero">
+      <div class="breadcrumb"><a href="../index.html">课程总目录</a><span>›</span><span>模块 3 · 工程约束与协同设计</span><span>›</span><span>第 23 课</span></div>
+      <p class="eyebrow">Semiconductor &amp; Advanced Packaging · Lesson 0023</p>
+      <h1>热点、边界条件与热模型</h1><p class="lede">同一个芯片在不同散热器、风量、冷板温度或相邻 die 布局下会得到完全不同温度。热模型最容易犯的错误，是比较结果却没有统一边界条件。</p>
+      <div class="win"><strong>本课结果</strong><p>能为热分析明确热源、材料与界面、几何、冷却边界和验证数据。</p></div>
+    </header>
+    <section class="section"><div class="section-head"><p class="eyebrow">Core model</p><h2>一个可信热模型的五层输入</h2></div>
+
+    <div class="model-grid"><article class="model-step"><h3>功耗地图</h3><p>不是只有总 TDP，还要知道功耗在 die 上如何分布、随工作负载怎样变化。 <a href="#source-1">[1]</a></p></article><article class="model-step"><h3>几何与材料</h3><p>输入 die、TIM、lid、中介层、基板的厚度与导热属性。</p></article><article class="model-step"><h3>界面热阻</h3><p>固体接触面、键合层和 TIM 可能贡献显著温差。 <a href="#source-2">[2]</a></p></article><article class="model-step"><h3>冷却边界</h3><p>定义散热器、冷板温度、对流系数或流体条件。</p></article></div>
+    </section>
+    <section class="section"><div class="section-head"><p class="eyebrow">Three anchors</p><h2>三个必须抓住的判断点</h2></div>
+      <div class="concept-grid"><article class="concept-card"><span class="concept-tag">MAP</span><h3>热点比平均值更危险</h3><p>局部温度决定节流、漏电、互连寿命和相邻 die 热耦合。</p></article><article class="concept-card"><span class="concept-tag">BOUND</span><h3>边界决定答案</h3><p>没有统一冷却边界的两个温度数字不能直接比较。</p></article><article class="concept-card"><span class="concept-tag">VALID</span><h3>仿真必须校准</h3><p>用热传感器、红外、热测试芯片或已知结构验证模型，避免漂亮但错误的温度云图。</p></article></div>
+    </section>
+    <section class="section"><div class="section-head"><p class="eyebrow">Mission lenses</p><h2>工程、投资与科研同时看</h2></div>
+      <div class="lens-grid"><article class="lens-panel engineering"><h3>工程镜头</h3><p>从稳态与瞬态两类问题出发，报告峰值温度、温差、热阻和冷却条件。</p></article><article class="lens-panel investment"><h3>投资镜头</h3><p>散热方案价值取决于系统功率密度与冷却边界，不能仅用芯片标称 TDP 推算。</p></article><article class="lens-panel research"><h3>科研 / 专业镜头</h3><p>适合机械、材料和计算方向；需要热传导、数值方法、实验校准与不确定性分析。</p></article></div>
+    </section>
+    <section class="section"><div class="section-head"><p class="eyebrow">Worked decision</p><h2>拒绝无边界比较</h2></div>
+      <article class="case-card"><p><strong>情境：</strong>报告 A 称封装峰温 80°C，报告 B 称 90°C，但二者使用不同冷板温度和功耗地图。</p><details><summary>看判断标准</summary><h3>不能据此判断 A 的封装热设计更好</h3><p>必须统一热源、几何、材料、界面和冷却边界，或换算到可比较的热阻指标。</p></details></article>
+    </section>
+    <section class="section" id="primary-source"><div class="section-head"><p class="eyebrow">Primary sources</p><h2>本课一手资料</h2></div>
+      <ol class="source-list"><li id="source-1"><a href="https://www.imec-int.com/en/articles/navigating-thermal-challenges-advanced-systems-chip">imec, Navigating Thermal Challenges</a>：功率密度、热点、边界条件和热感知系统—技术协同优化。</li><li id="source-2"><a href="https://eps.ieee.org/images/files/HIR_2023/ch20_thermalfinal.pdf">IEEE HIR 2023, Thermal Management</a>：异质集成的热路径、界面热阻、3D 堆叠与先进冷却。</li><li id="source-3"><a href="https://www.intel.com/content/www/us/en/foundry/research/packaging-and-test.html">Intel Foundry, Packaging & Test Research</a>：多 die 架构、基板、中介层、供电、热、可制造性与测试研究范围。</li></ol>
+    </section>
+    <nav class="next-step" aria-label="课程导航"><h2>本课压缩结论</h2><p>可信热分析必须同时定义功耗地图、材料几何、界面和冷却边界，并用独立测量校准。</p><p><a href="0022-power-integrity.html">← 第22课</a>　·　<a href="../reference/module-03-engineering.html">模块速查表</a>　·　<a href="../index.html">课程总目录</a>　·　<a href="0024-mechanical-reliability.html">第24课 →</a></p></nav>
+    <!-- prerendered: end -->
+  </main>
 </body>
 </html>

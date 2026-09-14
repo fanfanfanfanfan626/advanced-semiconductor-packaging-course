@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 在线课程与使用指南
+    url: https://fanfanfanfanfan626.github.io/advanced-semiconductor-packaging-course/guide.html
+    about: 先查看学习路线、阅读方法和资料可信度说明。
+  - name: 私密安全报告
+    url: https://github.com/fanfanfanfanfan626/advanced-semiconductor-packaging-course/security/advisories/new
+    about: 安全敏感内容不要提交到公开 Issue。

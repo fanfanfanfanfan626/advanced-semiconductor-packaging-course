@@ -21,6 +21,33 @@
   <script src="../assets/site-shell.js" defer></script>
 </head>
 <body data-course-lesson="0029">
-  <main class="lesson-shell" data-complete-lesson-root></main>
+  <main class="lesson-shell" data-complete-lesson-root>
+    <!-- prerendered: start -->
+    <header class="hero">
+      <div class="breadcrumb"><a href="../index.html">课程总目录</a><span>›</span><span>模块 4 · 制造、产能与成本</span><span>›</span><span>第 29 课</span></div>
+      <p class="eyebrow">Semiconductor &amp; Advanced Packaging · Lesson 0029</p>
+      <h1>产能、吞吐、稼动与良率</h1><p class="lede">“新增十台设备”不是完整产能结论。有效合格输出还取决于单机吞吐、可运行时间、产品组合、返工、良率和客户资格。</p>
+      <div class="win"><strong>本课结果</strong><p>能用一个透明模型把物理设备数转换为合格产出，并指出模型最可能失真的地方。</p></div>
+    </header>
+    <section class="section"><div class="section-head"><p class="eyebrow">Core model</p><h2>从名义工具数到合格产出</h2></div>
+    <div class="equation">合格输出 ≈ 工具数 × 单机吞吐 × 时间 × Uptime × Yield</div>
+
+    <div class="model-grid"><article class="model-step"><h3>工具与节拍</h3><p>确认关键工序工具数量、每小时单位数和产品配方切换损失。 <a href="#source-1">[1]</a></p></article><article class="model-step"><h3>可用与占用</h3><p>区分设备 uptime、实际 utilization、维护、工程批次和停机。</p></article><article class="model-step"><h3>良率与返工</h3><p>过程良率、assembly yield、final yield 和返工会改变可交付数量。</p></article><article class="model-step"><h3>认证边界</h3><p>只有通过特定客户与产品认证的能力，才是可商业交付的 qualified capacity。 <a href="#source-3">[3]</a></p></article></div>
+    </section>
+    <section class="section"><div class="section-head"><p class="eyebrow">Three anchors</p><h2>三个必须抓住的判断点</h2></div>
+      <div class="concept-grid"><article class="concept-card"><span class="concept-tag">MIX</span><h3>产品组合改变吞吐</h3><p>不同封装尺寸、RDL 层数、HBM 数量和测试时长会占用不同机时。</p></article><article class="concept-card"><span class="concept-tag">BOT</span><h3>最慢环节限制整线</h3><p>前后段设备很多，但最终 throughput 由当前瓶颈与在制品平衡决定。</p></article><article class="concept-card"><span class="concept-tag">RAMP</span><h3>新产线不会瞬间满产</h3><p>安装、调试、客户认证和良率爬坡造成物理产能与财务产出之间的时滞。</p></article></div>
+    </section>
+    <section class="section"><div class="section-head"><p class="eyebrow">Mission lenses</p><h2>工程、投资与科研同时看</h2></div>
+      <div class="lens-grid"><article class="lens-panel engineering"><h3>工程镜头</h3><p>用每一步 cycle time、WIP、设备故障和良率建立离散事件或瓶颈模型。</p></article><article class="lens-panel investment"><h3>投资镜头</h3><p>把扩产公告拆成到厂、安装、认证、爬坡和满产五个里程碑，避免把 CapEx 当即期收入。</p></article><article class="lens-panel research"><h3>科研 / 专业镜头</h3><p>适合工业工程、统计与运筹方向；可研究排产、OEE、yield learning 和不确定需求。</p></article></div>
+    </section>
+    <section class="section"><div class="section-head"><p class="eyebrow">Worked decision</p><h2>新增非瓶颈设备</h2></div>
+      <article class="case-card"><p><strong>情境：</strong>RDL 电镀设备增加 50%，但整线真正瓶颈是低吞吐的精密键合，而且后者没有扩充。</p><details><summary>看判断标准</summary><h3>最终封装产能不会因此增加 50%</h3><p>电镀排队会缓解，但系统输出仍受键合节拍限制；需要重新平衡整条产线。</p></details></article>
+    </section>
+    <section class="section" id="primary-source"><div class="section-head"><p class="eyebrow">Primary sources</p><h2>本课一手资料</h2></div>
+      <ol class="source-list"><li id="source-1"><a href="https://semi.asmpt.com/en/products/ap/">ASMPT, Advanced Packaging Solutions</a>：切割、fan-out、热压键合、混合键合、精密贴装与检测设备。</li><li id="source-2"><a href="https://ir.appliedmaterials.com/news-releases/news-release-details/applied-materials-introduces-new-technologies-and-capabilities/">Applied Materials, Heterogeneous Integration Technologies</a>：Etch、PVD、CVD、电镀、表面处理、RDL、TSV 和 hybrid bonding 设备技术链。</li><li id="source-3"><a href="https://investor.tsmc.com/static/annualReports/2025/english/index.html">TSMC 2025 Annual Report</a>：先进制程、3DFabric、产能投资、风险和财务披露的法定年度资料。</li></ol>
+    </section>
+    <nav class="next-step" aria-label="课程导航"><h2>本课压缩结论</h2><p>有效产能不是工具数，而是工具、吞吐、时间、稼动、良率、产品组合和认证共同决定的合格输出。</p><p><a href="0028-materials-map.html">← 第28课</a>　·　<a href="../reference/module-04-manufacturing-economics.html">模块速查表</a>　·　<a href="../index.html">课程总目录</a>　·　<a href="0030-cost-per-good-package.html">第30课 →</a></p></nav>
+    <!-- prerendered: end -->
+  </main>
 </body>
 </html>

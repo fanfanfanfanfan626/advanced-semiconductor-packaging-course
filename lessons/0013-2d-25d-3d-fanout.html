@@ -21,6 +21,32 @@
   <script src="../assets/site-shell.js" defer></script>
 </head>
 <body data-course-lesson="0013">
-  <main class="lesson-shell" data-complete-lesson-root></main>
+  <main class="lesson-shell" data-complete-lesson-root>
+    <!-- prerendered: start -->
+    <header class="hero">
+      <div class="breadcrumb"><a href="../index.html">课程总目录</a><span>›</span><span>模块 2 · 先进封装技术路线图</span><span>›</span><span>第 13 课</span></div>
+      <p class="eyebrow">Semiconductor &amp; Advanced Packaging · Lesson 0013</p>
+      <h1>2D、2.5D、3D 与 Fan-out</h1><p class="lede">这些名词不是统一维度上的四个等级。前三者主要描述 die 的空间互连结构，fan-out 主要描述利用重构载体和 RDL 扩展端口的方法。</p>
+      <div class="win"><strong>本课结果</strong><p>能先描述结构，再给它贴上 2D、2.5D、3D 或 fan-out 标签。</p></div>
+    </header>
+    <section class="section"><div class="section-head"><p class="eyebrow">Core model</p><h2>用两个问题分类：die 怎样放，线路在哪里</h2></div>
+
+    <div class="model-grid"><article class="model-step"><h3>2D</h3><p>多颗 die 位于封装基板上，主要通过基板线路互连。 <a href="#source-4">[4]</a></p></article><article class="model-step"><h3>2.5D</h3><p>die 并排，通过硅/RDL 中介层或局部硅桥进行高密度连接。 <a href="#source-1">[1]</a></p></article><article class="model-step"><h3>3D</h3><p>活性 die 垂直堆叠，通过 TSV、微凸点或 hybrid bonding 连接。 <a href="#source-2">[2]</a></p></article><article class="model-step"><h3>Fan-out</h3><p>die 被重构进载体，RDL 将 I/O 从 die 区域向外扩展，可服务单 die 或多 die。 <a href="#source-3">[3]</a></p></article></div>
+    </section>
+    <section class="section"><div class="section-head"><p class="eyebrow">Three anchors</p><h2>三个必须抓住的判断点</h2></div>
+      <div class="concept-grid"><article class="concept-card"><span class="concept-tag">AXIS</span><h3>分类轴不同</h3><p>Fan-out 可以形成多 die 系统，但不能简单当作比 2.5D 更高或更低的维度。</p></article><article class="concept-card"><span class="concept-tag">PATH</span><h3>看高速路径</h3><p>判断封装路线时，找出 die-to-die 数据究竟经过基板、中介层、桥、RDL 还是垂直界面。</p></article><article class="concept-card"><span class="concept-tag">BOUND</span><h3>厂商定义可能不同</h3><p>同一商业名称下可能包含多个结构版本，因此应以剖面、材料和接口为准。</p></article></div>
+    </section>
+    <section class="section"><div class="section-head"><p class="eyebrow">Mission lenses</p><h2>工程、投资与科研同时看</h2></div>
+      <div class="lens-grid"><article class="lens-panel engineering"><h3>工程镜头</h3><p>比较互连间距、长度、覆盖面积、供电热路径、组装顺序和可测试性。</p></article><article class="lens-panel investment"><h3>投资镜头</h3><p>同属先进封装不代表价值量相同；硅面积、RDL 层数、基板规格和键合步骤决定不同需求。</p></article><article class="lens-panel research"><h3>科研 / 专业镜头</h3><p>训练结构分类和边界定义；论文比较必须确保基线、面积、功耗和冷却条件一致。</p></article></div>
+    </section>
+    <section class="section"><div class="section-head"><p class="eyebrow">Worked decision</p><h2>先描述再命名</h2></div>
+      <article class="case-card"><p><strong>情境：</strong>GPU 与 HBM 横向并排在硅中介层上，同时每组 HBM 内部垂直堆叠。</p><details><summary>看判断标准</summary><h3>整体是 2.5D，HBM 内部是 3D</h3><p>观察尺度不同可以同时得到两个正确标签；这不是术语矛盾。</p></details></article>
+    </section>
+    <section class="section" id="primary-source"><div class="section-head"><p class="eyebrow">Primary sources</p><h2>本课一手资料</h2></div>
+      <ol class="source-list"><li id="source-1"><a href="https://3dfabric.tsmc.com/english/dedicatedFoundry/technology/3DFabric.htm">TSMC, 3DFabric</a>：CoWoS、InFO 与 SoIC 在系统整合中的官方技术族谱。</li><li id="source-2"><a href="https://3dfabric.tsmc.com/english/dedicatedFoundry/technology/SoIC_inDepth.htm">TSMC, The Whats, Whys, and Hows of SoIC</a>：Chip-on-wafer、wafer-on-wafer 与高密度垂直键合。</li><li id="source-3"><a href="https://3dfabric.tsmc.com/schinese/dedicatedFoundry/technology/del/InFO_presentation_2016_ECTC_InFO_PoP_architecture.htm">TSMC, InFO Wafer Level Integrated Fan-Out</a>：多层高密度 RDL fan-out 与系统集成的原始技术论文入口。</li><li id="source-4"><a href="https://resourcecenter.eps.ieee.org/roadmap/heterogenous-integration/heterogenous-integration-roadmap">IEEE EPS, Heterogeneous Integration Roadmap</a>：异质集成的互连、协同设计、建模、测试、热与可靠性路线图入口。</li></ol>
+    </section>
+    <nav class="next-step" aria-label="课程导航"><h2>本课压缩结论</h2><p>2D/2.5D/3D 先看空间结构，fan-out 先看重构载体与 RDL；永远先画剖面，再背名称。</p><p><a href="0012-assembly-process-flow.html">← 第12课</a>　·　<a href="../reference/module-02-technology-map.html">模块速查表</a>　·　<a href="../index.html">课程总目录</a>　·　<a href="0014-microbump-hybrid-bonding.html">第14课 →</a></p></nav>
+    <!-- prerendered: end -->
+  </main>
 </body>
 </html>

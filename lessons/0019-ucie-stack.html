@@ -21,6 +21,32 @@
   <script src="../assets/site-shell.js" defer></script>
 </head>
 <body data-course-lesson="0019">
-  <main class="lesson-shell" data-complete-lesson-root></main>
+  <main class="lesson-shell" data-complete-lesson-root>
+    <!-- prerendered: start -->
+    <header class="hero">
+      <div class="breadcrumb"><a href="../index.html">课程总目录</a><span>›</span><span>模块 2 · 先进封装技术路线图</span><span>›</span><span>第 19 课</span></div>
+      <p class="eyebrow">Semiconductor &amp; Advanced Packaging · Lesson 0019</p>
+      <h1>UCIe 标准化了什么</h1><p class="lede">UCIe 的目标不是制造所有 chiplet，而是定义封装内 die-to-die 连接的共同接口，让物理层、协议、管理、测试和软件模型更可互操作。</p>
+      <div class="win"><strong>本课结果</strong><p>能说出 UCIe 解决的层级，以及它没有自动解决的封装与商业问题。</p></div>
+    </header>
+    <section class="section"><div class="section-head"><p class="eyebrow">Core model</p><h2>从导线到软件的接口栈</h2></div>
+
+    <div class="model-grid"><article class="model-step"><h3>Package channel</h3><p>定义标准封装与先进封装下的物理连接、电气参数和 bump map。 <a href="#source-1">[1]</a></p></article><article class="model-step"><h3>PHY + Adapter</h3><p>完成链路训练、可靠传输、错误处理与协议适配。 <a href="#source-1">[1]</a></p></article><article class="model-step"><h3>Protocols</h3><p>可承载 PCIe、CXL 或 streaming/raw 等不同流量。 <a href="#source-1">[1]</a></p></article><article class="model-step"><h3>Management / DFx</h3><p>新版本加入管理、测试、遥测、调试和 3D 支持。 <a href="#source-1">[1]</a></p></article></div>
+    </section>
+    <section class="section"><div class="section-head"><p class="eyebrow">Three anchors</p><h2>三个必须抓住的判断点</h2></div>
+      <div class="concept-grid"><article class="concept-card"><span class="concept-tag">OPEN</span><h3>标准降低接口重复开发</h3><p>共同规范有助于多供应商生态，但实际产品仍需要一致的版本、能力和认证。</p></article><article class="concept-card"><span class="concept-tag">PHYS</span><h3>标准不能消除物理约束</h3><p>封装 pitch、线路损耗、供电、热、机械与测试仍需具体实现。</p></article><article class="concept-card"><span class="concept-tag">BIZ</span><h3>互操作不等于可随意替换</h3><p>IP、性能目标、可靠性、供应关系、责任边界和软件验证仍会形成切换成本。</p></article></div>
+    </section>
+    <section class="section"><div class="section-head"><p class="eyebrow">Mission lenses</p><h2>工程、投资与科研同时看</h2></div>
+      <div class="lens-grid"><article class="lens-panel engineering"><h3>工程镜头</h3><p>检查速率、lane 数、封装类型、协议、延迟、错误恢复、测试与版本兼容。</p></article><article class="lens-panel investment"><h3>投资镜头</h3><p>开放标准可能扩大生态，也可能降低专有接口壁垒；真正价值取决于 IP、验证、封装和客户采纳。</p></article><article class="lens-panel research"><h3>科研 / 专业镜头</h3><p>适合数字通信、计算机体系结构和测试方向；可研究链路、NoC、可靠性与资源管理。</p></article></div>
+    </section>
+    <section class="section"><div class="section-head"><p class="eyebrow">Worked decision</p><h2>识别标准的边界</h2></div>
+      <article class="case-card"><p><strong>情境：</strong>两颗 chiplet 都声称支持 UCIe，但 bump pitch、封装通道和协议能力不一致。</p><details><summary>看判断标准</summary><h3>不能仅凭“支持 UCIe”认定可直接组合</h3><p>必须核对标准版本、物理封装、电气能力、协议配置、管理与合规测试。</p></details></article>
+    </section>
+    <section class="section" id="primary-source"><div class="section-head"><p class="eyebrow">Primary sources</p><h2>本课一手资料</h2></div>
+      <ol class="source-list"><li id="source-1"><a href="https://www.uciexpress.org/specifications">UCIe Consortium, Specifications</a>：Die-to-die 物理层、协议、软件、管理、DFx 与 3D 封装支持。</li><li id="source-2"><a href="https://www.intel.com/content/www/us/en/foundry/packaging.html">Intel Foundry, Advanced Packaging</a>：EMIB、Foveros、RDL/硅中介层、3D 堆叠和先进测试技术族。</li></ol>
+    </section>
+    <nav class="next-step" aria-label="课程导航"><h2>本课压缩结论</h2><p>UCIe 标准化接口栈和管理测试，不会自动解决制造、封装、供电、热和商业责任边界。</p><p><a href="0018-emib-foveros.html">← 第18课</a>　·　<a href="../reference/module-02-technology-map.html">模块速查表</a>　·　<a href="../index.html">课程总目录</a>　·　<a href="0020-hbm-generations.html">第20课 →</a></p></nav>
+    <!-- prerendered: end -->
+  </main>
 </body>
 </html>

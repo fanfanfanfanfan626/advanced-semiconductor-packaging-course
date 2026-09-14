@@ -21,6 +21,32 @@
   <script src="../assets/site-shell.js" defer></script>
 </head>
 <body data-course-lesson="0018">
-  <main class="lesson-shell" data-complete-lesson-root></main>
+  <main class="lesson-shell" data-complete-lesson-root>
+    <!-- prerendered: start -->
+    <header class="hero">
+      <div class="breadcrumb"><a href="../index.html">课程总目录</a><span>›</span><span>模块 2 · 先进封装技术路线图</span><span>›</span><span>第 18 课</span></div>
+      <p class="eyebrow">Semiconductor &amp; Advanced Packaging · Lesson 0018</p>
+      <h1>EMIB 与 Foveros 的技术地图</h1><p class="lede">Intel 的商业名称覆盖不同空间结构。EMIB 把小块硅桥嵌入基板连接相邻 die；Foveros 技术族覆盖硅/RDL 中介层和直接 3D 堆叠。</p>
+      <div class="win"><strong>本课结果</strong><p>能把 EMIB 与 Foveros 翻译成局部横向互连、2.5D 中介层或 3D 垂直堆叠，而不把品牌名当维度。</p></div>
+    </header>
+    <section class="section"><div class="section-head"><p class="eyebrow">Core model</p><h2>先看横向桥，再看垂直堆叠</h2></div>
+
+    <div class="model-grid"><article class="model-step"><h3>EMIB 2.5D</h3><p>小块硅桥嵌入封装基板，只在 die 相邻边缘提供高密度连接。 <a href="#source-1">[1]</a></p></article><article class="model-step"><h3>EMIB-M / T</h3><p>在桥中加入 MIM 电容或 TSV，强化局部供电能力。 <a href="#source-1">[1]</a></p></article><article class="model-step"><h3>Foveros 2.5D</h3><p>可使用硅或 RDL interposer 承载多个 top die。 <a href="#source-1">[1]</a></p></article><article class="model-step"><h3>Foveros Direct / 3.5D</h3><p>Hybrid bonding 垂直堆叠，并可与 EMIB 横向连接组合。 <a href="#source-1">[1]</a></p></article></div>
+    </section>
+    <section class="section"><div class="section-head"><p class="eyebrow">Three anchors</p><h2>三个必须抓住的判断点</h2></div>
+      <div class="concept-grid"><article class="concept-card"><span class="concept-tag">LOCAL</span><h3>EMIB 把硅放在关键边界</h3><p>其余电源和 I/O 可直接进入有机基板，避免所有路径都穿过整片硅。</p></article><article class="concept-card"><span class="concept-tag">FAMILY</span><h3>Foveros 不是单一剖面</h3><p>看到名称后仍需确认是 2.5D interposer、active base 还是 direct 3D。</p></article><article class="concept-card"><span class="concept-tag">MIX</span><h3>横向与垂直可以组合</h3><p>复杂系统可把若干 3D stack 再用 EMIB 横向互连，因此出现 3.5D 的商业描述。</p></article></div>
+    </section>
+    <section class="section"><div class="section-head"><p class="eyebrow">Mission lenses</p><h2>工程、投资与科研同时看</h2></div>
+      <div class="lens-grid"><article class="lens-panel engineering"><h3>工程镜头</h3><p>按 die 边界、堆叠方向、供电路径和硅覆盖面积分解方案。</p></article><article class="lens-panel investment"><h3>投资镜头</h3><p>技术名对应的设备和材料需求并不固定，必须确认具体产品版本、量产状态和客户结构。</p></article><article class="lens-panel research"><h3>科研 / 专业镜头</h3><p>可研究局部桥的信号/供电、active base 网络、混合键合和 2.5D+3D 拓扑优化。</p></article></div>
+    </section>
+    <section class="section"><div class="section-head"><p class="eyebrow">Worked decision</p><h2>把商业名还原成结构</h2></div>
+      <article class="case-card"><p><strong>情境：</strong>两个 3D compute stack 之间通过封装基板中的小硅桥连接。</p><details><summary>看判断标准</summary><h3>这是垂直 Foveros 与横向 EMIB 的组合</h3><p>同一产品同时存在垂直和横向两种集成方式，不能只选一个标签。</p></details></article>
+    </section>
+    <section class="section" id="primary-source"><div class="section-head"><p class="eyebrow">Primary sources</p><h2>本课一手资料</h2></div>
+      <ol class="source-list"><li id="source-1"><a href="https://www.intel.com/content/www/us/en/foundry/packaging.html">Intel Foundry, Advanced Packaging</a>：EMIB、Foveros、RDL/硅中介层、3D 堆叠和先进测试技术族。</li><li id="source-2"><a href="https://www.intel.com/content/dam/www/central-libraries/us/en/documents/2025-11/intel-foundry-hpc-ai-brief.pdf">Intel Foundry, Accelerating HPC and AI</a>：PowerVia、MIM/eDTC、垂直供电与先进多 die 系统的供电方案。</li></ol>
+    </section>
+    <nav class="next-step" aria-label="课程导航"><h2>本课压缩结论</h2><p>EMIB 是局部横向硅桥；Foveros 是 2.5D/3D 技术族；复杂产品可把二者组合。</p><p><a href="0017-info-fanout.html">← 第17课</a>　·　<a href="../reference/module-02-technology-map.html">模块速查表</a>　·　<a href="../index.html">课程总目录</a>　·　<a href="0019-ucie-stack.html">第19课 →</a></p></nav>
+    <!-- prerendered: end -->
+  </main>
 </body>
 </html>

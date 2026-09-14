@@ -21,6 +21,33 @@
   <script src="../assets/site-shell.js" defer></script>
 </head>
 <body data-course-lesson="0030">
-  <main class="lesson-shell" data-complete-lesson-root></main>
+  <main class="lesson-shell" data-complete-lesson-root>
+    <!-- prerendered: start -->
+    <header class="hero">
+      <div class="breadcrumb"><a href="../index.html">课程总目录</a><span>›</span><span>模块 4 · 制造、产能与成本</span><span>›</span><span>第 30 课</span></div>
+      <p class="eyebrow">Semiconductor &amp; Advanced Packaging · Lesson 0030</p>
+      <h1>每颗合格封装的成本模型</h1><p class="lede">先进封装的正确比较对象不是“封装步骤多少钱”，而是交付一颗满足规格的合格系统需要消耗多少 die、材料、设备时间、测试与良率损失。</p>
+      <div class="win"><strong>本课结果</strong><p>能建立 cost per good package 模型，并解释 chiplet 何时省钱、何时把成本转移到封装与测试。</p></div>
+    </header>
+    <section class="section"><div class="section-head"><p class="eyebrow">Core model</p><h2>总投入如何摊到合格产品</h2></div>
+    <div class="equation">单位合格成本 = 总 die + 互连/基板 + 组装 + 测试 + 良率损失 + 折旧/间接成本</div>
+
+    <div class="model-grid"><article class="model-step"><h3>Die 成本</h3><p>考虑各节点晶圆成本、die 面积、单 die 良率、KGD 测试与备用数量。 <a href="#source-1">[1]</a></p></article><article class="model-step"><h3>Package BOM</h3><p>加入 interposer/bridge、substrate、HBM、凸点、underfill、mold、TIM 和 lid。</p></article><article class="model-step"><h3>Process + test</h3><p>按设备时间、重复层数、组装、量测、burn-in 和系统测试计入。 <a href="#source-3">[3]</a></p></article><article class="model-step"><h3>Compound yield</h3><p>把各关键步骤良率和返工边界组合，除以最终合格数量。 <a href="#source-2">[2]</a></p></article></div>
+    </section>
+    <section class="section"><div class="section-head"><p class="eyebrow">Three anchors</p><h2>三个必须抓住的判断点</h2></div>
+      <div class="concept-grid"><article class="concept-card"><span class="concept-tag">GOOD</span><h3>分母必须是合格产品</h3><p>名义投入低但最终良率差，单位合格成本可能更高。</p></article><article class="concept-card"><span class="concept-tag">NODE</span><h3>Chiplet 可优化节点分配</h3><p>数字逻辑迁移先进节点，模拟、I/O 或缓存留在成熟节点，可能改善面积与成本。</p></article><article class="concept-card"><span class="concept-tag">NRE</span><h3>量产成本之外还有 NRE</h3><p>Mask、IP、封装设计、验证和软件投入会随销量分摊，影响小批量产品经济性。</p></article></div>
+    </section>
+    <section class="section"><div class="section-head"><p class="eyebrow">Mission lenses</p><h2>工程、投资与科研同时看</h2></div>
+      <div class="lens-grid"><article class="lens-panel engineering"><h3>工程镜头</h3><p>对面积、良率、chiplet 数、attach yield、基板规格和测试时间做敏感性分析。</p></article><article class="lens-panel investment"><h3>投资镜头</h3><p>区分产品 ASP 上升与供应商利润上升；爬坡、折旧和低利用率可能暂时压低毛利。</p></article><article class="lens-panel research"><h3>科研 / 专业镜头</h3><p>可建立参数化 cost/yield model，并用公开数据做区间和蒙特卡洛分析。</p></article></div>
+    </section>
+    <section class="section"><div class="section-head"><p class="eyebrow">Worked decision</p><h2>避免只比较 die 良率</h2></div>
+      <article class="case-card"><p><strong>情境：</strong>Chiplet 方案的各小 die 良率更高，但需要昂贵 interposer、更多测试和多个高难度 attach。</p><details><summary>看判断标准</summary><h3>必须比较最终每颗合格封装成本</h3><p>单 die 良率优势可能被封装 BOM、assembly yield、测试和 NRE 部分抵消。</p></details></article>
+    </section>
+    <section class="section" id="primary-source"><div class="section-head"><p class="eyebrow">Primary sources</p><h2>本课一手资料</h2></div>
+      <ol class="source-list"><li id="source-1"><a href="https://www.amd.com/content/dam/amd/en/documents/solutions/technologies/chiplet-architecture-white-paper.pdf">AMD, Chiplet Architecture White Paper</a>：Chiplet 的良率、复用与节点优化优势，以及封装、互连、热和成本约束。</li><li id="source-2"><a href="https://eps.ieee.org/wp-content/uploads/2025/11/ch17_test.pdf">IEEE HIR 2023, Test Technology</a>：多 die、KGD、堆叠、设计可测性与系统级测试。</li><li id="source-3"><a href="https://newsroom.intel.com/tech101/how-silicon-die-become-chip-packages">Intel Tech 101, How Silicon Die Become Chip Packages</a>：Chip attach、epoxy、lid、burn-in、最终测试与平台验证的官方流程。</li></ol>
+    </section>
+    <nav class="next-step" aria-label="课程导航"><h2>本课压缩结论</h2><p>先进封装经济性必须以每颗合格系统为分母；chiplet 改善某些成本，也会新增互连、组装、测试和验证成本。</p><p><a href="0029-capacity-throughput-yield.html">← 第29课</a>　·　<a href="../reference/module-04-manufacturing-economics.html">模块速查表</a>　·　<a href="../index.html">课程总目录</a>　·　<a href="0031-bottleneck-qualification.html">第31课 →</a></p></nav>
+    <!-- prerendered: end -->
+  </main>
 </body>
 </html>

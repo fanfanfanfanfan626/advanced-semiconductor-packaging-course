@@ -14,6 +14,15 @@
 
 技术性修改优先引用标准、同行评审论文、官方路线图、监管披露和厂商原始技术资料。请不要提交未获许可的论文全文、付费报告、课程讲义、图片或大段复制内容。二手资料可以用于发现线索，但重要结论应尽量回到一手材料核验。
 
+## 在哪里修改
+
+- 第 1–9 课直接编辑 `lessons/` 中对应的 HTML。
+- 第 10–40 课和 6 个模块速查页的规范数据源是 `assets/complete-course-data.js`，不要只修改生成后的 HTML。
+- 首页目录同样由课程数据生成；样式与交互分别位于 `assets/course.css` 和相应 JavaScript 文件。
+- 修改课程数据后先运行 `node scripts/prerender-static.mjs --write`，再检查生成的 HTML 与 `COURSE_INDEX.md`。
+
+本地预览建议使用 `python -m http.server 8000`，然后检查首页、一个被修改的课程页、前后课导航和移动端布局。
+
 ## 提交前检查
 
 ```bash
@@ -21,4 +30,3 @@ node scripts/validate-site.mjs
 ```
 
 Pull Request 请简要说明：修改了什么、为什么修改、使用了哪些来源，以及是否影响课程链接或页面结构。
-

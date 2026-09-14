@@ -5,7 +5,7 @@
 课程首页：https://fanfanfanfanfan626.github.io/advanced-semiconductor-packaging-course/
 使用指南：https://fanfanfanfanfan626.github.io/advanced-semiconductor-packaging-course/guide.html
 源码仓库：https://github.com/fanfanfanfanfan626/advanced-semiconductor-packaging-course
-当前版本：1.0.0
+当前版本：1.0.1
 语言：简体中文
 费用：免费，无需账号
 许可证：网站代码 MIT；原创课程文字、图示和课程结构 CC BY 4.0
@@ -25,3 +25,7 @@
 
 第一课：https://fanfanfanfanfan626.github.io/advanced-semiconductor-packaging-course/lessons/0001-system-scaling-map.html
 完整目录：https://fanfanfanfanfan626.github.io/advanced-semiconductor-packaging-course/#course-map
+
+40 课文本索引：https://github.com/fanfanfanfanfan626/advanced-semiconductor-packaging-course/blob/main/COURSE_INDEX.md
+
+English discovery note: This is a free, Chinese-language open course on semiconductor and advanced packaging. It covers chiplets, HBM, 2.5D/3D integration, CoWoS, InFO, EMIB, Foveros, UCIe, signal integrity, power integrity, thermal reliability, manufacturing economics, and semiconductor industry research.

@@ -2,7 +2,9 @@
 
 一套免费、开源、可连续阅读的中文课程。从封装物理、Chiplet、HBM 和 2.5D/3D 集成出发，逐步进入信号与供电完整性、热与可靠性、制造经济学、产业研究、论文阅读和结课项目。
 
-[在线学习](https://fanfanfanfanfan626.github.io/advanced-semiconductor-packaging-course/) · [使用指南](https://fanfanfanfanfan626.github.io/advanced-semiconductor-packaging-course/guide.html) · [从第一课开始](https://fanfanfanfanfan626.github.io/advanced-semiconductor-packaging-course/lessons/0001-system-scaling-map.html)
+Free, open-source, Chinese-language course on semiconductor and advanced packaging, with 40 lessons from chiplets and HBM to engineering constraints, manufacturing economics, and industry research.
+
+[在线学习](https://fanfanfanfanfan626.github.io/advanced-semiconductor-packaging-course/) · [使用指南](https://fanfanfanfanfan626.github.io/advanced-semiconductor-packaging-course/guide.html) · [40 课文本索引](COURSE_INDEX.md) · [从第一课开始](https://fanfanfanfanfan626.github.io/advanced-semiconductor-packaging-course/lessons/0001-system-scaling-map.html)
 
 [![Release](https://img.shields.io/github/v/release/fanfanfanfanfan626/advanced-semiconductor-packaging-course?label=release)](https://github.com/fanfanfanfanfan626/advanced-semiconductor-packaging-course/releases)
 
@@ -51,6 +53,8 @@ GitHub Actions 会在每次提交和 Pull Request 上运行相同检查。
 
 欢迎修正事实、失效链接、术语和页面问题。涉及技术结论的修改请优先附上标准、论文、监管披露、官方路线图或厂商原始资料。详见 [CONTRIBUTING.md](CONTRIBUTING.md)。
 
+使用问题见 [SUPPORT.md](SUPPORT.md)，参与规则见 [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)。学习、教学或研究引用信息见 [CITATION.cff](CITATION.cff)。
+
 课程可以直接在浏览器中独立学习。如果希望让 AI 按掌握式学习方法继续讲解、练习和安排复习，可配合开源项目 [Mastery Tutor](https://github.com/fanfanfanfanfan626/mastery-tutor) 使用；两者彼此独立，不安装 Tutor 也能完整阅读本课程。
 
 ## 许可证
@@ -58,3 +62,7 @@ GitHub Actions 会在每次提交和 Pull Request 上运行相同检查。
 - 网站源代码： [MIT License](LICENSE)
 - 原创课程文字、图示和课程结构： [CC BY 4.0](LICENSE-CONTENT.md)
 - 外部引用、商标和链接内容不包含在上述授权中，仍归原权利人所有
+
+## 相关项目
+
+- [Mastery Tutor](https://github.com/fanfanfanfanfan626/mastery-tutor)：把兼容的 AI Agent 变成本地优先的掌握式学习导师。

@@ -21,6 +21,32 @@
   <script src="../assets/site-shell.js" defer></script>
 </head>
 <body data-course-lesson="0026">
-  <main class="lesson-shell" data-complete-lesson-root></main>
+  <main class="lesson-shell" data-complete-lesson-root>
+    <!-- prerendered: start -->
+    <header class="hero">
+      <div class="breadcrumb"><a href="../index.html">课程总目录</a><span>›</span><span>模块 3 · 工程约束与协同设计</span><span>›</span><span>第 26 课</span></div>
+      <p class="eyebrow">Semiconductor &amp; Advanced Packaging · Lesson 0026</p>
+      <h1>为什么必须做系统—技术协同优化</h1><p class="lede">更细的互连、更多 HBM、更低电压和更大封装不会独立发生。STCO 把工作负载、架构、die、封装、主板、供电与冷却放进同一优化循环。</p>
+      <div class="win"><strong>本课结果</strong><p>能识别局部最优如何伤害系统，并用共同目标函数组织跨学科取舍。</p></div>
+    </header>
+    <section class="section"><div class="section-head"><p class="eyebrow">Core model</p><h2>从工作负载向下，再从物理边界向上</h2></div>
+
+    <div class="model-grid"><article class="model-step"><h3>工作负载</h3><p>确定计算、容量、带宽、延迟、可靠性和成本目标。</p></article><article class="model-step"><h3>架构分配</h3><p>选择 monolithic/chiplet、缓存、HBM、I/O 与 die 划分。 <a href="#source-1">[1]</a></p></article><article class="model-step"><h3>物理实现</h3><p>确定制程节点、封装拓扑、互连、供电、热和机械方案。 <a href="#source-2">[2]</a></p></article><article class="model-step"><h3>闭环验证</h3><p>用性能、功耗、温度、良率、成本和上市时间共同评估并迭代。 <a href="#source-3">[3]</a></p></article></div>
+    </section>
+    <section class="section"><div class="section-head"><p class="eyebrow">Three anchors</p><h2>三个必须抓住的判断点</h2></div>
+      <div class="concept-grid"><article class="concept-card"><span class="concept-tag">LOCAL</span><h3>单项最优可能伤害整体</h3><p>极细互连可能提高带宽，却增加制造难度、成本、热流密度和测试复杂度。</p></article><article class="concept-card"><span class="concept-tag">BOUND</span><h3>约束必须共享</h3><p>电气、热、机械和制造团队若使用不同几何或功耗假设，结果无法合并。</p></article><article class="concept-card"><span class="concept-tag">OBJ</span><h3>目标函数不只性能</h3><p>实际产品同时优化性能、功耗、面积、成本、可靠性、产能和上市时间。</p></article></div>
+    </section>
+    <section class="section"><div class="section-head"><p class="eyebrow">Mission lenses</p><h2>工程、投资与科研同时看</h2></div>
+      <div class="lens-grid"><article class="lens-panel engineering"><h3>工程镜头</h3><p>建立同一封装数据库和跨域模型，用系统指标决定局部设计，而不是团队各自最大化。</p></article><article class="lens-panel investment"><h3>投资镜头</h3><p>系统级能力和生态协同可能比单点规格更难复制；评估公司时看整合与交付，不只看实验室纪录。</p></article><article class="lens-panel research"><h3>科研 / 专业镜头</h3><p>适合跨学科方向；可做 surrogate model、多目标优化、设计空间探索和模型不确定性。</p></article></div>
+    </section>
+    <section class="section"><div class="section-head"><p class="eyebrow">Worked decision</p><h2>识别局部最优</h2></div>
+      <article class="case-card"><p><strong>情境：</strong>互连团队把 lane 数翻倍，带宽提高，但封装面积、I/O 功耗、PDN 噪声和测试时间显著上升。</p><details><summary>看判断标准</summary><h3>需要回到系统目标重新做多目标权衡</h3><p>带宽提升只有在工作负载实际受益且其他约束可承受时才是系统优化。</p></details></article>
+    </section>
+    <section class="section" id="primary-source"><div class="section-head"><p class="eyebrow">Primary sources</p><h2>本课一手资料</h2></div>
+      <ol class="source-list"><li id="source-1"><a href="https://3dfabric.tsmc.com/english/dedicatedFoundry/technology/3DFabric.htm">TSMC, 3DFabric</a>：CoWoS、InFO 与 SoIC 在系统整合中的官方技术族谱。</li><li id="source-2"><a href="https://www.intel.com/content/www/us/en/foundry/research/packaging-and-test.html">Intel Foundry, Packaging & Test Research</a>：多 die 架构、基板、中介层、供电、热、可制造性与测试研究范围。</li><li id="source-3"><a href="https://www.imec-int.com/en/articles/navigating-thermal-challenges-advanced-systems-chip">imec, Navigating Thermal Challenges</a>：功率密度、热点、边界条件和热感知系统—技术协同优化。</li><li id="source-4"><a href="https://resourcecenter.eps.ieee.org/roadmap/heterogenous-integration/heterogenous-integration-roadmap">IEEE EPS, Heterogeneous Integration Roadmap</a>：异质集成的互连、协同设计、建模、测试、热与可靠性路线图入口。</li></ol>
+    </section>
+    <nav class="next-step" aria-label="课程导航"><h2>本课压缩结论</h2><p>STCO 以系统目标统领架构、芯片与封装；先进封装真正的壁垒往往来自跨域闭环，而不是单点纪录。</p><p><a href="0025-dft-test-coverage.html">← 第25课</a>　·　<a href="../reference/module-03-engineering.html">模块速查表</a>　·　<a href="../index.html">课程总目录</a>　·　<a href="0027-equipment-process-map.html">第27课 →</a></p></nav>
+    <!-- prerendered: end -->
+  </main>
 </body>
 </html>

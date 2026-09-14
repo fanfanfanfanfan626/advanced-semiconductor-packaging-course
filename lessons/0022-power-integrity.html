@@ -21,6 +21,32 @@
   <script src="../assets/site-shell.js" defer></script>
 </head>
 <body data-course-lesson="0022">
-  <main class="lesson-shell" data-complete-lesson-root></main>
+  <main class="lesson-shell" data-complete-lesson-root>
+    <!-- prerendered: start -->
+    <header class="hero">
+      <div class="breadcrumb"><a href="../index.html">课程总目录</a><span>›</span><span>模块 3 · 工程约束与协同设计</span><span>›</span><span>第 22 课</span></div>
+      <p class="eyebrow">Semiconductor &amp; Advanced Packaging · Lesson 0022</p>
+      <h1>供电完整性与 PDN 阻抗</h1><p class="lede">第九课用 IR drop 建立直觉；更深入时，PDN 需要被看成随频率变化的网络。不同位置和类型的电容负责不同时间尺度的电流需求。</p>
+      <div class="win"><strong>本课结果</strong><p>能解释为什么只增加总电容量不一定解决 voltage droop，以及为什么电容必须分层放置。</p></div>
+    </header>
+    <section class="section"><div class="section-head"><p class="eyebrow">Core model</p><h2>从慢变化到快速瞬态</h2></div>
+
+    <div class="model-grid"><article class="model-step"><h3>VRM</h3><p>提供持续能量并处理较慢的负载变化，但离晶体管较远。</p></article><article class="model-step"><h3>板级/封装电容</h3><p>承担中低频能量缓冲，容量较大但路径寄生也较大。</p></article><article class="model-step"><h3>近 die 电容</h3><p>MIM/eDTC 等靠近负载，快速提供瞬态电流。 <a href="#source-1">[1]</a></p></article><article class="model-step"><h3>On-die PDN</h3><p>最后通过片上网格把电流分配到局部晶体管，同时受拥塞和电迁移限制。 <a href="#source-2">[2]</a></p></article></div>
+    </section>
+    <section class="section"><div class="section-head"><p class="eyebrow">Three anchors</p><h2>三个必须抓住的判断点</h2></div>
+      <div class="concept-grid"><article class="concept-card"><span class="concept-tag">Z</span><h3>阻抗随频率变化</h3><p>电阻、电感和电容共同构成 PDN；同一个网络在不同频率下表现不同。</p></article><article class="concept-card"><span class="concept-tag">ESL</span><h3>电容也有寄生参数</h3><p>电容离负载越远、连接越长，寄生电感越大，越难响应最快的电流变化。</p></article><article class="concept-card"><span class="concept-tag">RES</span><h3>电容组合可能产生共振</h3><p>多级电容和封装结构需要阻尼与布局设计，不能只追求最大总容量。</p></article></div>
+    </section>
+    <section class="section"><div class="section-head"><p class="eyebrow">Mission lenses</p><h2>工程、投资与科研同时看</h2></div>
+      <div class="lens-grid"><article class="lens-panel engineering"><h3>工程镜头</h3><p>建立目标阻抗与频率范围，联合优化 VRM、主板、基板、凸点、TSV 和 on-die grid。</p></article><article class="lens-panel investment"><h3>投资镜头</h3><p>高密度电容、先进基板和供电模块的机会要结合每个平台用量、客户自研和集成位置。</p></article><article class="lens-panel research"><h3>科研 / 专业镜头</h3><p>适合电路、电磁、材料与封装方向；可做阻抗扫描、瞬态仿真和电源噪声测量。</p></article></div>
+    </section>
+    <section class="section"><div class="section-head"><p class="eyebrow">Worked decision</p><h2>总容量相同，位置不同</h2></div>
+      <article class="case-card"><p><strong>情境：</strong>方案 A 把电容全部放在主板远处；方案 B 把一部分高密度电容放在 die 附近。总容量相同。</p><details><summary>看判断标准</summary><h3>方案 B 通常更能处理最快瞬态</h3><p>近端电容连接电感更小，能更快向负载供电；远端电容仍有价值，但负责的频率范围不同。</p></details></article>
+    </section>
+    <section class="section" id="primary-source"><div class="section-head"><p class="eyebrow">Primary sources</p><h2>本课一手资料</h2></div>
+      <ol class="source-list"><li id="source-1"><a href="https://www.intel.com/content/dam/www/central-libraries/us/en/documents/2025-11/intel-foundry-hpc-ai-brief.pdf">Intel Foundry, Accelerating HPC and AI</a>：PowerVia、MIM/eDTC、垂直供电与先进多 die 系统的供电方案。</li><li id="source-2"><a href="https://www.imec-int.com/en/articles/how-power-chips-backside">imec, Backside Power Delivery</a>：传统供电路径、IR drop、PDN 拥塞与背面供电研究。</li><li id="source-3"><a href="https://3dfabric.tsmc.com/english/dedicatedFoundry/technology/cowos.htm">TSMC, CoWoS</a>：CoWoS-S、R、L 的中介层材料、布线与局部硅互连差异。</li></ol>
+    </section>
+    <nav class="next-step" aria-label="课程导航"><h2>本课压缩结论</h2><p>PDN 是频率相关网络；电容的容量、位置和寄生参数同样重要，近端小水箱负责最快瞬态。</p><p><a href="0021-signal-integrity.html">← 第21课</a>　·　<a href="../reference/module-03-engineering.html">模块速查表</a>　·　<a href="../index.html">课程总目录</a>　·　<a href="0023-thermal-modeling.html">第23课 →</a></p></nav>
+    <!-- prerendered: end -->
+  </main>
 </body>
 </html>

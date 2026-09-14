@@ -21,6 +21,32 @@
   <script src="../assets/site-shell.js" defer></script>
 </head>
 <body data-course-lesson="0014">
-  <main class="lesson-shell" data-complete-lesson-root></main>
+  <main class="lesson-shell" data-complete-lesson-root>
+    <!-- prerendered: start -->
+    <header class="hero">
+      <div class="breadcrumb"><a href="../index.html">课程总目录</a><span>›</span><span>模块 2 · 先进封装技术路线图</span><span>›</span><span>第 14 课</span></div>
+      <p class="eyebrow">Semiconductor &amp; Advanced Packaging · Lesson 0014</p>
+      <h1>微凸点与混合键合</h1><p class="lede">两者都能连接上下 die，但界面物理机制不同：微凸点依靠凸点接触，hybrid bonding 同时键合介质表面和铜互连。</p>
+      <div class="win"><strong>本课结果</strong><p>能解释 hybrid bonding 为什么支持更细间距，也能指出它对平整度、洁净度和对准提出更高要求。</p></div>
+    </header>
+    <section class="section"><div class="section-head"><p class="eyebrow">Core model</p><h2>从有凸点接触到直接界面键合</h2></div>
+
+    <div class="model-grid"><article class="model-step"><h3>Microbump</h3><p>在对应焊盘上形成微小金属凸点，通过回流或热压完成电连接和机械连接。 <a href="#source-1">[1]</a></p></article><article class="model-step"><h3>间距缩小</h3><p>凸点尺寸、桥连、焊料挤出和 underfill 流动开始限制进一步缩放。</p></article><article class="model-step"><h3>Hybrid bond</h3><p>介质表面先键合，铜焊盘随后形成直接连接，省去传统焊料凸点。 <a href="#source-2">[2]</a></p></article><article class="model-step"><h3>新工艺窗口</h3><p>表面平整、颗粒控制、铜凹陷/突出和亚微米级对准变得关键。 <a href="#source-3">[3]</a></p></article></div>
+    </section>
+    <section class="section"><div class="section-head"><p class="eyebrow">Three anchors</p><h2>三个必须抓住的判断点</h2></div>
+      <div class="concept-grid"><article class="concept-card"><span class="concept-tag">PITCH</span><h3>间距决定 I/O 密度</h3><p>单位面积可放置的连接越多，垂直带宽密度越高，接口驱动距离也可缩短。</p></article><article class="concept-card"><span class="concept-tag">SURFACE</span><h3>界面质量成为良率核心</h3><p>一个颗粒或局部高度差可能阻止大片区域接触，因此 CMP、清洗与量测非常重要。 <a href="#source-2">[2]</a></p></article><article class="concept-card"><span class="concept-tag">MATURE</span><h3>更先进不等于立即替代</h3><p>Microbump 具有成熟生态；hybrid bonding 的选择还取决于产品价值、间距需求、返修和量产成熟度。</p></article></div>
+    </section>
+    <section class="section"><div class="section-head"><p class="eyebrow">Mission lenses</p><h2>工程、投资与科研同时看</h2></div>
+      <div class="lens-grid"><article class="lens-panel engineering"><h3>工程镜头</h3><p>比较 pitch、接触电阻、寄生参数、界面空洞、对准误差、热路径和返修可能性。</p></article><article class="lens-panel investment"><h3>投资镜头</h3><p>受益环节可能包括 CMP、清洗、量测、检测和高精度键合；收入兑现取决于量产节奏与设备吞吐。</p></article><article class="lens-panel research"><h3>科研 / 专业镜头</h3><p>适合材料、表面科学、精密机械与制造方向；研究界面化学、形貌、退火和缺陷传播。</p></article></div>
+    </section>
+    <section class="section"><div class="section-head"><p class="eyebrow">Worked decision</p><h2>根据目标间距选择</h2></div>
+      <article class="case-card"><p><strong>情境：</strong>设计要求极高垂直 I/O 密度，传统焊料凸点的尺寸与桥连风险已经成为主要限制。</p><details><summary>看判断标准</summary><h3>优先评估 hybrid bonding</h3><p>它去除传统焊料凸点，有更细间距潜力，但必须同时验证表面和对准良率。</p></details></article>
+    </section>
+    <section class="section" id="primary-source"><div class="section-head"><p class="eyebrow">Primary sources</p><h2>本课一手资料</h2></div>
+      <ol class="source-list"><li id="source-1"><a href="https://www.imec-int.com/en/expertise/cmos-advanced/connect/3d-integration">imec, 3D Integration</a>：Microbump、die-to-wafer hybrid bonding 与 3D 集成研究。</li><li id="source-2"><a href="https://ir.appliedmaterials.com/news-releases/news-release-details/applied-materials-introduces-new-technologies-and-capabilities/">Applied Materials, Heterogeneous Integration Technologies</a>：Etch、PVD、CVD、电镀、表面处理、RDL、TSV 和 hybrid bonding 设备技术链。</li><li id="source-3"><a href="https://3dfabric.tsmc.com/english/dedicatedFoundry/technology/SoIC_inDepth.htm">TSMC, The Whats, Whys, and Hows of SoIC</a>：Chip-on-wafer、wafer-on-wafer 与高密度垂直键合。</li></ol>
+    </section>
+    <nav class="next-step" aria-label="课程导航"><h2>本课压缩结论</h2><p>Microbump 用凸点跨界面，hybrid bonding 用介质与铜直接键合；密度提高的代价是更严格的表面与对准控制。</p><p><a href="0013-2d-25d-3d-fanout.html">← 第13课</a>　·　<a href="../reference/module-02-technology-map.html">模块速查表</a>　·　<a href="../index.html">课程总目录</a>　·　<a href="0015-substrate-abf-glass.html">第15课 →</a></p></nav>
+    <!-- prerendered: end -->
+  </main>
 </body>
 </html>

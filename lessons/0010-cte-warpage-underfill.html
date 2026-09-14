@@ -21,6 +21,32 @@
   <script src="../assets/site-shell.js" defer></script>
 </head>
 <body data-course-lesson="0010">
-  <main class="lesson-shell" data-complete-lesson-root></main>
+  <main class="lesson-shell" data-complete-lesson-root>
+    <!-- prerendered: start -->
+    <header class="hero">
+      <div class="breadcrumb"><a href="../index.html">课程总目录</a><span>›</span><span>模块 1 · 物理与封装底座</span><span>›</span><span>第 10 课</span></div>
+      <p class="eyebrow">Semiconductor &amp; Advanced Packaging · Lesson 0010</p>
+      <h1>CTE、翘曲与底部填充</h1><p class="lede">不同材料受热后伸长程度不同。先进封装把硅、铜、聚合物和基板紧密结合，这种不一致会转化成弯曲、界面应力和焊点疲劳。</p>
+      <div class="win"><strong>本课结果</strong><p>能沿着“温度变化—膨胀不一致—结构受约束—翘曲/应力—可靠性风险”解释机械失效。</p></div>
+    </header>
+    <section class="section"><div class="section-head"><p class="eyebrow">Core model</p><h2>热循环怎样变成机械损伤</h2></div>
+
+    <div class="model-grid"><article class="model-step"><h3>温度变化</h3><p>回流焊、测试和使用过程都会经历升温与降温。 <a href="#source-2">[2]</a></p></article><article class="model-step"><h3>膨胀不同</h3><p>硅、铜、焊料、聚合物和基板具有不同 CTE。 <a href="#source-1">[1]</a></p></article><article class="model-step"><h3>相互约束</h3><p>粘在一起的材料不能自由伸缩，于是出现弯曲和界面应力。</p></article><article class="model-step"><h3>损伤累积</h3><p>反复循环可能导致焊点疲劳、开裂、分层或接触失效。 <a href="#source-3">[3]</a></p></article></div>
+    </section>
+    <section class="section"><div class="section-head"><p class="eyebrow">Three anchors</p><h2>三个必须抓住的判断点</h2></div>
+      <div class="concept-grid"><article class="concept-card"><span class="concept-tag">CTE</span><h3>热膨胀系数不是温度</h3><p>CTE 描述材料每升高单位温度时尺寸变化的倾向；风险来自相邻材料的差值。</p></article><article class="concept-card"><span class="concept-tag">WARP</span><h3>翘曲是系统结果</h3><p>面积、厚度、刚度、材料层叠和温度共同决定封装弯曲，不能只归因于一种材料。</p></article><article class="concept-card"><span class="concept-tag">UF</span><h3>Underfill 分担载荷</h3><p>底部填充材料填入 die 与基板间隙并分散局部应力，但会引入新的材料、工艺和返修约束。 <a href="#source-2">[2]</a></p></article></div>
+    </section>
+    <section class="section"><div class="section-head"><p class="eyebrow">Mission lenses</p><h2>工程、投资与科研同时看</h2></div>
+      <div class="lens-grid"><article class="lens-panel engineering"><h3>工程镜头</h3><p>比较 CTE、弹性模量、厚度、封装尺寸和温度循环，再观察翘曲、焊点应变和界面分层。</p></article><article class="lens-panel investment"><h3>投资镜头</h3><p>大尺寸封装增加材料、量测、翘曲控制和良率管理价值，但供应商优势必须由认证与稳定量产证明。</p></article><article class="lens-panel research"><h3>科研 / 专业镜头</h3><p>适合材料、机械和封装方向；可用有限元、数字图像相关、阴影云纹或热循环试验研究。</p></article></div>
+    </section>
+    <section class="section"><div class="section-head"><p class="eyebrow">Worked decision</p><h2>区分电问题与机械问题</h2></div>
+      <article class="case-card"><p><strong>情境：</strong>一块大封装在回流焊温度下弯曲，冷却后部分微凸点开路；高速链路设计本身没有改变。</p><details><summary>看判断标准</summary><h3>首先检查 CTE、层叠刚度与翘曲</h3><p>故障与温度循环和物理接触同步出现，首先是热—机械路径，而不是协议或带宽设置。</p></details></article>
+    </section>
+    <section class="section" id="primary-source"><div class="section-head"><p class="eyebrow">Primary sources</p><h2>本课一手资料</h2></div>
+      <ol class="source-list"><li id="source-1"><a href="https://eps.ieee.org/images/files/HIR_2023/ch20_thermalfinal.pdf">IEEE HIR 2023, Thermal Management</a>：异质集成的热路径、界面热阻、3D 堆叠与先进冷却。</li><li id="source-2"><a href="https://newsroom.intel.com/tech101/how-silicon-die-become-chip-packages">Intel Tech 101, How Silicon Die Become Chip Packages</a>：Chip attach、epoxy、lid、burn-in、最终测试与平台验证的官方流程。</li><li id="source-3"><a href="https://resourcecenter.eps.ieee.org/roadmap/heterogenous-integration/heterogenous-integration-roadmap">IEEE EPS, Heterogeneous Integration Roadmap</a>：异质集成的互连、协同设计、建模、测试、热与可靠性路线图入口。</li></ol>
+    </section>
+    <nav class="next-step" aria-label="课程导航"><h2>本课压缩结论</h2><p>不同材料膨胀不一致，在结构约束下形成翘曲和应力；underfill 能分担载荷，但不是没有代价的万能胶。</p><p><a href="0009-power-delivery-voltage-droop.html">← 第9课</a>　·　<a href="../reference/module-01-foundations.html">模块速查表</a>　·　<a href="../index.html">课程总目录</a>　·　<a href="0011-test-chain-kgd.html">第11课 →</a></p></nav>
+    <!-- prerendered: end -->
+  </main>
 </body>
 </html>

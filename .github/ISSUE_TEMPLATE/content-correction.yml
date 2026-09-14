@@ -1,0 +1,30 @@
+name: 课程内容纠错
+description: 报告术语、事实、公式、来源或失效链接问题。
+title: "[内容纠错]: "
+labels: [content]
+body:
+  - type: input
+    id: page
+    attributes:
+      label: 页面链接或课程编号
+      placeholder: 第 16 课或完整 URL
+    validations:
+      required: true
+  - type: textarea
+    id: current
+    attributes:
+      label: 当前内容与问题
+      description: 请指出具体段落、公式、图示或来源。
+    validations:
+      required: true
+  - type: textarea
+    id: correction
+    attributes:
+      label: 建议修正
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: 一手来源
+      description: 优先提供标准、论文、官方路线图、监管披露或厂商原始技术资料。

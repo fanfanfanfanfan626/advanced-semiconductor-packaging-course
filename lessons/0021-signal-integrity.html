@@ -21,6 +21,32 @@
   <script src="../assets/site-shell.js" defer></script>
 </head>
 <body data-course-lesson="0021">
-  <main class="lesson-shell" data-complete-lesson-root></main>
+  <main class="lesson-shell" data-complete-lesson-root>
+    <!-- prerendered: start -->
+    <header class="hero">
+      <div class="breadcrumb"><a href="../index.html">课程总目录</a><span>›</span><span>模块 3 · 工程约束与协同设计</span><span>›</span><span>第 21 课</span></div>
+      <p class="eyebrow">Semiconductor &amp; Advanced Packaging · Lesson 0021</p>
+      <h1>高速互连的信号完整性</h1><p class="lede">数字信号在逻辑上是 0 和 1，在封装里却是会衰减、反射、串扰和抖动的模拟波形。信号完整性的目标，是让接收器仍有足够判读裕量。</p>
+      <div class="win"><strong>本课结果</strong><p>能用损耗、反射、串扰和眼图裕量描述高速链路风险。</p></div>
+    </header>
+    <section class="section"><div class="section-head"><p class="eyebrow">Core model</p><h2>一个 bit 到达接收端前经历什么</h2></div>
+
+    <div class="model-grid"><article class="model-step"><h3>驱动</h3><p>发送端产生具有有限上升时间的电压/电流波形。</p></article><article class="model-step"><h3>传播</h3><p>线路电阻、介质损耗和频率效应削弱高频成分。 <a href="#source-1">[1]</a></p></article><article class="model-step"><h3>干扰</h3><p>阻抗不连续产生反射，相邻线耦合产生串扰，时钟与电源噪声增加抖动。</p></article><article class="model-step"><h3>判读</h3><p>接收端在指定时刻和门限采样，剩余的时间/电压空间形成 eye margin。</p></article></div>
+    </section>
+    <section class="section"><div class="section-head"><p class="eyebrow">Three anchors</p><h2>三个必须抓住的判断点</h2></div>
+      <div class="concept-grid"><article class="concept-card"><span class="concept-tag">LOSS</span><h3>更短通常更好，但不保证</h3><p>一个短链路若有严重阻抗突变、过孔残桩或连接缺陷，仍可能比更长但连续的链路差。</p></article><article class="concept-card"><span class="concept-tag">XTALK</span><h3>密度会增加耦合</h3><p>线路更密可提高带宽密度，也可能增加串扰，需要间距、屏蔽、层叠与编码共同解决。</p></article><article class="concept-card"><span class="concept-tag">EYE</span><h3>眼图是结果压缩</h3><p>眼图把许多 bit 的波形叠加，眼口越小，接收容错空间越少。</p></article></div>
+    </section>
+    <section class="section"><div class="section-head"><p class="eyebrow">Mission lenses</p><h2>工程、投资与科研同时看</h2></div>
+      <div class="lens-grid"><article class="lens-panel engineering"><h3>工程镜头</h3><p>用插入损耗、回波损耗、串扰、抖动、BER 和 eye margin 验证链路。</p></article><article class="lens-panel investment"><h3>投资镜头</h3><p>更高速接口会推动低损耗材料、仿真、量测和测试需求，但规格提升不等于所有供应商同步受益。</p></article><article class="lens-panel research"><h3>科研 / 专业镜头</h3><p>适合电磁场、微波、传输线、通信和封装协同方向；需要电路与信号基础。</p></article></div>
+    </section>
+    <section class="section"><div class="section-head"><p class="eyebrow">Worked decision</p><h2>不要只用长度诊断</h2></div>
+      <article class="case-card"><p><strong>情境：</strong>一条很短的 die-to-die 链路误码率异常，而较长链路工作正常。</p><details><summary>看判断标准</summary><h3>检查阻抗不连续、串扰、供电噪声和连接缺陷</h3><p>长度只是影响因素之一；接口、过孔、凸点、回流路径和参考平面同样决定信号质量。</p></details></article>
+    </section>
+    <section class="section" id="primary-source"><div class="section-head"><p class="eyebrow">Primary sources</p><h2>本课一手资料</h2></div>
+      <ol class="source-list"><li id="source-1"><a href="https://research.tsmc.com/page/interconnect/1.html">TSMC Research, Interconnect</a>：互连几何、材料、制程与布局对性能、功耗、可靠性和良率的影响。</li><li id="source-2"><a href="https://www.uciexpress.org/specifications">UCIe Consortium, Specifications</a>：Die-to-die 物理层、协议、软件、管理、DFx 与 3D 封装支持。</li><li id="source-3"><a href="https://resourcecenter.eps.ieee.org/roadmap/heterogenous-integration/heterogenous-integration-roadmap">IEEE EPS, Heterogeneous Integration Roadmap</a>：异质集成的互连、协同设计、建模、测试、热与可靠性路线图入口。</li></ol>
+    </section>
+    <nav class="next-step" aria-label="课程导航"><h2>本课压缩结论</h2><p>信号完整性关注接收端能否正确判读；链路短是优势，但损耗、反射、串扰、抖动和连接质量共同决定结果。</p><p><a href="0020-hbm-generations.html">← 第20课</a>　·　<a href="../reference/module-03-engineering.html">模块速查表</a>　·　<a href="../index.html">课程总目录</a>　·　<a href="0022-power-integrity.html">第22课 →</a></p></nav>
+    <!-- prerendered: end -->
+  </main>
 </body>
 </html>

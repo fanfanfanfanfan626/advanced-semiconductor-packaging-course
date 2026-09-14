@@ -21,6 +21,32 @@
   <script src="../assets/site-shell.js" defer></script>
 </head>
 <body data-course-lesson="0036">
-  <main class="lesson-shell" data-complete-lesson-root></main>
+  <main class="lesson-shell" data-complete-lesson-root>
+    <!-- prerendered: start -->
+    <header class="hero">
+      <div class="breadcrumb"><a href="../index.html">课程总目录</a><span>›</span><span>模块 5 · 先进封装投资研究</span><span>›</span><span>第 36 课</span></div>
+      <p class="eyebrow">Semiconductor &amp; Advanced Packaging · Lesson 0036</p>
+      <h1>AI 加速器封装案例拆解</h1><p class="lede">一套典型 AI 加速器封装把逻辑、HBM、2.5D 互连、基板、供电、散热和测试放在一起。本课把前35课压缩成一张研究流程。</p>
+      <div class="win"><strong>本课结果</strong><p>能从系统需求向下拆结构，再从每个结构向上追踪产能、成本、风险与供应链。</p></div>
+    </header>
+    <section class="section"><div class="section-head"><p class="eyebrow">Core model</p><h2>从工作负载到供应链的双向拆解</h2></div>
+
+    <div class="model-grid"><article class="model-step"><h3>系统目标</h3><p>训练/推理工作负载决定算力、HBM 容量、带宽、互联和功耗目标。</p></article><article class="model-step"><h3>封装结构</h3><p>逻辑 die 与 HBM 通过硅/RDL/局部桥集成，再连接基板、供电和冷却。 <a href="#source-1">[1]</a></p></article><article class="model-step"><h3>制造约束</h3><p>逻辑/HBM 良率、interposer/RDL、基板、键合、测试、翘曲和散热共同限制。 <a href="#source-2">[2]</a></p></article><article class="model-step"><h3>产业传导</h3><p>系统数量 × 单机含量 × 采用率 × 份额 × 价格进入各供应商财务。</p></article></div>
+    </section>
+    <section class="section"><div class="section-head"><p class="eyebrow">Three anchors</p><h2>三个必须抓住的判断点</h2></div>
+      <div class="concept-grid"><article class="concept-card"><span class="concept-tag">SYSTEM</span><h3>性能由最紧约束决定</h3><p>计算、内存带宽、网络、供电或冷却任一不足，都可能限制整机利用率。</p></article><article class="concept-card"><span class="concept-tag">YIELD</span><h3>价值越高，早筛越重要</h3><p>昂贵逻辑、多个 HBM 和大封装组合后，KGD、组装良率和系统测试尤为关键。</p></article><article class="concept-card"><span class="concept-tag">CHAIN</span><h3>瓶颈与价值会移动</h3><p>HBM、CoWoS、基板、测试或冷却扩产速度不同，稀缺环节随时间变化。</p></article></div>
+    </section>
+    <section class="section"><div class="section-head"><p class="eyebrow">Mission lenses</p><h2>工程、投资与科研同时看</h2></div>
+      <div class="lens-grid"><article class="lens-panel engineering"><h3>工程镜头</h3><p>画一张完整剖面和 signal/power/heat/test 四条路径，再列每条路径的失效模式。</p></article><article class="lens-panel investment"><h3>投资镜头</h3><p>为每个环节建立数量、单位含量、产能、良率、份额和财务传导表，并按季度更新。</p></article><article class="lens-panel research"><h3>科研 / 专业镜头</h3><p>从系统瓶颈选择一个可控问题，例如 HBM 热耦合、PDN、键合良率或测试诊断。</p></article></div>
+    </section>
+    <section class="section"><div class="section-head"><p class="eyebrow">Worked decision</p><h2>选择真正的瓶颈</h2></div>
+      <article class="case-card"><p><strong>情境：</strong>GPU 晶圆供应充足，但 HBM 已认证供应、先进封装合格产能和冷却系统交付均受限。</p><details><summary>看判断标准</summary><h3>系统出货由三者中最紧且最难替代的约束决定</h3><p>单看 GPU 晶圆无法推导整机产量；应建立多约束时间线并持续更新。</p></details></article>
+    </section>
+    <section class="section" id="primary-source"><div class="section-head"><p class="eyebrow">Primary sources</p><h2>本课一手资料</h2></div>
+      <ol class="source-list"><li id="source-1"><a href="https://investor.tsmc.com/static/annualReports/2025/english/index.html">TSMC 2025 Annual Report</a>：先进制程、3DFabric、产能投资、风险和财务披露的法定年度资料。</li><li id="source-2"><a href="https://www.micron.com/products/memory/hbm/hbm4">Micron, HBM4</a>：截至 2026 年的 HBM4 总线宽度、单堆栈带宽、容量与量产路线。</li><li id="source-3"><a href="https://www.intel.com/content/dam/www/central-libraries/us/en/documents/2025-11/intel-foundry-hpc-ai-brief.pdf">Intel Foundry, Accelerating HPC and AI</a>：PowerVia、MIM/eDTC、垂直供电与先进多 die 系统的供电方案。</li><li id="source-4"><a href="https://eps.ieee.org/wp-content/uploads/2025/11/ch17_test.pdf">IEEE HIR 2023, Test Technology</a>：多 die、KGD、堆叠、设计可测性与系统级测试。</li></ol>
+    </section>
+    <nav class="next-step" aria-label="课程导航"><h2>本课压缩结论</h2><p>AI 封装是算力、内存、互连、供电、热、良率、产能与商业关系的系统；研究必须沿完整因果链展开。</p><p><a href="0035-company-research-framework.html">← 第35课</a>　·　<a href="../reference/module-05-investment-research.html">模块速查表</a>　·　<a href="../index.html">课程总目录</a>　·　<a href="0037-major-prerequisite-map.html">第37课 →</a></p></nav>
+    <!-- prerendered: end -->
+  </main>
 </body>
 </html>

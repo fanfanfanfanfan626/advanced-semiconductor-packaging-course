@@ -21,6 +21,32 @@
   <script src="../assets/site-shell.js" defer></script>
 </head>
 <body data-course-lesson="0011">
-  <main class="lesson-shell" data-complete-lesson-root></main>
+  <main class="lesson-shell" data-complete-lesson-root>
+    <!-- prerendered: start -->
+    <header class="hero">
+      <div class="breadcrumb"><a href="../index.html">课程总目录</a><span>›</span><span>模块 1 · 物理与封装底座</span><span>›</span><span>第 11 课</span></div>
+      <p class="eyebrow">Semiconductor &amp; Advanced Packaging · Lesson 0011</p>
+      <h1>测试链如何保护昂贵封装</h1><p class="lede">多 die 封装的测试目标不是最后才判断“好或坏”，而是在价值不断累积的过程中尽早筛除缺陷，并在组装后验证新产生的互连。</p>
+      <div class="win"><strong>本课结果</strong><p>能区分 wafer sort、die sort、堆叠/组装后测试、burn-in、final test 与 system-level test 的职责。</p></div>
+    </header>
+    <section class="section"><div class="section-head"><p class="eyebrow">Core model</p><h2>价值越往后累积，漏检代价越高</h2></div>
+
+    <div class="model-grid"><article class="model-step"><h3>Wafer sort</h3><p>die 仍在晶圆上时，用探针和测试机筛查基本电性。 <a href="#source-3">[3]</a></p></article><article class="model-step"><h3>Die / stack sort</h3><p>切割后或形成子堆栈后确认 KGD/KGS，减少坏件进入昂贵组装。 <a href="#source-1">[1]</a></p></article><article class="model-step"><h3>Final + burn-in</h3><p>封装后检查完整功能、性能和早期寿命缺陷。 <a href="#source-2">[2]</a></p></article><article class="model-step"><h3>System-level test</h3><p>在更接近真实工作负载和平台条件下捕获边缘故障。 <a href="#source-3">[3]</a></p></article></div>
+    </section>
+    <section class="section"><div class="section-head"><p class="eyebrow">Three anchors</p><h2>三个必须抓住的判断点</h2></div>
+      <div class="concept-grid"><article class="concept-card"><span class="concept-tag">EARLY</span><h3>早筛减少连带浪费</h3><p>昂贵 GPU、HBM、中介层和基板组合后，任一坏件都可能让整套封装报废。</p></article><article class="concept-card"><span class="concept-tag">NEW</span><h3>组装会产生新缺陷</h3><p>即使所有 die 都是 KGD，键合、微凸点、TSV、应力和污染仍可能在组装阶段产生失效。 <a href="#source-1">[1]</a></p></article><article class="concept-card"><span class="concept-tag">COVER</span><h3>测试覆盖不是测试次数</h3><p>关键是缺陷能否被激活、传播到可观察点并被定位，而不是简单增加测试步骤。</p></article></div>
+    </section>
+    <section class="section"><div class="section-head"><p class="eyebrow">Mission lenses</p><h2>工程、投资与科研同时看</h2></div>
+      <div class="lens-grid"><article class="lens-panel engineering"><h3>工程镜头</h3><p>建立缺陷类型—测试阶段—可观察信号的矩阵，并评估测试时间、探针接触和覆盖率。</p></article><article class="lens-panel investment"><h3>投资镜头</h3><p>测试价值随封装单价和复杂度提升，但收入还取决于测试时长、并行度、设备利用率和客户自测比例。</p></article><article class="lens-panel research"><h3>科研 / 专业镜头</h3><p>适合电气、统计和制造方向；可研究 DFT、故障诊断、自适应测试与测试数据分析。</p></article></div>
+    </section>
+    <section class="section"><div class="section-head"><p class="eyebrow">Worked decision</p><h2>把测试放在最有价值的位置</h2></div>
+      <article class="case-card"><p><strong>情境：</strong>四颗昂贵 chiplet 将共同组装；其中一种 die 的缺陷率明显更高，而且可以在切割后被电性测试识别。</p><details><summary>看判断标准</summary><h3>在最终组装前做 die sort 并形成 KGD</h3><p>可在价值尚未全部累积前拦截缺陷，同时仍需保留组装后的互连与系统测试。</p></details></article>
+    </section>
+    <section class="section" id="primary-source"><div class="section-head"><p class="eyebrow">Primary sources</p><h2>本课一手资料</h2></div>
+      <ol class="source-list"><li id="source-1"><a href="https://eps.ieee.org/wp-content/uploads/2025/11/ch17_test.pdf">IEEE HIR 2023, Test Technology</a>：多 die、KGD、堆叠、设计可测性与系统级测试。</li><li id="source-2"><a href="https://newsroom.intel.com/tech101/how-silicon-die-become-chip-packages">Intel Tech 101, How Silicon Die Become Chip Packages</a>：Chip attach、epoxy、lid、burn-in、最终测试与平台验证的官方流程。</li><li id="source-3"><a href="https://www.intel.com/content/www/us/en/foundry/packaging.html">Intel Foundry, Advanced Packaging</a>：EMIB、Foveros、RDL/硅中介层、3D 堆叠和先进测试技术族。</li></ol>
+    </section>
+    <nav class="next-step" aria-label="课程导航"><h2>本课压缩结论</h2><p>测试应沿价值链分层布置：组装前保护昂贵投入，组装后捕获新互连缺陷，系统级再验证真实运行边界。</p><p><a href="0010-cte-warpage-underfill.html">← 第10课</a>　·　<a href="../reference/module-01-foundations.html">模块速查表</a>　·　<a href="../index.html">课程总目录</a>　·　<a href="0012-assembly-process-flow.html">第12课 →</a></p></nav>
+    <!-- prerendered: end -->
+  </main>
 </body>
 </html>

@@ -21,6 +21,32 @@
   <script src="../assets/site-shell.js" defer></script>
 </head>
 <body data-course-lesson="0025">
-  <main class="lesson-shell" data-complete-lesson-root></main>
+  <main class="lesson-shell" data-complete-lesson-root>
+    <!-- prerendered: start -->
+    <header class="hero">
+      <div class="breadcrumb"><a href="../index.html">课程总目录</a><span>›</span><span>模块 3 · 工程约束与协同设计</span><span>›</span><span>第 25 课</span></div>
+      <p class="eyebrow">Semiconductor &amp; Advanced Packaging · Lesson 0025</p>
+      <h1>DFT、测试覆盖与缺陷逃逸</h1><p class="lede">测试设备只能观察设计暴露出来的行为。DFT 把控制点、观察点、自测试、环回和管理网络设计进 chiplet 与封装，让缺陷更容易被发现和定位。</p>
+      <div class="win"><strong>本课结果</strong><p>能区分可测性、覆盖率、缺陷逃逸与过度测试，并理解 UCIe 管理/DFx 的作用。</p></div>
+    </header>
+    <section class="section"><div class="section-head"><p class="eyebrow">Core model</p><h2>一个缺陷如何被测试发现</h2></div>
+
+    <div class="model-grid"><article class="model-step"><h3>激活缺陷</h3><p>测试向目标结构施加能让故障表现出来的模式。</p></article><article class="model-step"><h3>传播影响</h3><p>故障结果必须经过逻辑、链路或传感器传播到可观察位置。</p></article><article class="model-step"><h3>观察与比较</h3><p>ATE、BIST、loopback 或系统遥测将结果与预期行为比较。 <a href="#source-1">[1]</a></p></article><article class="model-step"><h3>诊断与处置</h3><p>定位 die、链路或工序，决定报废、降级、重测或修复。 <a href="#source-2">[2]</a></p></article></div>
+    </section>
+    <section class="section"><div class="section-head"><p class="eyebrow">Three anchors</p><h2>三个必须抓住的判断点</h2></div>
+      <div class="concept-grid"><article class="concept-card"><span class="concept-tag">DFT</span><h3>可测性必须预先设计</h3><p>封装完成后再发现内部节点不可控、不可观察，通常无法靠增加外部测试补救。</p></article><article class="concept-card"><span class="concept-tag">ESCAPE</span><h3>漏检代价随价值累积</h3><p>缺陷逃到客户或系统阶段，可能带来整机停机、召回和声誉损失。</p></article><article class="concept-card"><span class="concept-tag">OVER</span><h3>测试也有成本</h3><p>过长测试时间、过严 guardband 和重复测试会降低吞吐与良率，需要风险优化。</p></article></div>
+    </section>
+    <section class="section"><div class="section-head"><p class="eyebrow">Mission lenses</p><h2>工程、投资与科研同时看</h2></div>
+      <div class="lens-grid"><article class="lens-panel engineering"><h3>工程镜头</h3><p>为 die、D2D link、HBM、供电热传感器和系统功能建立分层测试架构。</p></article><article class="lens-panel investment"><h3>投资镜头</h3><p>测试时间和复杂度可增加设备需求，但压缩算法、并行度和客户自测会改变收入敏感性。</p></article><article class="lens-panel research"><h3>科研 / 专业镜头</h3><p>适合数字电路、可靠性、数据分析与 AI 诊断；可研究故障模型、自适应测试和 in-field repair。</p></article></div>
+    </section>
+    <section class="section"><div class="section-head"><p class="eyebrow">Worked decision</p><h2>覆盖率不是通过率</h2></div>
+      <article class="case-card"><p><strong>情境：</strong>一批产品测试通过率很高，但客户仍发现某类内部 D2D 间歇故障。</p><details><summary>看判断标准</summary><h3>优先检查故障模型、激活条件与观察路径</h3><p>高通过率可能只是测试没有覆盖目标缺陷；需要新的 DFT、应力条件或系统遥测。</p></details></article>
+    </section>
+    <section class="section" id="primary-source"><div class="section-head"><p class="eyebrow">Primary sources</p><h2>本课一手资料</h2></div>
+      <ol class="source-list"><li id="source-1"><a href="https://eps.ieee.org/wp-content/uploads/2025/11/ch17_test.pdf">IEEE HIR 2023, Test Technology</a>：多 die、KGD、堆叠、设计可测性与系统级测试。</li><li id="source-2"><a href="https://www.uciexpress.org/specifications">UCIe Consortium, Specifications</a>：Die-to-die 物理层、协议、软件、管理、DFx 与 3D 封装支持。</li><li id="source-3"><a href="https://www.intel.com/content/www/us/en/foundry/packaging.html">Intel Foundry, Advanced Packaging</a>：EMIB、Foveros、RDL/硅中介层、3D 堆叠和先进测试技术族。</li></ol>
+    </section>
+    <nav class="next-step" aria-label="课程导航"><h2>本课压缩结论</h2><p>测试覆盖的本质是激活、传播、观察和诊断；DFT 决定内部缺陷能否在价值累积前被抓住。</p><p><a href="0024-mechanical-reliability.html">← 第24课</a>　·　<a href="../reference/module-03-engineering.html">模块速查表</a>　·　<a href="../index.html">课程总目录</a>　·　<a href="0026-stco-codesign.html">第26课 →</a></p></nav>
+    <!-- prerendered: end -->
+  </main>
 </body>
 </html>

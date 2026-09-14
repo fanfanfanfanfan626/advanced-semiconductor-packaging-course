@@ -21,6 +21,33 @@
   <script src="../assets/site-shell.js" defer></script>
 </head>
 <body data-course-lesson="0020">
-  <main class="lesson-shell" data-complete-lesson-root></main>
+  <main class="lesson-shell" data-complete-lesson-root>
+    <!-- prerendered: start -->
+    <header class="hero">
+      <div class="breadcrumb"><a href="../index.html">课程总目录</a><span>›</span><span>模块 2 · 先进封装技术路线图</span><span>›</span><span>第 20 课</span></div>
+      <p class="eyebrow">Semiconductor &amp; Advanced Packaging · Lesson 0020</p>
+      <h1>HBM 代际升级到底升级什么</h1><p class="lede">HBM 的代际升级不只是单一速度数字。总线宽度、每 pin 速率、堆叠层数、容量、base die、功耗、热、封装接口和客户验证共同决定系统价值。</p>
+      <div class="win"><strong>本课结果</strong><p>能把 HBM 规格分成带宽、容量、能效、制造与系统集成五类，而不只比较代际名称。</p></div>
+    </header>
+    <section class="section"><div class="section-head"><p class="eyebrow">Core model</p><h2>从单个 pin 到整套 AI 系统</h2></div>
+    <div class="equation">单堆栈带宽 ≈ I/O 宽度 × 单 pin 数据率</div>
+
+    <div class="model-grid"><article class="model-step"><h3>接口宽度</h3><p>更宽的总线直接增加并行数据路径；HBM4 进一步扩大接口宽度。 <a href="#source-1">[1]</a></p></article><article class="model-step"><h3>单 pin 速率</h3><p>更快信号提高带宽，也增加信号完整性、功耗和封装验证难度。</p></article><article class="model-step"><h3>容量与层数</h3><p>更多 DRAM die 和更高单 die 容量提高每 stack 容量，但加重薄化、堆叠、热与良率约束。 <a href="#source-2">[2]</a></p></article><article class="model-step"><h3>Base die + package</h3><p>Base die、PHY、CoWoS/其他平台、GPU 控制器和系统软件共同决定实际表现。</p></article></div>
+    </section>
+    <section class="section"><div class="section-head"><p class="eyebrow">Three anchors</p><h2>三个必须抓住的判断点</h2></div>
+      <div class="concept-grid"><article class="concept-card"><span class="concept-tag">SPEC</span><h3>带宽不等于容量</h3><p>带宽表示每秒传多少，容量表示能存多少；AI 工作负载可能同时受二者限制。</p></article><article class="concept-card"><span class="concept-tag">YIELD</span><h3>规格必须穿过量产良率</h3><p>层数、接口和 base die 越复杂，越要核对成熟良率、客户认证与稳定供货。</p></article><article class="concept-card"><span class="concept-tag">SNAP</span><h3>代际信息要标日期</h3><p>本课规格状态以 2026-08 为快照；投资研究必须重新核对厂商和标准披露。 <a href="#source-1">[1]</a></p></article></div>
+    </section>
+    <section class="section"><div class="section-head"><p class="eyebrow">Mission lenses</p><h2>工程、投资与科研同时看</h2></div>
+      <div class="lens-grid"><article class="lens-panel engineering"><h3>工程镜头</h3><p>用带宽、容量、pJ/bit、温度、堆叠高度、接口宽度和 base die 工艺共同比较。</p></article><article class="lens-panel investment"><h3>投资镜头</h3><p>关注 qualified supply、良率、客户组合、长期协议、产能机会成本和封装配套，而不只看名义需求。</p></article><article class="lens-panel research"><h3>科研 / 专业镜头</h3><p>可研究 DRAM—base die 协同、热、测试、信号、功耗和系统数据流。</p></article></div>
+    </section>
+    <section class="section"><div class="section-head"><p class="eyebrow">Worked decision</p><h2>拆解“带宽翻倍”</h2></div>
+      <article class="case-card"><p><strong>情境：</strong>新一代 HBM 宣称单 stack 带宽显著提高。</p><details><summary>看判断标准</summary><h3>先拆成总线宽度与单 pin 速率，再检查系统边界</h3><p>还需核对容量、功耗、温度、控制器、封装、良率和客户工作负载，才能判断实际价值。</p></details></article>
+    </section>
+    <section class="section" id="primary-source"><div class="section-head"><p class="eyebrow">Primary sources</p><h2>本课一手资料</h2></div>
+      <ol class="source-list"><li id="source-1"><a href="https://www.micron.com/products/memory/hbm/hbm4">Micron, HBM4</a>：截至 2026 年的 HBM4 总线宽度、单堆栈带宽、容量与量产路线。</li><li id="source-2"><a href="https://www.micron.com/products/memory/hbm">Micron, High-bandwidth memory</a>：HBM 的 3D 堆叠、TSV、超宽接口和硅中介层近距离集成。</li><li id="source-3"><a href="https://investor.tsmc.com/static/annualReports/2025/english/index.html">TSMC 2025 Annual Report</a>：先进制程、3DFabric、产能投资、风险和财务披露的法定年度资料。</li></ol>
+    </section>
+    <nav class="next-step" aria-label="课程导航"><h2>本课压缩结论</h2><p>HBM 代际升级是接口、速度、容量、base die、能效、热与封装的共同升级；任何单一数字都不完整。</p><p><a href="0019-ucie-stack.html">← 第19课</a>　·　<a href="../reference/module-02-technology-map.html">模块速查表</a>　·　<a href="../index.html">课程总目录</a>　·　<a href="0021-signal-integrity.html">第21课 →</a></p></nav>
+    <!-- prerendered: end -->
+  </main>
 </body>
 </html>

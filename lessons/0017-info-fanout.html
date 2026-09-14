@@ -21,6 +21,32 @@
   <script src="../assets/site-shell.js" defer></script>
 </head>
 <body data-course-lesson="0017">
-  <main class="lesson-shell" data-complete-lesson-root></main>
+  <main class="lesson-shell" data-complete-lesson-root>
+    <!-- prerendered: start -->
+    <header class="hero">
+      <div class="breadcrumb"><a href="../index.html">课程总目录</a><span>›</span><span>模块 2 · 先进封装技术路线图</span><span>›</span><span>第 17 课</span></div>
+      <p class="eyebrow">Semiconductor &amp; Advanced Packaging · Lesson 0017</p>
+      <h1>InFO 与 Fan-out 怎样重构封装</h1><p class="lede">Fan-out 不要求所有 I/O 都停留在原 die 面积内。它先把 die 放入重构载体，再用 RDL 向外扇出端口，从而获得更大的布线和焊球区域。</p>
+      <div class="win"><strong>本课结果</strong><p>能解释 fan-out 的重构、RDL 和端口扩展逻辑，并与传统基板和硅中介层区分。</p></div>
+    </header>
+    <section class="section"><div class="section-head"><p class="eyebrow">Core model</p><h2>先重构，再重布线</h2></div>
+
+    <div class="model-grid"><article class="model-step"><h3>挑选 die</h3><p>已切割并测试的 die 被重新排列到临时载体上。 <a href="#source-1">[1]</a></p></article><article class="model-step"><h3>形成重构体</h3><p>模塑材料包围 die，形成新的 wafer 或 panel 形态。</p></article><article class="model-step"><h3>制作 RDL</h3><p>在重构表面制作介电层、铜线路和过孔，把端口向外扩展。 <a href="#source-1">[1]</a></p></article><article class="model-step"><h3>切割与系统集成</h3><p>形成单 die、多 die、PoP 或 on-substrate 等不同 fan-out 产品。 <a href="#source-2">[2]</a></p></article></div>
+    </section>
+    <section class="section"><div class="section-head"><p class="eyebrow">Three anchors</p><h2>三个必须抓住的判断点</h2></div>
+      <div class="concept-grid"><article class="concept-card"><span class="concept-tag">FAN</span><h3>I/O 可以超出 die 轮廓</h3><p>这为更多焊球、更宽布线和多 die 连接提供空间。</p></article><article class="concept-card"><span class="concept-tag">RDL</span><h3>RDL 是核心互连</h3><p>线宽、层数、介电损耗、铜厚和重构翘曲决定性能与制造难度。</p></article><article class="concept-card"><span class="concept-tag">FORM</span><h3>Fan-out 是一族方案</h3><p>Wafer-level、panel-level、PoP 和 on-substrate 的成本与应用边界不同，不能只凭 fan-out 名称判断。</p></article></div>
+    </section>
+    <section class="section"><div class="section-head"><p class="eyebrow">Mission lenses</p><h2>工程、投资与科研同时看</h2></div>
+      <div class="lens-grid"><article class="lens-panel engineering"><h3>工程镜头</h3><p>检查 die shift、模塑翘曲、RDL 对准、线宽间距、封装尺寸和热路径。</p></article><article class="lens-panel investment"><h3>投资镜头</h3><p>面板化可能提高面积利用率，但设备、材料、翘曲、良率与客户认证决定真实成本优势。</p></article><article class="lens-panel research"><h3>科研 / 专业镜头</h3><p>适合制造、材料和机械方向；可研究重构形变、RDL 可靠性、面板均匀性和补偿算法。</p></article></div>
+    </section>
+    <section class="section"><div class="section-head"><p class="eyebrow">Worked decision</p><h2>识别 fan-out 的必要线索</h2></div>
+      <article class="case-card"><p><strong>情境：</strong>die 被嵌入模塑重构载体，随后在其表面制作多层铜 RDL，并把焊球扩展到 die 外。</p><details><summary>看判断标准</summary><h3>这是典型 fan-out 流程</h3><p>关键证据是重构载体与 I/O 向 die 外扇出，而不是产品最终是否还安装到基板。</p></details></article>
+    </section>
+    <section class="section" id="primary-source"><div class="section-head"><p class="eyebrow">Primary sources</p><h2>本课一手资料</h2></div>
+      <ol class="source-list"><li id="source-1"><a href="https://3dfabric.tsmc.com/schinese/dedicatedFoundry/technology/del/InFO_presentation_2016_ECTC_InFO_PoP_architecture.htm">TSMC, InFO Wafer Level Integrated Fan-Out</a>：多层高密度 RDL fan-out 与系统集成的原始技术论文入口。</li><li id="source-2"><a href="https://3dfabric.tsmc.com/english/dedicatedFoundry/technology/3DFabric.htm">TSMC, 3DFabric</a>：CoWoS、InFO 与 SoIC 在系统整合中的官方技术族谱。</li><li id="source-3"><a href="https://semi.asmpt.com/en/products/ap/">ASMPT, Advanced Packaging Solutions</a>：切割、fan-out、热压键合、混合键合、精密贴装与检测设备。</li></ol>
+    </section>
+    <nav class="next-step" aria-label="课程导航"><h2>本课压缩结论</h2><p>Fan-out 的核心是重构 die + 制作 RDL + 向外扩展 I/O；它是一种封装方法族，不是一条单一性能等级。</p><p><a href="0016-cowos-s-r-l.html">← 第16课</a>　·　<a href="../reference/module-02-technology-map.html">模块速查表</a>　·　<a href="../index.html">课程总目录</a>　·　<a href="0018-emib-foveros.html">第18课 →</a></p></nav>
+    <!-- prerendered: end -->
+  </main>
 </body>
 </html>

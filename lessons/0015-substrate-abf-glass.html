@@ -21,6 +21,32 @@
   <script src="../assets/site-shell.js" defer></script>
 </head>
 <body data-course-lesson="0015">
-  <main class="lesson-shell" data-complete-lesson-root></main>
+  <main class="lesson-shell" data-complete-lesson-root>
+    <!-- prerendered: start -->
+    <header class="hero">
+      <div class="breadcrumb"><a href="../index.html">课程总目录</a><span>›</span><span>模块 2 · 先进封装技术路线图</span><span>›</span><span>第 15 课</span></div>
+      <p class="eyebrow">Semiconductor &amp; Advanced Packaging · Lesson 0015</p>
+      <h1>有机基板、ABF 与玻璃芯</h1><p class="lede">封装基板把 die 上极细密的连接逐步转换成主板可接受的尺度，同时承担供电、信号和机械支撑。ABF 和玻璃芯位于不同层级。</p>
+      <div class="win"><strong>本课结果</strong><p>能区分基板、ABF 层间材料和玻璃芯，并用尺寸稳定性、布线与翘曲比较路线。</p></div>
+    </header>
+    <section class="section"><div class="section-head"><p class="eyebrow">Core model</p><h2>基板完成三种尺度转换</h2></div>
+
+    <div class="model-grid"><article class="model-step"><h3>微细端</h3><p>上表面连接 die、chiplet 或中介层，需要较细线路与小焊盘。</p></article><article class="model-step"><h3>积层布线</h3><p>铜线路和 ABF 等层间绝缘材料逐层建立信号与电源网络。 <a href="#source-1">[1]</a></p></article><article class="model-step"><h3>核心承载</h3><p>有机或玻璃芯提供厚度、刚度、通孔和尺寸稳定性。 <a href="#source-2">[2]</a></p></article><article class="model-step"><h3>主板端</h3><p>底部 BGA 将连接转换到更大间距，便于安装到系统主板。</p></article></div>
+    </section>
+    <section class="section"><div class="section-head"><p class="eyebrow">Three anchors</p><h2>三个必须抓住的判断点</h2></div>
+      <div class="concept-grid"><article class="concept-card"><span class="concept-tag">ABF</span><h3>ABF 不是整块基板</h3><p>它是 build-up 层之间的薄膜绝缘材料，铜线路和过孔在其上形成。 <a href="#source-1">[1]</a></p></article><article class="concept-card"><span class="concept-tag">GLASS</span><h3>玻璃改善尺寸稳定性</h3><p>玻璃芯可提供更平整、可调 CTE 和较高通孔密度潜力，但仍需加工、金属化和可靠性生态。 <a href="#source-2">[2]</a></p></article><article class="concept-card"><span class="concept-tag">STACK</span><h3>层数与规则共同决定能力</h3><p>只看基板面积不足以判断价值；还要看层数、线宽间距、通孔密度、损耗和良率。</p></article></div>
+    </section>
+    <section class="section"><div class="section-head"><p class="eyebrow">Mission lenses</p><h2>工程、投资与科研同时看</h2></div>
+      <div class="lens-grid"><article class="lens-panel engineering"><h3>工程镜头</h3><p>把基板视为多层传输线、供电网络和机械结构，联合检查阻抗、翘曲、通孔和装配。</p></article><article class="lens-panel investment"><h3>投资镜头</h3><p>材料与基板厂的价值量由规格升级、层数、面积、良率和认证驱动，而非仅由封装数量驱动。</p></article><article class="lens-panel research"><h3>科研 / 专业镜头</h3><p>适合材料、射频、电气和机械方向；可研究介电损耗、铜粗糙度、通孔可靠性与玻璃加工。</p></article></div>
+    </section>
+    <section class="section"><div class="section-head"><p class="eyebrow">Worked decision</p><h2>正确识别供应链层级</h2></div>
+      <article class="case-card"><p><strong>情境：</strong>一家材料公司销售用于 CPU 积层封装基板层间绝缘的薄膜。</p><details><summary>看判断标准</summary><h3>它供应 ABF 类介电材料，而不是完整基板</h3><p>完整基板还需要核心、铜线路、通孔、表面处理与多层制造。</p></details></article>
+    </section>
+    <section class="section" id="primary-source"><div class="section-head"><p class="eyebrow">Primary sources</p><h2>本课一手资料</h2></div>
+      <ol class="source-list"><li id="source-1"><a href="https://www.ajinomoto.com/business/healthcare-and-others">Ajinomoto, Electronic Materials / ABF</a>：ABF 作为半导体积层封装基板层间绝缘材料的官方说明。</li><li id="source-2"><a href="https://www.intel.com/content/dam/www/central-libraries/us/en/documents/2024-08/foundry-glass-core-substrates-pb.pdf">Intel Foundry, Glass-Core Substrate</a>：玻璃芯基板的尺寸稳定性、CTE、翘曲、互连密度与供电信号潜力。</li><li id="source-3"><a href="https://newsroom.intel.com/tech101/how-silicon-die-become-chip-packages">Intel Tech 101, How Silicon Die Become Chip Packages</a>：Chip attach、epoxy、lid、burn-in、最终测试与平台验证的官方流程。</li></ol>
+    </section>
+    <nav class="next-step" aria-label="课程导航"><h2>本课压缩结论</h2><p>基板是多层系统，ABF 是积层绝缘材料，玻璃芯是核心材料路线；三者不能当成同一产品比较。</p><p><a href="0014-microbump-hybrid-bonding.html">← 第14课</a>　·　<a href="../reference/module-02-technology-map.html">模块速查表</a>　·　<a href="../index.html">课程总目录</a>　·　<a href="0016-cowos-s-r-l.html">第16课 →</a></p></nav>
+    <!-- prerendered: end -->
+  </main>
 </body>
 </html>

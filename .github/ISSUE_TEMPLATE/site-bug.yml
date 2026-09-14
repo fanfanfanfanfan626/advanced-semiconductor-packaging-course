@@ -1,0 +1,35 @@
+name: 网站问题
+description: 报告显示、交互、无障碍、移动端或进度保存问题。
+title: "[网站问题]: "
+labels: [bug]
+body:
+  - type: input
+    id: page
+    attributes:
+      label: 页面链接
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: 浏览器、版本与设备
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 期望结果
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: 实际结果
+    validations:
+      required: true

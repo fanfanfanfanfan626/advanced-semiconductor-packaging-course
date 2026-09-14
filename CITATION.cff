@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "如果本课程对你的学习、教学或研究有帮助，请引用本项目。"
+title: "封装解构：半导体与先进封装完整课程"
+type: software
+authors:
+  - family-names: "fanfanfanfanfan626"
+version: 1.0.1
+date-released: 2026-09-14
+url: "https://fanfanfanfanfan626.github.io/advanced-semiconductor-packaging-course/"
+repository-code: "https://github.com/fanfanfanfanfan626/advanced-semiconductor-packaging-course"
+license: CC-BY-4.0
+keywords:
+  - semiconductor packaging
+  - advanced packaging
+  - chiplet
+  - HBM
+  - Chinese course
