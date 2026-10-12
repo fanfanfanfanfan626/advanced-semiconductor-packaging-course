@@ -25,3 +25,36 @@ const docs=new Map(course.catalog.map(lesson=>[lesson.id,search.buildSearchDocum
 test('bilingual concepts beyond lesson titles',()=>{for(const [q,id] of [['known good die','0003'],['hybrid bonding','0014'],['玻璃芯','0015'],['PowerVia','0022'],['协同优化','0026'],['２．５Ｄ fan-out','0013']])assert.ok(search.matchesSearch(docs.get(id),q),q);assert.equal(search.matchesSearch(docs.get('0022'),'PowerVia nonexistentterm'),false);});
 test('shareable search and module state',()=>{const q=search.buildSearchQuery('混合键合 hybrid bonding','2');assert.deepEqual(search.parseSearchQuery('?'+q,['1','2']),{query:'混合键合 hybrid bonding',module:'2'});assert.equal(search.parseSearchQuery('?module=99',['1','2']).module,'all');});
 test('no-JS index keeps all 40 lesson links',()=>{const html=fs.readFileSync(path.join(root,'index.html'),'utf8');assert.equal(new Set([...html.matchAll(/href="lessons\/(\d{4})-[^"]+\.html"/g)].map(m=>m[1])).size,40);});
+
+// Minimal DOM contract harness; this is not a browser or layout test.
+function mountLesson(store) {
+  const span={textContent:''},button={textContent:'',disabled:false,listeners:{},addEventListener(name,fn){this.listeners[name]=fn;}};
+  const dock={classList:{toggle(){}},setAttribute(){},querySelector(selector){return selector==='span'?span:button;},
+    set innerHTML(html){span.textContent=html.match(/<span>(.*?)<\/span>/)[1];button.textContent=html.match(/<button[^>]*>(.*?)<\/button>/)[1];}};
+  const document={querySelector(){return null;},createElement(){return dock;},body:{classList:{add(){}},insertAdjacentHTML(){},append(){}}};
+  vm.runInNewContext(fs.readFileSync(path.join(root,'assets/site-shell.js'),'utf8'),{
+    document,location:{pathname:'/lessons/0001-system-scaling-map.html'},window:{AdvancedPackagingState:{createStore:()=>store}}
+  });
+  return {span,button,click:()=>button.listeners.click()};
+}
+for(const [name,storage] of [
+  ['absent',null],
+  ['read denied',{getItem(){throw Error('denied');},setItem(){throw Error('denied');}}],
+  ['write denied',{getItem(){return null;},setItem(){throw Error('quota');}}]
+]) test(`lesson immediately warns when storage is ${name}`,()=>{
+  const store=state.createStore({storage,now}),ui=mountLesson(store);
+  assert.equal(ui.span.textContent,'本地存储不可用，仅本页有效');assert.equal(ui.button.disabled,false);
+  ui.click();assert.equal(ui.button.textContent,'已完成 ✓');assert.deepEqual(store.load().completedIds,['0001']);
+  ui.click();assert.equal(ui.button.textContent,'标记完成');assert.deepEqual(store.load().completedIds,[]);
+  assert.equal(ui.span.textContent,'本地存储不可用，仅本页有效');
+});
+test('persistent lesson keeps its normal initial and completed labels',()=>{
+  const store=state.createStore({storage:new Memory(),now}),ui=mountLesson(store);
+  assert.equal(ui.span.textContent,'读完这一课？');ui.click();assert.equal(ui.span.textContent,'本课已完成');
+  assert.equal(mountLesson(store).span.textContent,'本课已完成');
+});
+test('missing progress store disables saving without a false success',()=>{
+  const ui=mountLesson(null);assert.equal(ui.span.textContent,'学习进度暂不可用');
+  assert.equal(ui.button.textContent,'无法保存');assert.equal(ui.button.disabled,true);ui.click();
+  assert.equal(ui.button.textContent,'无法保存');
+});
