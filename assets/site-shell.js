@@ -30,6 +30,7 @@
   dock.innerHTML = `<span>${completed.has(lessonId) ? '本课已完成' : '读完这一课？'}</span><button type="button">${completed.has(lessonId) ? '已完成 ✓' : '标记完成'}</button>`;
   document.body.append(dock);
   if(!store){dock.querySelector('span').textContent='学习进度暂不可用';dock.querySelector('button').textContent='无法保存';dock.querySelector('button').disabled=true;}
+  else if(!store.isPersistent()){dock.querySelector('span').textContent='本地存储不可用，仅本页有效';}
 
   dock.querySelector('button').addEventListener('click', () => {
     if (!store) return;
