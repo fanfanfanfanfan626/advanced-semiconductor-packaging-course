@@ -19,7 +19,7 @@ Free, open-source, Chinese-language course on semiconductor and advanced packagi
 - 第 32–36 课：产业链、资料分级、财务映射、公司研究和 AI 封装案例
 - 第 37–40 课：大学先修课、论文阅读、实验设计和结课项目
 
-课程还包含 15 个速查/参考页面、可展开案例、良率与互连模拟器，以及浏览器本地保存的阅读进度。阅读不要求注册账号，也不会上传学习记录。
+课程还包含 15 个速查/参考页面、可展开案例、良率与互连模拟器、中英文概念搜索和断点续学。浏览器进度可以在[使用指南](https://fanfanfanfanfan626.github.io/advanced-semiconductor-packaging-course/guide.html#progress-backup)中导出、验证导入或清除。阅读不要求注册账号，也不会上传学习记录。
 
 ## 资料原则
 

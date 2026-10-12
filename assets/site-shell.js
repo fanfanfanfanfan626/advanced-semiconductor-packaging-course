@@ -1,4 +1,5 @@
 (() => {
+  const start = () => {
   if (document.querySelector('[data-site-shell]')) return;
 
   const inNestedFolder = /\/(lessons|reference)\//.test(location.pathname.replace(/\\/g, '/'));
@@ -7,14 +8,8 @@
   const lessonMatch = file.match(/^(\d{4})-/);
   const lessonId = lessonMatch ? lessonMatch[1] : null;
   const lessonNumber = lessonId ? Number(lessonId) : null;
-  let savedProgress = [];
-  try {
-    const parsed = JSON.parse(localStorage.getItem('advanced-packaging-completed') || '[]');
-    savedProgress = Array.isArray(parsed) ? parsed : [];
-  } catch {
-    savedProgress = [];
-  }
-  const completed = new Set(savedProgress);
+  const store = window.AdvancedPackagingState?.createStore();
+  const completed = new Set(store ? store.load().completedIds : []);
   const moduleForLesson = (number) => number <= 12 ? 1 : number <= 20 ? 2 : number <= 26 ? 3 : number <= 31 ? 4 : number <= 36 ? 5 : 6;
 
   document.body.classList.add(lessonId ? 'course-lesson-page' : 'course-reference-page');
@@ -27,20 +22,29 @@
     </header>`);
 
   if (!lessonId) return;
+  if (store) store.visit(lessonId);
 
   const dock = document.createElement('aside');
   dock.className = `lesson-progress-dock${completed.has(lessonId) ? ' is-complete' : ''}`;
   dock.setAttribute('aria-label', '学习进度');
   dock.innerHTML = `<span>${completed.has(lessonId) ? '本课已完成' : '读完这一课？'}</span><button type="button">${completed.has(lessonId) ? '已完成 ✓' : '标记完成'}</button>`;
   document.body.append(dock);
+  if(!store){dock.querySelector('span').textContent='学习进度暂不可用';dock.querySelector('button').textContent='无法保存';dock.querySelector('button').disabled=true;}
 
   dock.querySelector('button').addEventListener('click', () => {
-    if (completed.has(lessonId)) completed.delete(lessonId);
-    else completed.add(lessonId);
-    localStorage.setItem('advanced-packaging-completed', JSON.stringify(Array.from(completed).sort()));
+    if (!store) return;
+    const state = store.toggleCompleted(lessonId);
+    completed.clear(); state.completedIds.forEach(id=>completed.add(id));
     const done = completed.has(lessonId);
     dock.classList.toggle('is-complete', done);
-    dock.querySelector('span').textContent = done ? '本课已完成' : '读完这一课？';
+    dock.querySelector('span').textContent = store.isPersistent() ? (done ? '本课已完成' : '读完这一课？') : '本地存储不可用，仅本页有效';
     dock.querySelector('button').textContent = done ? '已完成 ✓' : '标记完成';
   });
+  };
+  if(window.AdvancedPackagingState) start();
+  else {
+    const script=document.createElement('script');
+    script.src=(/\/(lessons|reference)\//.test(location.pathname.replace(/\\/g,'/'))?'../':'')+'assets/course-state.js';
+    script.addEventListener('load',start);script.addEventListener('error',start);document.head.append(script);
+  }
 })();

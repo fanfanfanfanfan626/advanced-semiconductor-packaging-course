@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>UCIe 3.0、HBM4 与光 I/O：2026 资料核对｜封装解构</title>
+<meta name="description" content="截至2026年10月12日核对的一手资料补充：区分 UCIe 标准与安全 ECN、Micron HBM4 产品参数和 OCP 光 I/O 研究议程，连接到40课学习路线。">
+<link rel="canonical" href="https://fanfanfanfanfan626.github.io/advanced-semiconductor-packaging-course/updates.html">
+<link rel="stylesheet" href="assets/course.css"><style>main{width:min(850px,calc(100% - 40px));margin:50px auto;font-size:17px;line-height:1.85}section{margin:32px 0;padding:24px;border:1px solid #35505c;border-radius:16px}a{color:#65d6d1}h1{line-height:1.3}small{color:#a6c2c9}</style></head><body><main>
+<nav><a href="index.html">← 课程目录</a> · <a href="guide.html">使用指南</a></nav>
+<h1>看新技术，先分清“标准、产品、研究议程”</h1>
+<p>本页在 <time datetime="2026-10-12">2026 年 10 月 12 日</time>核对。它补充课程，不代表全部课程已重新审计，也不把厂商参数当作所有产品的共同性能。</p>
+<section><small>标准与标准变更通知 · 核对日期 2026-10-12</small><h2>UCIe 3.0：速度之外，还有管理与信任</h2>
+<p>UCIe 联盟公开说明列出了 3.0 支持的 48 GT/s、64 GT/s 速率，以及管理、侧带与运行期节能方面的扩展。这里的 GT/s 不是整个封装的 TB/s；不能忽略通道数量、编码与协议开销直接比较。</p>
+<p>同一来源另列 CTA、CSSC、TRoCS 的 ECN：涉及 Chiplet 生命周期状态、测试/调试访问控制和可信状态报告。这是单独列出的标准变更内容，不应笼统写成所有 UCIe 3.0 器件已经实现的功能。</p>
+<p>学习时问：芯粒怎样证明自己处于预期生命周期状态？制造测试权限进入现场运行后是否还应保留？这连接了互连、DFT 与系统安全。</p>
+<p><a href="https://www.uciexpress.org/specifications">一手来源：UCIe Specifications</a> · <a href="index.html?q=UCIe#course-map">回到 UCIe 课程</a></p></section>
+<section><small>厂商产品参数 · 核对日期 2026-10-12</small><h2>HBM4：总线宽度与每引脚速度要一起看</h2>
+<p>Micron HBM4 产品页给出 2048-pin 接口、超过 11.0 Gb/s 和每堆栈超过 2.8 TB/s。它是该厂商页面上的产品陈述，不是对所有 HBM4 器件的统一保证，也不是整机实测带宽。</p>
+<p>练习：用 2048 × 11 ÷ 8 计算理论字节吞吐量，结果约为 2816 GB/s。再解释为何应用吞吐量不一定达到这个数字。不要把容量（GB）与带宽（GB/s）混淆。</p>
+<p><a href="https://www.micron.com/products/memory/hbm/hbm4">一手来源：Micron HBM4</a> · <a href="index.html?q=HBM#course-map">回到 HBM 课程</a></p></section>
+<section><small>研究工作流与需求定义 · 核对日期 2026-10-12</small><h2>光 I/O：先问使用场景，不先下替代结论</h2>
+<p>OCP 的 Short Reach Optical Interconnect 工作流在定义处理器—处理器与处理器—内存光互连的应用、指标及待解决问题。项目存在不等于某种统一接口已经量产普及。</p>
+<p>比较候选方案时，分别列出距离、链路能耗、光纤连接与装配、热、可维修性和测试条件。这里是课程分析框架，不是对某款产品性能的断言。没有对应证据的格子应保留“待测”，而不是填入漂亮的估计值。</p>
+<p><a href="https://www.opencompute.org/projects/future-technologies-initiative/short-reach-optical-interconnect/">一手来源：OCP SROI</a> · <a href="index.html?q=STCO#course-map">回到系统协同设计</a></p></section>
+<p>发现来源更新或表述问题？请在<a href="https://github.com/fanfanfanfanfan626/advanced-semiconductor-packaging-course/issues">课程 Issues</a>附上一手链接与具体段落。我们不自动把网页变化写成技术结论。</p>
+</main></body></html>
