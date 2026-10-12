@@ -1,18 +1,16 @@
 (() => {
   const course = window.AdvancedPackagingCourse;
+  const searchApi = window.AdvancedPackagingSearch;
   const root = document.querySelector('[data-course-index-root]');
-  if (!course || !root) return;
+  if (!course || !root || !searchApi || !window.AdvancedPackagingState) return;
 
   const lessonHref = (lesson) => `lessons/${lesson.id}-${lesson.slug}.html`;
-  let savedProgress = [];
-  try {
-    const parsed = JSON.parse(localStorage.getItem('advanced-packaging-completed') || '[]');
-    savedProgress = Array.isArray(parsed) ? parsed : [];
-  } catch {
-    savedProgress = [];
-  }
-  const completed = new Set(savedProgress);
-  const firstIncomplete = course.catalog.find((lesson) => !completed.has(lesson.id)) || course.catalog[0];
+  const store = window.AdvancedPackagingState.createStore({catalogIds:course.catalog.map(lesson=>lesson.id)});
+  const progress = store.load();
+  const completed = new Set(progress.completedIds);
+  const firstIncomplete = course.catalog.find(lesson=>lesson.id===store.getResumeLessonId()) || course.catalog[0];
+  const hasStarted = completed.size || progress.lastVisitedId;
+  const searchDocuments = new Map(course.catalog.map(lesson=>[lesson.id,searchApi.buildSearchDocument(course,lesson)]));
   const completedPercent = Math.round((completed.size / course.catalog.length) * 100);
   const trackCards = [
     { icon: '研', title: '投资研究路线', copy: '从技术结构走到产能、成本、价值链与公司研究。', modules: '模块 1 → 2 → 4 → 5', target: '#module-5' },
@@ -24,7 +22,7 @@
     <nav class="site-topbar" aria-label="网站主导航">
       <a class="site-brand" href="index.html" aria-label="封装解构首页"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span>封装解构<small>ADVANCED PACKAGING</small></span></a>
       <div class="site-nav-links"><a href="#paths">学习路线</a><a href="#course-map">课程目录</a><a href="guide.html">使用指南</a></div>
-      <a class="nav-cta" href="${lessonHref(firstIncomplete)}">${completed.size ? '继续学习' : '开始学习'}</a>
+      <a class="nav-cta" href="${lessonHref(firstIncomplete)}">${hasStarted ? '继续学习' : '开始学习'}</a>
     </nav>
 
     <header class="cover-hero">
@@ -32,7 +30,7 @@
         <p class="cover-kicker"><span></span>系统级半导体课程 · 2026</p>
         <h1>看懂芯片之后，<br><em>再看懂它们如何连接。</em></h1>
         <p class="cover-lede">从 wafer、die 与 package 出发，穿过 Chiplet、2.5D、HBM、混合键合和 CoWoS，最终建立能用于工程判断、投资研究与科研准备的完整框架。</p>
-        <div class="cover-actions"><a class="cover-primary" href="${lessonHref(firstIncomplete)}">${completed.size ? `继续第 ${Number(firstIncomplete.id)} 课` : '从第一课开始'} <span>→</span></a><a class="cover-secondary" href="#course-map">浏览 40 课目录</a></div>
+        <div class="cover-actions"><a class="cover-primary" href="${lessonHref(firstIncomplete)}">${hasStarted ? `继续第 ${Number(firstIncomplete.id)} 课` : '从第一课开始'} <span>→</span></a><a class="cover-secondary" href="#course-map">浏览 40 课目录</a><a class="cover-secondary" href="guide.html#progress-backup">备份学习进度</a></div>
         <div class="cover-proof"><span><strong>40</strong> 节独立短课</span><span><strong>6</strong> 个知识模块</span><span><strong>32</strong> 个一手来源</span></div>
       </div>
       <div class="package-stage" role="img" aria-label="先进封装结构抽象图：计算裸片、I/O裸片和HBM通过微凸点连接到硅中介层与封装基板">
@@ -70,7 +68,7 @@
         const lessons = course.catalog.filter((lesson) => lesson.module === module.id);
         return `<section class="module-block site-module" id="module-${module.id}" data-module="${module.id}">
           <div class="module-title-row"><div class="module-number">0${module.id}</div><div><p class="eyebrow">LESSONS ${lessons[0].id}–${lessons[lessons.length - 1].id}</p><h2>${module.title}</h2><p>${module.summary}</p></div><a class="module-reference-link" href="reference/${module.reference}">模块速查 ↗</a></div>
-          <div class="lesson-list">${lessons.map((lesson) => `<a class="lesson-link ${completed.has(lesson.id) ? 'is-complete' : ''}" data-search="${lesson.title.toLowerCase()}" href="${lessonHref(lesson)}"><span class="lesson-number">${lesson.id}</span><span>${lesson.title}</span><span class="lesson-state">${completed.has(lesson.id) ? '已完成' : '阅读'}</span></a>`).join('')}</div>
+          <div class="lesson-list">${lessons.map((lesson) => `<a class="lesson-link ${completed.has(lesson.id) ? 'is-complete' : ''}" data-lesson-id="${lesson.id}" href="${lessonHref(lesson)}"><span class="lesson-number">${lesson.id}</span><span>${lesson.title}</span><span class="lesson-state">${completed.has(lesson.id) ? '已完成' : '阅读'}</span></a>`).join('')}</div>
         </section>`;
       }).join('')}</div>
       <div class="empty-courses" hidden><strong>没有匹配课程</strong><p>换一个关键词，或切换到“全部”模块。</p></div>
@@ -87,16 +85,19 @@
   const buttons = Array.from(root.querySelectorAll('[data-module-filter]'));
   const count = root.querySelector('.directory-count');
   const empty = root.querySelector('.empty-courses');
-  let activeModule = 'all';
+  const initial = searchApi.parseSearchQuery(location.search,course.modules.map(m=>String(m.id)));
+  let activeModule = initial.module;
+  input.value = initial.query;
+  buttons.forEach(button=>button.classList.toggle('active',button.dataset.moduleFilter===activeModule));
 
   const filterCourses = () => {
-    const query = input.value.trim().toLowerCase();
+    const query = input.value.trim();
     let visibleLessons = 0;
     root.querySelectorAll('.site-module').forEach((module) => {
       const moduleMatch = activeModule === 'all' || module.dataset.module === activeModule;
       let moduleVisible = 0;
       module.querySelectorAll('.lesson-link').forEach((lesson) => {
-        const match = moduleMatch && (!query || lesson.dataset.search.includes(query));
+        const match = moduleMatch && searchApi.matchesSearch(searchDocuments.get(lesson.dataset.lessonId)||'',query);
         lesson.hidden = !match;
         if (match) moduleVisible += 1;
       });
@@ -105,6 +106,8 @@
     });
     count.textContent = query || activeModule !== 'all' ? `找到 ${visibleLessons} 课` : `显示全部 ${course.catalog.length} 课`;
     empty.hidden = visibleLessons !== 0;
+    const params = searchApi.buildSearchQuery(query,activeModule);
+    try { history.replaceState(null,'',`${location.pathname}${params?'?'+params:''}${location.hash}`); } catch { /* file:// may deny history changes */ }
   };
 
   input.addEventListener('input', filterCourses);
@@ -113,4 +116,11 @@
     buttons.forEach((candidate) => candidate.classList.toggle('active', candidate === button));
     filterCourses();
   }));
+  filterCourses();
+  window.addEventListener('popstate',()=>{
+    const value=searchApi.parseSearchQuery(location.search,course.modules.map(m=>String(m.id)));
+    input.value=value.query;activeModule=value.module;
+    buttons.forEach(button=>button.classList.toggle('active',button.dataset.moduleFilter===activeModule));
+    filterCourses();
+  });
 })();

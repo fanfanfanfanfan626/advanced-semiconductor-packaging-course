@@ -1,5 +1,25 @@
 window.AdvancedPackagingCourse = {
   updated: "2026-08-23",
+  searchAliases: {
+    "0003": ["known good die", "KGD", "defect density", "良率 成本"],
+    "0004": ["bandwidth energy distance", "pJ per bit", "die to die"],
+    "0005": ["high bandwidth memory", "DRAM stack", "HBM GPU TSV"],
+    "0006": ["through silicon via", "silicon interposer", "micro bump"],
+    "0007": ["redistribution layer", "silicon bridge", "RDL"],
+    "0008": ["power density", "thermal path", "hotspot cooling"],
+    "0009": ["power delivery network", "PDN", "IR drop", "voltage droop"],
+    "0010": ["coefficient of thermal expansion", "warpage", "underfill"],
+    "0013": ["fan out", "2.5D"],
+    "0014": ["hybrid bonding", "copper to copper bonding", "Cu Cu"],
+    "0015": ["glass core substrate", "organic substrate", "ABF", "玻璃芯"],
+    "0019": ["universal chiplet interconnect express", "UCIe"],
+    "0022": ["PowerVia", "power integrity", "target impedance", "decoupling capacitor"],
+    "0025": ["design for test", "test coverage", "DFT"],
+    "0026": ["system technology co optimization", "STCO", "协同优化"],
+    "0033": ["source hierarchy", "primary source", "evidence quality"],
+    "0036": ["AI accelerator package", "GPU HBM"],
+    "0040": ["capstone project", "learning roadmap"]
+  },
   modules: [
     {
       id: 1,

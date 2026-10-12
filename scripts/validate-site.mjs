@@ -115,6 +115,8 @@ if (prerender.status !== 0) {
 }
 
 const version = (await readFile(path.join(root, 'VERSION'), 'utf8')).trim();
+const learnerTests = spawnSync(process.execPath, ['--test', path.join(root,'scripts','test-learner-features.cjs')], {encoding:'utf8'});
+if(learnerTests.status!==0) errors.push(`Learner feature tests failed:\n${learnerTests.stdout}\n${learnerTests.stderr}`);
 const publicVersionMarkers = new Map([
   [path.join(root, 'CHANGELOG.md'), `## ${version}`],
   [path.join(root, 'index.html'), `"version": "${version}"`],
